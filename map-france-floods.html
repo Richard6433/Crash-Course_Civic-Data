@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>France Flood Events 2000–2010</title>
+  <title>France Flood Events 2000–2010 (Dartmouth Archive)</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -83,7 +83,7 @@
   </div>
   <div id="hstats">
     128 total deaths &nbsp;·&nbsp; 49,779 displaced<br>
-    <span style="font-size:0.68rem;opacity:0.7">&#9432; Structures destroyed: not in source dataset — displaced persons used as proxy</span>
+    <span style="font-size:0.68rem;opacity:0.7">&#9432; Source data covers France up to 2010 only — no post-2010 France records in this dataset</span>
   </div>
 </header>
 
@@ -92,7 +92,7 @@
 
 <div id="sidebar">
   <div id="sb-title">By region — click to zoom</div>
-  <div id="sb-note">&#9888; Dataset has no "structures destroyed" field. Displaced persons shown as proxy.</div>
+  <div id="sb-note">&#9432; Source data ends at 2010 for France. No post-2010 records in this dataset.</div>
   <div id="sb-scroll">
     <table id="region-table">
       <thead>
@@ -219,7 +219,6 @@ fetch('https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/reg
         '<tr><td style="color:#888;padding:2px 8px 2px 0">Severity</td><td>' + e.sev + '</td></tr>' +
         '<tr><td style="color:#888;padding:2px 8px 2px 0">Deaths</td><td><b style="color:#dc2626">' + e.dead + '</b></td></tr>' +
         '<tr><td style="color:#888;padding:2px 8px 2px 0">Displaced</td><td>' + e.disp.toLocaleString() + '</td></tr>' +
-        '<tr><td style="color:#888;padding:2px 8px 2px 0">Structures</td><td style="color:#94a3b8"><i>not in dataset</i></td></tr>' +
         '</table></div>',
         { maxWidth: 250 }
       );
