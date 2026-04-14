@@ -3,228 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oloron-Sainte-Marie, France — v2</title>
-
+  <title>Oloron-Sainte-Marie, France</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { height: 100%; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; }
 
     header {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 50px;
-      z-index: 1000;
-      background: #1a3a5c;
-      color: #fff;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      position: absolute; top: 0; left: 0; right: 0; height: 50px;
+      z-index: 1000; background: #1a3a5c; color: #fff;
+      padding: 0 20px; display: flex; align-items: center; gap: 12px;
     }
+    header h1 { font-size: 1.2rem; font-weight: 700; }
+    header p  { font-size: 0.82rem; opacity: 0.72; }
 
-    header h1 {
-      font-size: 1.25rem;
-      font-weight: 700;
+    #map { position: absolute; top: 50px; bottom: 0; left: 0; right: 0; }
+
+    #info {
+      position: absolute; top: 60px; right: 10px; z-index: 1000;
+      background: white; border-radius: 8px; padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-size: 0.8rem;
+      line-height: 1.5; max-width: 210px;
     }
+    #info h3 { font-size: 0.9rem; margin-bottom: 6px; color: #1a3a5c; }
+    #info table { width: 100%; border-collapse: collapse; }
+    #info td { padding: 1px 0; vertical-align: top; }
+    #info td:first-child { font-weight: 600; color: #555; padding-right: 6px; white-space: nowrap; }
 
-    header p {
-      font-size: 0.82rem;
-      opacity: 0.72;
+    #legend {
+      position: absolute; bottom: 30px; right: 10px; z-index: 1000;
+      background: white; border-radius: 8px; padding: 10px 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-size: 0.78rem; line-height: 1.7;
     }
-
-    #map {
-      position: absolute;
-      top: 50px; bottom: 0; left: 0; right: 0;
+    #legend h4 { font-size: 0.82rem; margin-bottom: 4px; color: #1a3a5c; }
+    .li { display: flex; align-items: center; gap: 7px; }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.25); flex-shrink: 0;
     }
-
-    .info-box {
-      background: white;
-      border-radius: 8px;
-      padding: 12px 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      font-size: 0.82rem;
-      line-height: 1.5;
-      max-width: 220px;
-    }
-
-    .info-box h3 {
-      font-size: 0.95rem;
-      margin-bottom: 6px;
-      color: #1a3a5c;
-    }
-
-    .info-box table { width: 100%; border-collapse: collapse; }
-
-    .info-box td { padding: 2px 0; vertical-align: top; }
-
-    .info-box td:first-child {
-      font-weight: 600;
-      color: #555;
-      padding-right: 6px;
-      white-space: nowrap;
-    }
-
-    .legend {
-      background: white;
-      border-radius: 8px;
-      padding: 10px 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      font-size: 0.8rem;
-      line-height: 1.6;
-    }
-
-    .legend h4 { font-size: 0.85rem; margin-bottom: 6px; color: #1a3a5c; }
-
-    .legend-item { display: flex; align-items: center; gap: 7px; }
-
-    .legend-dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      border: 2px solid rgba(0,0,0,0.3);
-      flex-shrink: 0;
-    }
-
-    .marker-blue   { background: #2563eb; }
-    .marker-red    { background: #dc2626; }
-    .marker-green  { background: #16a34a; }
-    .marker-orange { background: #ea580c; }
-    .marker-purple { background: #7c3aed; }
-    .marker-brown  { background: #92400e; }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Oloron-Sainte-Marie</h1>
-  <p>Pyrénées-Atlantiques &nbsp;|&nbsp; Nouvelle-Aquitaine, France</p>
+  <p>Pyrenees-Atlantiques | Nouvelle-Aquitaine, France</p>
 </header>
 
 <div id="map"></div>
 
+<div id="info">
+  <h3>Oloron-Sainte-Marie</h3>
+  <table>
+    <tr><td>Department</td><td>Pyr.-Atlantiques (64)</td></tr>
+    <tr><td>Region</td><td>Nouvelle-Aquitaine</td></tr>
+    <tr><td>Population</td><td>~10,700</td></tr>
+    <tr><td>Altitude</td><td>224 m</td></tr>
+    <tr><td>Known for</td><td>Basque berets, Romanesque churches</td></tr>
+  </table>
+</div>
+
+<div id="legend">
+  <h4>Legend</h4>
+  <div class="li"><div class="dot" style="background:#2563eb"></div> City Centre</div>
+  <div class="li"><div class="dot" style="background:#dc2626"></div> Religious Heritage</div>
+  <div class="li"><div class="dot" style="background:#16a34a"></div> River</div>
+  <div class="li"><div class="dot" style="background:#ea580c"></div> Market</div>
+  <div class="li"><div class="dot" style="background:#7c3aed"></div> Culture</div>
+  <div class="li"><div class="dot" style="background:#92400e"></div> Bakery</div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-  window.addEventListener('load', function () {
+  var map = L.map('map').setView([43.1939, -0.6034], 14);
 
-    var map = L.map('map').setView([43.1939, -0.6034], 14);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+  }).addTo(map);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(map);
+  // --- POI markers ---
+  var pois = [
+    { lat: 43.1939, lng: -0.6034, color: '#2563eb', name: 'City Centre',
+      desc: 'Heart of Oloron-Sainte-Marie.' },
+    { lat: 43.1952, lng: -0.6055, color: '#dc2626', name: 'Cathedrale Sainte-Marie',
+      desc: 'Romanesque cathedral (12th c.) - UNESCO World Heritage Site.' },
+    { lat: 43.1925, lng: -0.6010, color: '#dc2626', name: 'Eglise Sainte-Croix',
+      desc: 'Former cathedral of the Sainte-Croix quarter.' },
+    { lat: 43.1945, lng: -0.5995, color: '#16a34a', name: "Gave d'Oloron",
+      desc: 'River confluence - kayaking and fly-fishing.' },
+    { lat: 43.1900, lng: -0.6080, color: '#ea580c', name: "Marche d'Oloron",
+      desc: 'Traditional Friday market.' },
+    { lat: 43.1960, lng: -0.5970, color: '#7c3aed', name: 'Maison du Patrimoine',
+      desc: 'Local heritage museum.' },
+    { lat: 43.1915, lng: -0.6060, color: '#7c3aed', name: 'Beret District',
+      desc: 'Historic capital of the Basque beret.' }
+  ];
 
-    // Force Leaflet to recalculate size after load
-    map.invalidateSize();
+  pois.forEach(function(p) {
+    L.circleMarker([p.lat, p.lng], {
+      radius: 9, fillColor: p.color, color: '#fff', weight: 2, fillOpacity: 0.9
+    }).addTo(map).bindPopup('<strong>' + p.name + '</strong><br><small>' + p.desc + '</small>');
+  });
 
-    function cm(lat, lng, color) {
-      return L.circleMarker([lat, lng], {
-        radius: 9,
-        fillColor: color,
-        color: '#fff',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.9
-      });
-    }
+  // --- Bakery markers ---
+  var bakeries = [
+    { lat: 43.1889464, lng: -0.6114734, name: 'Boulangerie Duche' },
+    { lat: 43.1976390, lng: -0.6049916, name: "Caza'Pan", hours: 'Tu-Su 06:00-21:30' },
+    { lat: 43.1936459, lng: -0.6112342, name: 'Boulangerie Navarinne', hours: 'Mo-Sa 07:00-19:00' },
+    { lat: 43.1904352, lng: -0.6126869, name: 'Au fournil de mon pere', hours: 'Tu-Sa 06:30-19:30' },
+    { lat: 43.1923829, lng: -0.6090110, name: 'Cazalet' },
+    { lat: 43.1937217, lng: -0.6049420, name: 'Le pain d\'ici', hours: 'Tu-Sa 06:30-19:00' },
+    { lat: 43.1791172, lng: -0.6133829, name: 'Marie Blachere', hours: 'Mo-Sa 06:30-19:30' }
+  ];
 
-    var pois = [
-      { lat: 43.1939, lng: -0.6034, color: '#2563eb', name: 'City Centre',
-        desc: "Heart of Oloron-Sainte-Marie, historic crossroads of the Gave d'Oloron and its tributaries." },
-      { lat: 43.1952, lng: -0.6055, color: '#dc2626', name: 'Cathédrale Sainte-Marie',
-        desc: 'Romanesque cathedral (12th c.) — UNESCO World Heritage Site on the Way of St James.' },
-      { lat: 43.1925, lng: -0.6010, color: '#dc2626', name: 'Église Sainte-Croix',
-        desc: 'Former cathedral of the Sainte-Croix quarter, a fine example of Romanesque architecture.' },
-      { lat: 43.1945, lng: -0.5995, color: '#16a34a', name: "Gave d'Oloron",
-        desc: 'River confluence zone — popular for kayaking and fly-fishing in Pyrenean waters.' },
-      { lat: 43.1900, lng: -0.6080, color: '#ea580c', name: "Marché d'Oloron",
-        desc: 'Traditional Friday market renowned for Basque and Béarnaise produce, cheese, and charcuterie.' },
-      { lat: 43.1960, lng: -0.5970, color: '#7c3aed', name: 'Maison du Patrimoine',
-        desc: 'Local heritage museum documenting the history and culture of the Oloron valley.' },
-      { lat: 43.1915, lng: -0.6060, color: '#7c3aed', name: 'Beret Production District',
-        desc: 'Historic capital of the Basque beret — famous worldwide since the 19th century.' }
-    ];
-
-    pois.forEach(function(poi) {
-      cm(poi.lat, poi.lng, poi.color).addTo(map).bindPopup(
-        '<strong style="color:#1a3a5c">' + poi.name + '</strong><br>' +
-        '<span style="font-size:0.85em">' + poi.desc + '</span>',
-        { maxWidth: 230 }
-      );
-    });
-
-    // Info panel
-    var Info = L.Control.extend({
-      onAdd: function() {
-        var d = L.DomUtil.create('div', 'info-box');
-        d.innerHTML =
-          '<h3>Oloron-Sainte-Marie</h3>' +
-          '<table>' +
-          '<tr><td>Department</td><td>Pyrénées-Atlantiques (64)</td></tr>' +
-          '<tr><td>Region</td><td>Nouvelle-Aquitaine</td></tr>' +
-          '<tr><td>Population</td><td>~10 700 (2021)</td></tr>' +
-          '<tr><td>Altitude</td><td>224 m (735 ft)</td></tr>' +
-          '<tr><td>Coordinates</td><td>43.19°N, 0.60°W</td></tr>' +
-          '<tr><td>Known for</td><td>Basque berets, Romanesque churches, Pyrenean rivers</td></tr>' +
-          '</table>';
-        return d;
-      }
-    });
-    new Info({ position: 'topright' }).addTo(map);
-
-    // Legend
-    var Legend = L.Control.extend({
-      onAdd: function() {
-        var d = L.DomUtil.create('div', 'legend');
-        d.innerHTML =
-          '<h4>Map Legend</h4>' +
-          '<div class="legend-item"><div class="legend-dot marker-blue"></div> City Centre</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-red"></div> Religious Heritage</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-green"></div> Natural / River</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-orange"></div> Market / Commerce</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-purple"></div> Culture / Industry</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-brown"></div> Bakery</div>';
-        return d;
-      }
-    });
-    new Legend({ position: 'bottomright' }).addTo(map);
-
-    // ── Bakeries (source: OpenStreetMap via Overpass API) ────────────────────
-    var bakeries = [
-      { lat: 43.1889464, lng: -0.6114734, name: 'Boulangerie Duché' },
-      { lat: 43.1976390, lng: -0.6049916, name: 'Caza\'Pan',
-        hours: 'Tu-Su 06:00-21:30' },
-      { lat: 43.1936459, lng: -0.6112342, name: 'Boulangerie Navarinne',
-        hours: 'Mo-Sa 07:00-13:00, 15:00-19:00; Su 07:00-12:30' },
-      { lat: 43.1904352, lng: -0.6126869, name: 'Au fournil de mon père',
-        hours: 'Tu-Sa 06:30-19:30; Su 06:30-13:00' },
-      { lat: 43.1923829, lng: -0.6090110, name: 'Cazalet' },
-      { lat: 43.1937217, lng: -0.6049420, name: 'Le pain d\'ici',
-        hours: 'Tu-Sa 06:30-19:00' },
-      { lat: 43.1791172, lng: -0.6133829, name: 'Marie Blachère',
-        hours: 'Mo-Sa 06:30-19:30' }
-    ];
-
-    bakeries.forEach(function(b) {
-      var popup = '<strong style="color:#92400e">' + b.name + '</strong><br>' +
-        '<span style="font-size:0.85em">Boulangerie / Bakery</span>';
-      if (b.hours) popup += '<br><span style="font-size:0.8em">🕐 ' + b.hours + '</span>';
-      L.circleMarker([b.lat, b.lng], {
-        radius: 8,
-        fillColor: '#92400e',
-        color: '#fff',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.9
-      }).addTo(map).bindPopup(popup, { maxWidth: 220 });
-    });
-
+  bakeries.forEach(function(b) {
+    var txt = '<strong style="color:#92400e">' + b.name + '</strong><br><small>Bakery' +
+      (b.hours ? ' | ' + b.hours : '') + '</small>';
+    L.circleMarker([b.lat, b.lng], {
+      radius: 8, fillColor: '#92400e', color: '#fff', weight: 2, fillOpacity: 0.9
+    }).addTo(map).bindPopup(txt);
   });
 </script>
 </body>
