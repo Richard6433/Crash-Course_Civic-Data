@@ -1,0 +1,16 @@
+source,product,region,latitude,longitude,acq_date,brightness,frp,confidence,area_ha,title,closed
+EONET,EONET_GDACS,greek_islands,35.037926159239646,25.86402035475441,2025-07-01,,,,0.0,Wildfire in Greece 1024174,2025-07-02
+EONET,EONET_GDACS,greek_islands,37.733485333,24.008749506,2021-08-16,,,,,"Wildfire - SE of Piraivs, Attiki - Greece",2021-12-31
+EONET,EONET_GDACS,sicily,37.52055,14.30792,2021-08-12,,,,,"Wildfires - Enna Province, Sicily, Italy",2021-12-31
+EONET,EONET_GDACS,sicily,37.7455,14.98278,2021-08-02,,,,,"Wildfires - Catania, Italy",2021-12-31
+EONET,EONET_GDACS,greek_islands,36.96302,27.87693,2021-08-02,,,,,Wildfire - SW of Mugla - Turkey,2021-12-31
+EONET,EONET_GDACS,sardinia,40.164541093,8.536184696,2021-07-25,,,,,"Wildfire - S of Sassari, Sardegna - Italy",2021-12-31
+EONET,EONET_GDACS,greek_islands,37.76678,23.96402,2020-09-10,,,,,"Wildfires - Feriza, Kamariza and Nea Makri, Greece",2020-09-15
+EONET,EONET_GDACS,sardinia,40.37728,9.35618,2019-08-09,,,,,"Wildfire - Sardinia, Italy",2019-08-09
+EONET,EONET_GDACS,sardinia,40.09573,8.9824,2019-07-31,,,,,"Wildfire - Sardinia, Italy",2019-08-03
+EONET,EONET_GDACS,sardinia,40.09573,8.9824,2019-07-17,,,,,"Wildfire - Sardinia, Italy",2019-07-17
+EONET,EONET_GDACS,corsica,42.18572,9.04891,2019-02-25,,,,,"Wildfires - Corsica, France",2019-02-28
+EONET,EONET_GDACS,sicily,37.16227,13.79841,2018-06-08,,,,,"Wildfires - Sicily, Italy",2018-06-12
+EONET,EONET_GDACS,corsica,42.374778361114195,9.437255859375,2018-01-01,,,,,Northern Corsica Forest Fires,2018-01-03
+EONET,EONET_GDACS,corsica,42.570908623949,9.076704467773425,2017-10-22,,,,,Northern Corsica Wildfires,2017-10-23
+EONET,EONET_GDACS,corsica,42.58746644784856,9.438629150390625,2017-07-23,,,,,Corsica Fires,2014-07-29
