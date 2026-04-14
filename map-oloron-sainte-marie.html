@@ -96,6 +96,7 @@
     .marker-green  { background: #16a34a; }
     .marker-orange { background: #ea580c; }
     .marker-purple { background: #7c3aed; }
+    .marker-brown  { background: #92400e; }
   </style>
 </head>
 <body>
@@ -187,11 +188,47 @@
           '<div class="legend-item"><div class="legend-dot marker-red"></div> Religious Heritage</div>' +
           '<div class="legend-item"><div class="legend-dot marker-green"></div> Natural / River</div>' +
           '<div class="legend-item"><div class="legend-dot marker-orange"></div> Market / Commerce</div>' +
-          '<div class="legend-item"><div class="legend-dot marker-purple"></div> Culture / Industry</div>';
+          '<div class="legend-item"><div class="legend-dot marker-purple"></div> Culture / Industry</div>' +
+          '<div class="legend-item"><div class="legend-dot marker-brown"></div> Bakery</div>';
         return d;
       }
     });
     new Legend({ position: 'bottomright' }).addTo(map);
+
+    // ── Bakeries via Overpass API ─────────────────────────────────────────────
+    var overpassQuery =
+      '[out:json][timeout:25];' +
+      '(node["shop"="bakery"](43.17,-0.63,43.21,-0.58);' +
+      'way["shop"="bakery"](43.17,-0.63,43.21,-0.58););' +
+      'out center;';
+
+    fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      body: overpassQuery
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      data.elements.forEach(function(el) {
+        var lat = el.lat !== undefined ? el.lat : el.center.lat;
+        var lng = el.lon !== undefined ? el.lon : el.center.lon;
+        var name = (el.tags && el.tags.name) ? el.tags.name : 'Boulangerie';
+        L.circleMarker([lat, lng], {
+          radius: 8,
+          fillColor: '#92400e',
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9
+        }).addTo(map).bindPopup(
+          '<strong style="color:#92400e">' + name + '</strong><br>' +
+          '<span style="font-size:0.85em">Boulangerie / Bakery</span>',
+          { maxWidth: 200 }
+        );
+      });
+    })
+    .catch(function(err) {
+      console.warn('Bakery data could not be loaded:', err);
+    });
 
   });
 </script>
