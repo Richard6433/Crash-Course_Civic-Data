@@ -195,39 +195,34 @@
     });
     new Legend({ position: 'bottomright' }).addTo(map);
 
-    // ── Bakeries via Overpass API ─────────────────────────────────────────────
-    var overpassQuery =
-      '[out:json][timeout:25];' +
-      '(node["shop"="bakery"](43.17,-0.63,43.21,-0.58);' +
-      'way["shop"="bakery"](43.17,-0.63,43.21,-0.58););' +
-      'out center;';
+    // ── Bakeries (source: OpenStreetMap via Overpass API) ────────────────────
+    var bakeries = [
+      { lat: 43.1889464, lng: -0.6114734, name: 'Boulangerie Duché' },
+      { lat: 43.1976390, lng: -0.6049916, name: 'Caza\'Pan',
+        hours: 'Tu-Su 06:00-21:30' },
+      { lat: 43.1936459, lng: -0.6112342, name: 'Boulangerie Navarinne',
+        hours: 'Mo-Sa 07:00-13:00, 15:00-19:00; Su 07:00-12:30' },
+      { lat: 43.1904352, lng: -0.6126869, name: 'Au fournil de mon père',
+        hours: 'Tu-Sa 06:30-19:30; Su 06:30-13:00' },
+      { lat: 43.1923829, lng: -0.6090110, name: 'Cazalet' },
+      { lat: 43.1937217, lng: -0.6049420, name: 'Le pain d\'ici',
+        hours: 'Tu-Sa 06:30-19:00' },
+      { lat: 43.1791172, lng: -0.6133829, name: 'Marie Blachère',
+        hours: 'Mo-Sa 06:30-19:30' }
+    ];
 
-    fetch('https://overpass-api.de/api/interpreter', {
-      method: 'POST',
-      body: overpassQuery
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      data.elements.forEach(function(el) {
-        var lat = el.lat !== undefined ? el.lat : el.center.lat;
-        var lng = el.lon !== undefined ? el.lon : el.center.lon;
-        var name = (el.tags && el.tags.name) ? el.tags.name : 'Boulangerie';
-        L.circleMarker([lat, lng], {
-          radius: 8,
-          fillColor: '#92400e',
-          color: '#fff',
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0.9
-        }).addTo(map).bindPopup(
-          '<strong style="color:#92400e">' + name + '</strong><br>' +
-          '<span style="font-size:0.85em">Boulangerie / Bakery</span>',
-          { maxWidth: 200 }
-        );
-      });
-    })
-    .catch(function(err) {
-      console.warn('Bakery data could not be loaded:', err);
+    bakeries.forEach(function(b) {
+      var popup = '<strong style="color:#92400e">' + b.name + '</strong><br>' +
+        '<span style="font-size:0.85em">Boulangerie / Bakery</span>';
+      if (b.hours) popup += '<br><span style="font-size:0.8em">🕐 ' + b.hours + '</span>';
+      L.circleMarker([b.lat, b.lng], {
+        radius: 8,
+        fillColor: '#92400e',
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.9
+      }).addTo(map).bindPopup(popup, { maxWidth: 220 });
     });
 
   });
