@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Large Flood Events in France (1988–2010)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; }
+
+    header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      z-index: 1000; background: #1e3a5f; color: #fff;
+      padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-left { display: flex; align-items: baseline; gap: 12px; }
+    header h1 { font-size: 1.1rem; font-weight: 700; }
+    header p  { font-size: 0.78rem; opacity: 0.65; }
+    #total-stats { font-size: 0.78rem; color: #93c5fd; text-align: right; line-height: 1.4; }
+
+    #map { position: absolute; top: 52px; bottom: 0; left: 0; right: 0; }
+
+    #sidebar {
+      position: absolute; top: 62px; right: 10px; z-index: 1000;
+      background: rgba(255,255,255,0.97); border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18); font-size: 0.78rem;
+      width: 210px; overflow: hidden;
+    }
+    #sidebar-title {
+      background: #1e3a5f; color: #fff; padding: 8px 12px;
+      font-weight: 600; font-size: 0.82rem;
+    }
+    #event-list {
+      max-height: calc(100vh - 160px); overflow-y: auto;
+    }
+    .event-item {
+      padding: 7px 12px; border-bottom: 1px solid #f1f5f9;
+      cursor: pointer; transition: background 0.1s;
+    }
+    .event-item:hover { background: #eff6ff; }
+    .event-item .ev-date { color: #64748b; font-size: 0.72rem; }
+    .event-item .ev-name { font-weight: 600; color: #1e3a5f; }
+    .event-item .ev-meta { color: #475569; font-size: 0.72rem; }
+    .sev1  { border-left: 3px solid #f59e0b; }
+    .sev15 { border-left: 3px solid #f97316; }
+    .sev2  { border-left: 3px solid #dc2626; }
+
+    #legend {
+      position: absolute; bottom: 28px; left: 10px; z-index: 1000;
+      background: rgba(255,255,255,0.95); border-radius: 8px;
+      padding: 10px 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-size: 0.76rem;
+    }
+    #legend h4 { color: #1e3a5f; margin-bottom: 7px; font-size: 0.8rem; }
+    .leg-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .leg-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .leg-note { margin-top: 6px; color: #94a3b8; font-size: 0.7rem; border-top: 1px solid #e2e8f0; padding-top: 5px; }
+
+    .highlight-ring {
+      animation: pulse 1.2s ease-out;
+    }
+    @keyframes pulse {
+      0%   { stroke-width: 8; stroke-opacity: 0.8; }
+      100% { stroke-width: 1; stroke-opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Large Flood Events — France</h1>
+    <p>Dartmouth Flood Observatory · 1988–2010</p>
+  </div>
+  <div id="total-stats"></div>
+</header>
+
+<div id="map"></div>
+
+<div id="sidebar">
+  <div id="sidebar-title">34 events — click to zoom</div>
+  <div id="event-list"></div>
+</div>
+
+<div id="legend">
+  <h4>Severity</h4>
+  <div class="leg-row"><div class="leg-dot" style="background:#f59e0b"></div> 1 — Moderate</div>
+  <div class="leg-row"><div class="leg-dot" style="background:#f97316"></div> 1.5 — Significant</div>
+  <div class="leg-row"><div class="leg-dot" style="background:#dc2626"></div> 2 — Large / Extreme</div>
+  <div class="leg-note">Circle size = number of deaths</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var FLOODS = [{"lat":43.8055,"lon":4.3611,"country":"France","began":"1988-10-03","ended":"1988-10-03","dead":10,"disp":300,"cause":"Torrential rain","sev":"1"},{"lat":45.6107,"lon":6.4807,"country":"France","began":"1990-02-15","ended":"1990-02-17","dead":14,"disp":0,"cause":"Avalanche related","sev":"1"},{"lat":43.5014,"lon":6.2038,"country":"France","began":"1990-10-18","ended":"1990-10-19","dead":1,"disp":0,"cause":"Heavy rain","sev":"1"},{"lat":44.5158,"lon":5.8375,"country":"France","began":"1992-09-22","ended":"1992-09-22","dead":38,"disp":2000,"cause":"Torrential rain","sev":"2"},{"lat":43.1605,"lon":2.9354,"country":"France","began":"1992-09-27","ended":"1992-09-27","dead":3,"disp":0,"cause":"Heavy rain","sev":"1"},{"lat":42.7699,"lon":11.2843,"country":"France","began":"1992-09-28","ended":"1992-10-08","dead":12,"disp":120,"cause":"Heavy rain","sev":"1"},{"lat":45.7497,"lon":4.6016,"country":"France","began":"1993-07-06","ended":"1993-07-06","dead":2,"disp":100,"cause":"Torrential rain","sev":"1"},{"lat":45.1072,"lon":7.363,"country":"France","began":"1993-09-22","ended":"1993-10-08","dead":17,"disp":1700,"cause":"Torrential rain","sev":"2"},{"lat":41.5666,"lon":9.0604,"country":"France","began":"1993-10-31","ended":"1993-11-02","dead":4,"disp":0,"cause":"Torrential rain","sev":"1"},{"lat":50.3802,"lon":5.7683,"country":"France","began":"1993-12-21","ended":"1993-12-31","dead":11,"disp":48000,"cause":"Torrential rain","sev":"2"},{"lat":48.1547,"lon":-2.8966,"country":"France","began":"1995-01-20","ended":"1995-01-30","dead":16,"disp":5000,"cause":"Rain and snowmelt","sev":"2"},{"lat":50.3282,"lon":5.6991,"country":"France","began":"1995-01-23","ended":"1995-02-07","dead":30,"disp":294100,"cause":"Rain and snowmelt","sev":"2"},{"lat":43.4429,"lon":3.3944,"country":"France","began":"1996-01-27","ended":"1996-01-30","dead":4,"disp":600,"cause":"Heavy rain","sev":"1"},{"lat":43.359,"lon":3.5107,"country":"France","began":"1996-12-05","ended":"1996-12-10","dead":0,"disp":50,"cause":"Heavy Rain","sev":"1"},{"lat":49.4622,"lon":0.9293,"country":"France","began":"1997-06-14","ended":"1997-06-17","dead":4,"disp":0,"cause":"Brief torrential rain","sev":"1"},{"lat":45.2358,"lon":3.5181,"country":"France","began":"1999-11-12","ended":"1999-11-15","dead":27,"disp":3000,"cause":"Brief torrential rain","sev":"2"},{"lat":43.8005,"lon":4.4041,"country":"France","began":"2000-09-19","ended":"2000-09-20","dead":6,"disp":0,"cause":"Heavy rain","sev":"1"},{"lat":50.3658,"lon":5.0115,"country":"France","began":"2001-01-05","ended":"2001-01-07","dead":0,"disp":80,"cause":"Brief torrential rain","sev":"1"},{"lat":47.6793,"lon":4.2198,"country":"France","began":"2001-03-21","ended":"2001-03-28","dead":0,"disp":1400,"cause":"Heavy rain","sev":"1"},{"lat":50.0468,"lon":2.3684,"country":"France","began":"2001-04-07","ended":"2001-05-02","dead":0,"disp":1029,"cause":"Heavy rain","sev":"2"},{"lat":43.9695,"lon":4.3732,"country":"France","began":"2001-10-07","ended":"2001-10-07","dead":2,"disp":0,"cause":"Brief torrential rain","sev":"1"},{"lat":44.9617,"lon":4.9358,"country":"France","began":"2001-10-20","ended":"2001-10-21","dead":2,"disp":300,"cause":"Heavy rain","sev":"1"},{"lat":48.1985,"lon":8.438,"country":"France","began":"2001-12-29","ended":"2001-12-30","dead":0,"disp":240,"cause":"Brief torrential rain","sev":"1"},{"lat":44.0345,"lon":4.4476,"country":"France","began":"2002-09-08","ended":"2002-09-12","dead":23,"disp":2500,"cause":"Heavy rain","sev":"1"},{"lat":45.038,"lon":4.8101,"country":"France","began":"2002-11-16","ended":"2002-11-20","dead":1,"disp":2500,"cause":"Heavy rain","sev":"1"},{"lat":43.7308,"lon":4.1459,"country":"France","began":"2002-12-13","ended":"2002-12-14","dead":2,"disp":0,"cause":"Heavy rain","sev":"1"},{"lat":43.7231,"lon":4.1572,"country":"France","began":"2003-09-22","ended":"2003-09-23","dead":1,"disp":30,"cause":"Brief torrential rain","sev":"1"},{"lat":44.8217,"lon":4.9409,"country":"France","began":"2003-12-01","ended":"2003-12-10","dead":9,"disp":27000,"cause":"Heavy rain","sev":"2"},{"lat":44.0571,"lon":4.1862,"country":"France","began":"2005-09-07","ended":"2005-09-09","dead":0,"disp":3000,"cause":"Heavy rain","sev":"1"},{"lat":42.9478,"lon":3.0064,"country":"France","began":"2005-11-15","ended":"2005-11-17","dead":2,"disp":1000,"cause":"Heavy rain","sev":"1"},{"lat":43.2956,"lon":-0.4721,"country":"France","began":"2007-05-25","ended":"2007-05-27","dead":1,"disp":500,"cause":"Heavy rain","sev":"1"},{"lat":42.2483,"lon":-2.6099,"country":"France","began":"2009-01-08","ended":"2009-01-16","dead":11,"disp":9400,"cause":"Heavy Rain","sev":"2"},{"lat":46.7732,"lon":-1.5321,"country":"France","began":"2010-02-28","ended":"2010-03-02","dead":48,"disp":500,"cause":"Storm surge / Heavy rain","sev":"2"},{"lat":43.4973,"lon":6.5913,"country":"France","began":"2010-06-16","ended":"2010-06-17","dead":19,"disp":0,"cause":"Torrential Rain","sev":"2"}];
+
+var SEV_COLOR = { '1': '#f59e0b', '1.5': '#f97316', '2': '#dc2626' };
+
+function deathRadius(n) {
+  if (n === 0)  return 5;
+  if (n < 5)    return 7;
+  if (n < 15)   return 9;
+  if (n < 30)   return 12;
+  if (n < 50)   return 15;
+  return 18;
+}
+
+var map = L.map('map').setView([46.5, 3.5], 6);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+}).addTo(map);
+
+// Summary stats
+var totalDead = FLOODS.reduce(function(s, e){ return s + e.dead; }, 0);
+var totalDisp = FLOODS.reduce(function(s, e){ return s + e.disp; }, 0);
+document.getElementById('total-stats').innerHTML =
+  '<span>' + FLOODS.length + ' events &nbsp;·&nbsp; ' +
+  totalDead.toLocaleString() + ' deaths &nbsp;·&nbsp; ' +
+  totalDisp.toLocaleString() + ' displaced</span>';
+
+var markers = [];
+
+FLOODS.forEach(function(e, i) {
+  var color = SEV_COLOR[e.sev] || '#f59e0b';
+  var marker = L.circleMarker([e.lat, e.lon], {
+    radius: deathRadius(e.dead),
+    fillColor: color,
+    color: '#fff',
+    weight: 1.5,
+    fillOpacity: 0.85
+  }).addTo(map);
+
+  var popup =
+    '<div style="min-width:190px">' +
+    '<div style="font-size:0.95rem;font-weight:700;color:' + color + '">' + e.began + '</div>' +
+    '<div style="font-size:0.8rem;color:#64748b;margin-bottom:6px">' + e.began + ' → ' + e.ended + '</div>' +
+    '<table style="width:100%;font-size:0.8rem;border-collapse:collapse">' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Cause</td><td><b>' + e.cause + '</b></td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Severity</td><td>' + e.sev + '</td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Deaths</td><td>' + (e.dead > 0 ? '<b style="color:#dc2626">' + e.dead.toLocaleString() + '</b>' : '0') + '</td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Displaced</td><td>' + (e.disp > 0 ? e.disp.toLocaleString() : '0') + '</td></tr>' +
+    '</table></div>';
+
+  marker.bindPopup(popup, { maxWidth: 250 });
+  markers.push({ marker: marker, data: e });
+
+  // Sidebar list
+  var sevClass = e.sev === '2' ? 'sev2' : e.sev === '1.5' ? 'sev15' : 'sev1';
+  var item = document.createElement('div');
+  item.className = 'event-item ' + sevClass;
+  item.innerHTML =
+    '<div class="ev-date">' + e.began + '</div>' +
+    '<div class="ev-name">' + e.cause + '</div>' +
+    '<div class="ev-meta">' +
+      (e.dead > 0 ? e.dead + ' deaths' : 'no deaths') +
+      (e.disp > 0 ? ' · ' + e.disp.toLocaleString() + ' disp.' : '') +
+    '</div>';
+  item.addEventListener('click', function() {
+    map.setView([e.lat, e.lon], 9, { animate: true });
+    marker.openPopup();
+  });
+  document.getElementById('event-list').appendChild(item);
+});
+</script>
+</body>
+</html>
