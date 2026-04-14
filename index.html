@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Flood Events Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; width: 100%; }
+        body { font-family: sans-serif; margin: 20px; }
+        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Historical Flood Events (1985 - Present)</h1>
+    <p>This map shows global flood events from the Dartmouth Flood Observatory archive. Larger circles indicate higher severity.</p>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+        var map = L.map('map').setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Function to get color based on severity
+        function getColor(severity) {
+            return severity > 1.5 ? '#bd0026' :
+                   severity > 1   ? '#f03b20' :
+                                    '#feb24c';
+        }
+
+        // Load CSV data
+        Papa.parse('flood_events.csv', {
+            download: true,
+            header: true,
+            dynamicTyping: true,
+            complete: function(results) {
+                var data = results.data;
+                data.forEach(function(row) {
+                    if (row.lat && row.long) {
+                        var marker = L.circleMarker([row.lat, row.long], {
+                            radius: row.Severity ? row.Severity * 4 : 4,
+                            fillColor: getColor(row.Severity),
+                            color: "#000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        }).addTo(map);
+
+                        marker.bindPopup(
+                            "<b>" + row.Country + "</b><br>" +
+                            "Cause: " + row.MainCause + "<br>" +
+                            "Began: " + row.Began + "<br>" +
+                            "Deaths: " + (row.Dead || "Unknown") + "<br>" +
+                            "Severity: " + row.Severity
+                        );
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
