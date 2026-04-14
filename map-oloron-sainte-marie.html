@@ -5,13 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oloron-Sainte-Marie, France</title>
 
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,29 +19,29 @@
     header {
       position: absolute;
       top: 0; left: 0; right: 0;
+      height: 50px;
       z-index: 1000;
       background: #1a3a5c;
       color: #fff;
-      padding: 12px 20px;
+      padding: 0 20px;
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 12px;
     }
 
     header h1 {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
 
     header p {
-      font-size: 0.85rem;
-      opacity: 0.75;
+      font-size: 0.82rem;
+      opacity: 0.72;
     }
 
     #map {
       position: absolute;
-      top: 46px; bottom: 0; left: 0; right: 0;
+      top: 50px; bottom: 0; left: 0; right: 0;
     }
 
     .info-box {
@@ -66,15 +60,9 @@
       color: #1a3a5c;
     }
 
-    .info-box table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    .info-box table { width: 100%; border-collapse: collapse; }
 
-    .info-box td {
-      padding: 2px 0;
-      vertical-align: top;
-    }
+    .info-box td { padding: 2px 0; vertical-align: top; }
 
     .info-box td:first-child {
       font-weight: 600;
@@ -92,27 +80,17 @@
       line-height: 1.6;
     }
 
-    .legend h4 {
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-      color: #1a3a5c;
-    }
+    .legend h4 { font-size: 0.85rem; margin-bottom: 6px; color: #1a3a5c; }
 
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
+    .legend-item { display: flex; align-items: center; gap: 7px; }
 
     .legend-dot {
-      width: 12px;
-      height: 12px;
+      width: 12px; height: 12px;
       border-radius: 50%;
       border: 2px solid rgba(0,0,0,0.3);
       flex-shrink: 0;
     }
 
-    /* Custom marker colours */
     .marker-blue   { background: #2563eb; }
     .marker-red    { background: #dc2626; }
     .marker-green  { background: #16a34a; }
@@ -129,128 +107,93 @@
 
 <div id="map"></div>
 
-<!-- Leaflet JS -->
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/pygU="
-  crossorigin=""
-></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  // ── Coordinates for Oloron-Sainte-Marie ──────────────────────────────────
-  const CITY_LAT  = 43.1939;
-  const CITY_LNG  = -0.6034;
-  const ZOOM_CITY = 14;
+  window.addEventListener('load', function () {
 
-  // ── Initialise map ────────────────────────────────────────────────────────
-  const map = L.map('map', {
-    center: [CITY_LAT, CITY_LNG],
-    zoom: ZOOM_CITY,
-  });
+    var map = L.map('map').setView([43.1939, -0.6034], 14);
 
-  // ── Base layer: OpenStreetMap ─────────────────────────────────────────────
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-  // ── Helper: coloured circle marker ───────────────────────────────────────
-  function circleMarker(lat, lng, color, radius = 9) {
-    return L.circleMarker([lat, lng], {
-      radius,
-      fillColor: color,
-      color: '#fff',
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 0.9,
-    });
-  }
+    // Force Leaflet to recalculate size after load
+    map.invalidateSize();
 
-  // ── Points of interest ───────────────────────────────────────────────────
-  const pois = [
-    {
-      lat: 43.1939, lng: -0.6034, color: '#2563eb',
-      name: 'City Centre',
-      desc: 'Heart of Oloron-Sainte-Marie, the historic crossroads of the Gave d\'Oloron and its tributaries.',
-    },
-    {
-      lat: 43.1952, lng: -0.6055, color: '#dc2626',
-      name: 'Cathédrale Sainte-Marie',
-      desc: 'Romanesque cathedral (12th century) — UNESCO World Heritage Site on the Way of St James.',
-    },
-    {
-      lat: 43.1925, lng: -0.6010, color: '#dc2626',
-      name: 'Église Sainte-Croix',
-      desc: 'Former cathedral of the Sainte-Croix quarter, another fine example of Romanesque architecture.',
-    },
-    {
-      lat: 43.1945, lng: -0.5995, color: '#16a34a',
-      name: 'Gave d\'Oloron',
-      desc: 'River confluence zone — popular for kayaking and fly-fishing in crystal-clear Pyrenean waters.',
-    },
-    {
-      lat: 43.1900, lng: -0.6080, color: '#ea580c',
-      name: 'Marché d\'Oloron',
-      desc: 'Traditional Friday market renowned for Basque and Béarnaise produce, cheese, and charcuterie.',
-    },
-    {
-      lat: 43.1960, lng: -0.5970, color: '#7c3aed',
-      name: 'Maison du Patrimoine',
-      desc: 'Local heritage museum documenting the history, crafts, and culture of the Oloron valley.',
-    },
-    {
-      lat: 43.1915, lng: -0.6060, color: '#7c3aed',
-      name: 'Beret Production District',
-      desc: 'Oloron-Sainte-Marie is the historic capital of the Basque beret — famous worldwide since the 19th century.',
-    },
-  ];
+    function cm(lat, lng, color) {
+      return L.circleMarker([lat, lng], {
+        radius: 9,
+        fillColor: color,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.9
+      });
+    }
 
-  pois.forEach(poi => {
-    circleMarker(poi.lat, poi.lng, poi.color)
-      .addTo(map)
-      .bindPopup(
-        `<strong style="color:#1a3a5c">${poi.name}</strong><br/><span style="font-size:0.85em">${poi.desc}</span>`,
+    var pois = [
+      { lat: 43.1939, lng: -0.6034, color: '#2563eb', name: 'City Centre',
+        desc: "Heart of Oloron-Sainte-Marie, historic crossroads of the Gave d'Oloron and its tributaries." },
+      { lat: 43.1952, lng: -0.6055, color: '#dc2626', name: 'Cathédrale Sainte-Marie',
+        desc: 'Romanesque cathedral (12th c.) — UNESCO World Heritage Site on the Way of St James.' },
+      { lat: 43.1925, lng: -0.6010, color: '#dc2626', name: 'Église Sainte-Croix',
+        desc: 'Former cathedral of the Sainte-Croix quarter, a fine example of Romanesque architecture.' },
+      { lat: 43.1945, lng: -0.5995, color: '#16a34a', name: "Gave d'Oloron",
+        desc: 'River confluence zone — popular for kayaking and fly-fishing in Pyrenean waters.' },
+      { lat: 43.1900, lng: -0.6080, color: '#ea580c', name: "Marché d'Oloron",
+        desc: 'Traditional Friday market renowned for Basque and Béarnaise produce, cheese, and charcuterie.' },
+      { lat: 43.1960, lng: -0.5970, color: '#7c3aed', name: 'Maison du Patrimoine',
+        desc: 'Local heritage museum documenting the history and culture of the Oloron valley.' },
+      { lat: 43.1915, lng: -0.6060, color: '#7c3aed', name: 'Beret Production District',
+        desc: 'Historic capital of the Basque beret — famous worldwide since the 19th century.' }
+    ];
+
+    pois.forEach(function(poi) {
+      cm(poi.lat, poi.lng, poi.color).addTo(map).bindPopup(
+        '<strong style="color:#1a3a5c">' + poi.name + '</strong><br>' +
+        '<span style="font-size:0.85em">' + poi.desc + '</span>',
         { maxWidth: 230 }
       );
-  });
+    });
 
-  // ── Info panel (top-right) ───────────────────────────────────────────────
-  const InfoControl = L.Control.extend({
-    onAdd() {
-      const div = L.DomUtil.create('div', 'info-box');
-      div.innerHTML = `
-        <h3>Oloron-Sainte-Marie</h3>
-        <table>
-          <tr><td>Department</td><td>Pyrénées-Atlantiques (64)</td></tr>
-          <tr><td>Region</td><td>Nouvelle-Aquitaine</td></tr>
-          <tr><td>Population</td><td>~10 700 (2021)</td></tr>
-          <tr><td>Altitude</td><td>224 m (735 ft)</td></tr>
-          <tr><td>Coordinates</td><td>43.19°N, 0.60°W</td></tr>
-          <tr><td>Known for</td><td>Basque berets, Romanesque churches, Pyrenean rivers</td></tr>
-        </table>
-      `;
-      return div;
-    },
-  });
-  new InfoControl({ position: 'topright' }).addTo(map);
+    // Info panel
+    var Info = L.Control.extend({
+      onAdd: function() {
+        var d = L.DomUtil.create('div', 'info-box');
+        d.innerHTML =
+          '<h3>Oloron-Sainte-Marie</h3>' +
+          '<table>' +
+          '<tr><td>Department</td><td>Pyrénées-Atlantiques (64)</td></tr>' +
+          '<tr><td>Region</td><td>Nouvelle-Aquitaine</td></tr>' +
+          '<tr><td>Population</td><td>~10 700 (2021)</td></tr>' +
+          '<tr><td>Altitude</td><td>224 m (735 ft)</td></tr>' +
+          '<tr><td>Coordinates</td><td>43.19°N, 0.60°W</td></tr>' +
+          '<tr><td>Known for</td><td>Basque berets, Romanesque churches, Pyrenean rivers</td></tr>' +
+          '</table>';
+        return d;
+      }
+    });
+    new Info({ position: 'topright' }).addTo(map);
 
-  // ── Legend (bottom-right) ─────────────────────────────────────────────────
-  const LegendControl = L.Control.extend({
-    onAdd() {
-      const div = L.DomUtil.create('div', 'legend');
-      div.innerHTML = `
-        <h4>Map Legend</h4>
-        <div class="legend-item"><div class="legend-dot marker-blue"></div> City Centre</div>
-        <div class="legend-item"><div class="legend-dot marker-red"></div> Religious Heritage</div>
-        <div class="legend-item"><div class="legend-dot marker-green"></div> Natural / River</div>
-        <div class="legend-item"><div class="legend-dot marker-orange"></div> Market / Commerce</div>
-        <div class="legend-item"><div class="legend-dot marker-purple"></div> Culture / Industry</div>
-      `;
-      return div;
-    },
+    // Legend
+    var Legend = L.Control.extend({
+      onAdd: function() {
+        var d = L.DomUtil.create('div', 'legend');
+        d.innerHTML =
+          '<h4>Map Legend</h4>' +
+          '<div class="legend-item"><div class="legend-dot marker-blue"></div> City Centre</div>' +
+          '<div class="legend-item"><div class="legend-dot marker-red"></div> Religious Heritage</div>' +
+          '<div class="legend-item"><div class="legend-dot marker-green"></div> Natural / River</div>' +
+          '<div class="legend-item"><div class="legend-dot marker-orange"></div> Market / Commerce</div>' +
+          '<div class="legend-item"><div class="legend-dot marker-purple"></div> Culture / Industry</div>';
+        return d;
+      }
+    });
+    new Legend({ position: 'bottomright' }).addTo(map);
+
   });
-  new LegendControl({ position: 'bottomright' }).addTo(map);
 </script>
 </body>
 </html>
