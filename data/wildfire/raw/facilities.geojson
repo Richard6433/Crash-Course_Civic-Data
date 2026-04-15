@@ -1,0 +1,1413 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.6018465,
+          37.787803
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 10228227782
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.8572128,
+          37.3436212
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Distaccamento Vigili del Fuoco",
+        "osm_id": 10538682953
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5666789,
+          37.2956209
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Comando Vigili del Fuoco",
+        "osm_id": 11527512581
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.7473725,
+          37.5829163
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1119930774
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0750919,
+          37.4819957
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830953
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.048434,
+          37.4498252
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830983
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0757512,
+          37.5156215
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 25950721
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.061008,
+          37.4701472
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 409050304
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0942384,
+          37.4983165
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 57687511
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2612664,
+          37.0907324
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 739604499
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5667188,
+          37.2957012
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 1240696916
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.0432517,
+          37.4923811
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 535777387
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2421707,
+          37.0806057
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Distaccamento di Gela Comando Provinciale dei Vigili del Fuoco di Caltanissetta",
+        "osm_id": 217417223
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.5293639,
+          37.2303647
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1126126331
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.1514226,
+          37.6198404
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830982
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3594745,
+          37.9245462
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigli del Fuoco distaccamento Volontari Mistretta",
+        "osm_id": 933880049
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.6856159,
+          37.9765982
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigli del Fuoco",
+        "osm_id": 1426237527
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7811773,
+          36.8366225
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 985977285
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.8264926,
+          36.7192374
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 215035994
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.9178844,
+          37.569651
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 338007018
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.9443335,
+          37.1011178
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 323844047
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.1090544,
+          37.7888207
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 10864472270
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.9643612,
+          37.8773674
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830972
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2129372,
+          37.2562207
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1022609842
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.9107379,
+          37.0682283
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 397896393
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.9883167,
+          37.2996693
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 397896391
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3869783,
+          37.4123106
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 253004160
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4324653,
+          37.5102874
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 2319482199
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.078525,
+          36.8820805
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 397896392
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.608009,
+          36.9990295
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 211465091
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3985528,
+          37.135895
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 51512391
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.1871486,
+          37.1463548
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 905909652
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3992183,
+          37.6411621
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1154921919
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4937254,
+          37.9033747
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 3066295762
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.5206787,
+          36.8208725
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830987
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2108027,
+          37.7247385
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 553158056
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2179941,
+          37.2325432
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 509062760
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.287294,
+          37.0778788
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 397896390
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7191826,
+          36.9240712
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1122595898
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4449303,
+          37.7937368
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 11652159797
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2898042,
+          37.8219078
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 1100680464
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3025879,
+          37.5488178
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1148267845
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0528919,
+          37.9059522
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 404895686
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.8344865,
+          37.6634155
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830974
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.765588,
+          37.1729629
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830960
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0472984,
+          37.5432533
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 881761570
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.1417957,
+          37.8397593
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1139830961
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7835687,
+          37.6638739
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1147317512
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.8617355,
+          37.8291562
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 10622090749
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7246763,
+          37.3357941
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1092489834
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.8843124,
+          37.9858691
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile (O.N.V.G.I.)",
+        "osm_id": 2945359750
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1135775,
+          39.2113649
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Distaccamento Portuale",
+        "osm_id": 541510552
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571161,
+          40.7183253
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco di Sassari",
+        "osm_id": 1457211206
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.2963419,
+          40.6327073
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Distaccamento Aeroportuale di Alghero",
+        "osm_id": 1337793242
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.3216124,
+          40.5770772
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1160822200
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4870225,
+          40.9603133
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 336674284
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.5130899,
+          40.9016796
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 277326421
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5971162,
+          39.8917582
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco di Oristano",
+        "osm_id": 318201833
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.303872,
+          40.3205351
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco, Comando Provinciale di Nuoro",
+        "osm_id": 11378065260
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4113796,
+          40.8282708
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 279210268
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5188209,
+          39.1645173
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco - Distaccamento di Carbonia",
+        "osm_id": 1693707931
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5643007,
+          39.3003704
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 235074273
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.5497707,
+          39.432563
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 258902395
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5607568,
+          40.1891204
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 174734430
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9086582,
+          39.5539067
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 280052768
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4493093,
+          41.0694175
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 273567306
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7765287,
+          40.2657468
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 2130424442
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0397791,
+          40.4103614
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del fuoco",
+        "osm_id": 302644876
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1508032,
+          39.2436361
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del fuoco di Cagliari",
+        "osm_id": 32365563
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.5505329,
+          39.8811175
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del fuoco",
+        "osm_id": 525126793
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1884005,
+          41.2337554
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Caserma VVFF",
+        "osm_id": 282348550
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.3936015,
+          40.8400925
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 180721764
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4285642,
+          41.2178437
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 4289413939
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1330265,
+          39.6521545
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 2098253669
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8138754,
+          40.1356927
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 159248052
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8142113,
+          39.7702169
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 13357242223
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0957412,
+          40.0228757
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "",
+        "osm_id": 296550270
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0565529,
+          39.2549968
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "fire_station",
+        "name": "Vigili del Fuoco",
+        "osm_id": 1238922500
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2701592,
+          37.0613609
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 13719047678
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7195768,
+          36.9056968
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 3291216
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.3551588,
+          37.9261104
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 933880047
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.8843124,
+          37.9858691
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile (O.N.V.G.I.)",
+        "osm_id": 2945359750
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.9970746,
+          37.292305
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 13695412395
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0839268,
+          37.5625907
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 1263888173
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0074028,
+          37.2669202
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 1301391358
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0746311,
+          37.0277525
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione civile",
+        "osm_id": 220237980
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7944892,
+          37.0407175
+        ]
+      },
+      "properties": {
+        "island": "sicily",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 1489099608
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9728204,
+          39.2478435
+        ]
+      },
+      "properties": {
+        "island": "sardinia",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
+        "osm_id": 151519940
+      }
+    }
+  ]
+}
