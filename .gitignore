@@ -1,0 +1,12 @@
+# osmnx / Overpass API response cache
+cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db
