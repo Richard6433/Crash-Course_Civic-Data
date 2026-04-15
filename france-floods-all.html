@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>France Flood Events 1990–2021</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; background: #f8fafc; }
+
+    /* ── Top bar ── */
+    #topbar {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 1000;
+      background: #0f172a; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; height: 54px; gap: 12px;
+    }
+    #topbar h1 { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+    #topbar p  { font-size: 0.72rem; color: #94a3b8; white-space: nowrap; }
+
+    /* decade filter buttons */
+    #decade-btns { display: flex; gap: 6px; }
+    .dbtn {
+      padding: 4px 12px; border-radius: 20px; border: 1.5px solid #475569;
+      background: transparent; color: #cbd5e1; font-size: 0.75rem; cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .dbtn:hover  { background: #1e293b; border-color: #94a3b8; }
+    .dbtn.active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 600; }
+
+    /* live event count */
+    #evcount { font-size: 0.78rem; color: #7dd3fc; white-space: nowrap; }
+
+    /* ── Map ── */
+    #map { position: absolute; top: 54px; bottom: 0; left: 0; right: 0; }
+
+    /* ── Legend ── */
+    #legend {
+      position: absolute; bottom: 28px; left: 12px; z-index: 1000;
+      background: rgba(255,255,255,0.97); border-radius: 10px;
+      padding: 12px 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      font-size: 0.74rem; min-width: 170px;
+    }
+    #legend h4 { color: #0f172a; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: .02em; }
+    .lr { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .ld { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(0,0,0,0.12); }
+    .lsep { border-top: 1px solid #e2e8f0; margin: 8px 0; }
+    .lnote { color: #94a3b8; font-size: 0.68rem; margin-top: 4px; }
+
+    /* bubble size guide */
+    .bubble-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .bub {
+      border-radius: 50%; background: #94a3b8; border: 1.5px solid rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <div>
+    <h1>France — Flood Events 1990–2021</h1>
+    <p>Dartmouth Flood Observatory · colour = flood cause</p>
+  </div>
+  <div id="decade-btns">
+    <button class="dbtn active" data-decade="all">All years</button>
+    <button class="dbtn" data-decade="1990">1990s</button>
+    <button class="dbtn" data-decade="2000">2000s</button>
+    <button class="dbtn" data-decade="2010">2010s–2021</button>
+  </div>
+  <div id="evcount">Showing 41 events</div>
+</div>
+
+<div id="map"></div>
+
+<div id="legend">
+  <h4>Flood cause</h4>
+  <div class="lr"><div class="ld" style="background:#3b82f6"></div> Heavy rain</div>
+  <div class="lr"><div class="ld" style="background:#f97316"></div> Torrential rain</div>
+  <div class="lr"><div class="ld" style="background:#06b6d4"></div> Brief torrential rain</div>
+  <div class="lr"><div class="ld" style="background:#8b5cf6"></div> Rain &amp; snowmelt</div>
+  <div class="lr"><div class="ld" style="background:#1e40af"></div> Storm surge</div>
+  <div class="lr"><div class="ld" style="background:#64748b"></div> Avalanche</div>
+  <div class="lsep"></div>
+  <h4 style="margin-bottom:6px">Circle size = deaths</h4>
+  <div class="bubble-row"><div class="bub" style="width:8px;height:8px"></div> 0 deaths</div>
+  <div class="bubble-row"><div class="bub" style="width:14px;height:14px"></div> 1–15 deaths</div>
+  <div class="bubble-row"><div class="bub" style="width:20px;height:20px"></div> 16–30 deaths</div>
+  <div class="bubble-row"><div class="bub" style="width:26px;height:26px"></div> 30 + deaths</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── Data (from france_floods.csv) ────────────────────────────────────────────
+var FLOODS = [
+  {lat:45.6107, lon:6.48067,  began:"1990-02-15", ended:"1990-02-17", dead:14,  disp:0,      cause:"Avalanche",            sev:1.0},
+  {lat:43.5014, lon:6.20383,  began:"1990-10-18", ended:"1990-10-19", dead:1,   disp:0,      cause:"Heavy rain",            sev:1.0},
+  {lat:44.5158, lon:5.83747,  began:"1992-09-22", ended:"1992-09-22", dead:38,  disp:2000,   cause:"Torrential rain",       sev:2.0},
+  {lat:43.1605, lon:2.93545,  began:"1992-09-27", ended:"1992-09-27", dead:3,   disp:0,      cause:"Heavy rain",            sev:1.0},
+  {lat:42.7699, lon:11.2843,  began:"1992-09-28", ended:"1992-10-08", dead:12,  disp:120,    cause:"Heavy rain",            sev:1.0},
+  {lat:45.1072, lon:7.36304,  began:"1993-09-22", ended:"1993-10-08", dead:17,  disp:1700,   cause:"Torrential rain",       sev:2.0},
+  {lat:41.5666, lon:9.06044,  began:"1993-10-31", ended:"1993-11-02", dead:4,   disp:0,      cause:"Torrential rain",       sev:1.0},
+  {lat:50.3802, lon:5.76827,  began:"1993-12-21", ended:"1993-12-31", dead:11,  disp:48000,  cause:"Torrential rain",       sev:2.0},
+  {lat:48.1547, lon:-2.89661, began:"1995-01-20", ended:"1995-01-30", dead:16,  disp:5000,   cause:"Rain & snowmelt",       sev:2.0},
+  {lat:50.3282, lon:5.69912,  began:"1995-01-23", ended:"1995-02-07", dead:30,  disp:294100, cause:"Rain & snowmelt",       sev:2.0},
+  {lat:43.4429, lon:3.39445,  began:"1996-01-27", ended:"1996-01-30", dead:4,   disp:600,    cause:"Heavy rain",            sev:1.0},
+  {lat:43.359,  lon:3.51066,  began:"1996-12-05", ended:"1996-12-10", dead:0,   disp:50,     cause:"Heavy rain",            sev:1.0},
+  {lat:49.4622, lon:0.929309, began:"1997-06-14", ended:"1997-06-17", dead:4,   disp:0,      cause:"Brief torrential rain", sev:1.0},
+  {lat:45.2358, lon:3.51811,  began:"1999-11-12", ended:"1999-11-15", dead:27,  disp:3000,   cause:"Brief torrential rain", sev:2.0},
+  {lat:50.3658, lon:5.01154,  began:"2001-01-05", ended:"2001-01-07", dead:0,   disp:80,     cause:"Brief torrential rain", sev:1.0},
+  {lat:50.0468, lon:2.36843,  began:"2001-04-07", ended:"2001-05-02", dead:0,   disp:1029,   cause:"Heavy rain",            sev:2.0},
+  {lat:44.9617, lon:4.93584,  began:"2001-10-20", ended:"2001-10-21", dead:2,   disp:300,    cause:"Heavy rain",            sev:1.0},
+  {lat:48.1985, lon:8.43803,  began:"2001-12-29", ended:"2001-12-30", dead:0,   disp:240,    cause:"Brief torrential rain", sev:1.0},
+  {lat:44.0345, lon:4.44759,  began:"2002-09-08", ended:"2002-09-12", dead:23,  disp:2500,   cause:"Heavy rain",            sev:1.0},
+  {lat:45.038,  lon:4.81011,  began:"2002-11-16", ended:"2002-11-20", dead:1,   disp:2500,   cause:"Heavy rain",            sev:1.0},
+  {lat:43.7308, lon:4.14588,  began:"2002-12-13", ended:"2002-12-14", dead:2,   disp:0,      cause:"Heavy rain",            sev:1.0},
+  {lat:43.7231, lon:4.15721,  began:"2003-09-22", ended:"2003-09-23", dead:1,   disp:30,     cause:"Brief torrential rain", sev:1.0},
+  {lat:44.8217, lon:4.94085,  began:"2003-12-01", ended:"2003-12-10", dead:9,   disp:27000,  cause:"Heavy rain",            sev:2.0},
+  {lat:44.0571, lon:4.18619,  began:"2005-09-07", ended:"2005-09-09", dead:0,   disp:3000,   cause:"Heavy rain",            sev:1.0},
+  {lat:42.9478, lon:3.00636,  began:"2005-11-15", ended:"2005-11-17", dead:2,   disp:1000,   cause:"Heavy rain",            sev:1.0},
+  {lat:43.2956, lon:-0.472122,began:"2007-05-25", ended:"2007-05-27", dead:1,   disp:500,    cause:"Heavy rain",            sev:1.0},
+  {lat:48.0799, lon:8.91392,  began:"2008-06-01", ended:"2008-06-03", dead:3,   disp:0,      cause:"Heavy rain",            sev:1.0},
+  {lat:42.2483, lon:-2.6099,  began:"2009-01-08", ended:"2009-01-16", dead:11,  disp:9400,   cause:"Heavy rain",            sev:2.0},
+  {lat:46.7732, lon:-1.53213, began:"2010-02-28", ended:"2010-03-02", dead:48,  disp:500,    cause:"Storm surge",           sev:2.0},
+  {lat:43.4973, lon:6.59134,  began:"2010-06-16", ended:"2010-06-17", dead:19,  disp:0,      cause:"Torrential rain",       sev:2.0},
+  {lat:43.2579, lon:2.54269,  began:"2013-03-09", ended:"2013-03-17", dead:1,   disp:1200,   cause:"Heavy rain",            sev:1.0},
+  {lat:43.9958, lon:7.0993,   began:"2014-01-20", ended:"2014-02-07", dead:4,   disp:1000,   cause:"Heavy rain",            sev:1.5},
+  {lat:44.2452, lon:5.09507,  began:"2014-11-13", ended:"2014-11-16", dead:5,   disp:0,      cause:"Heavy rain",            sev:1.5},
+  {lat:43.999,  lon:0.863937, began:"2014-11-29", ended:"2014-12-05", dead:5,   disp:3000,   cause:"Torrential rain",       sev:1.5},
+  {lat:43.3765, lon:6.5302,   began:"2015-10-03", ended:"2015-10-07", dead:16,  disp:0,      cause:"Torrential rain",       sev:1.5},
+  {lat:48.0641, lon:2.99188,  began:"2016-06-01", ended:"2016-06-21", dead:4,   disp:0,      cause:"Heavy rain",            sev:2.0},
+  {lat:45.4855, lon:3.33829,  began:"2017-06-13", ended:"2017-06-15", dead:1,   disp:160,    cause:"Torrential rain",       sev:1.0},
+  {lat:48.5107, lon:1.60624,  began:"2018-01-24", ended:"2018-01-29", dead:0,   disp:1000,   cause:"Heavy rain",            sev:1.5},
+  {lat:48.1913, lon:-3.61464, began:"2018-06-03", ended:"2018-06-04", dead:0,   disp:20,     cause:"Heavy rain",            sev:1.0},
+  {lat:44.4181, lon:5.78789,  began:"2018-08-09", ended:"2018-08-10", dead:0,   disp:1600,   cause:"Torrential rain",       sev:1.5},
+  {lat:46.1065, lon:1.95265,  began:"2021-01-31", ended:"2021-02-03", dead:1,   disp:150,    cause:"Heavy rain",            sev:1.0}
+];
+
+// ── Colours per cause ────────────────────────────────────────────────────────
+var CAUSE_COLOR = {
+  "Heavy rain":            "#3b82f6",
+  "Torrential rain":       "#f97316",
+  "Brief torrential rain": "#06b6d4",
+  "Rain & snowmelt":       "#8b5cf6",
+  "Storm surge":           "#1e40af",
+  "Avalanche":             "#64748b"
+};
+
+function causeColor(c) { return CAUSE_COLOR[c] || "#94a3b8"; }
+
+function deathRadius(n) {
+  if (n === 0) return 5;
+  if (n < 5)   return 7;
+  if (n < 16)  return 10;
+  if (n < 30)  return 14;
+  return 18;
+}
+
+// ── Map setup ────────────────────────────────────────────────────────────────
+var map = L.map("map", { zoomControl: true }).setView([46.5, 3], 6);
+
+// CartoDB Voyager — slightly coloured basemap, shows roads & terrain
+// This is different from the "Light" basemap on the existing France map
+L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+}).addTo(map);
+
+// ── Build markers ────────────────────────────────────────────────────────────
+var allMarkers = [];
+
+FLOODS.forEach(function(e) {
+  var color  = causeColor(e.cause);
+  var radius = deathRadius(e.dead);
+  var year   = parseInt(e.began.slice(0, 4));
+
+  var marker = L.circleMarker([e.lat, e.lon], {
+    radius:      radius,
+    fillColor:   color,
+    color:       "#fff",
+    weight:      1.5,
+    fillOpacity: 0.88
+  });
+
+  marker.bindPopup(
+    "<div style='min-width:180px'>" +
+    "<div style='font-weight:700;font-size:0.9rem;color:" + color + ";margin-bottom:4px'>" +
+      e.cause +
+    "</div>" +
+    "<div style='color:#64748b;font-size:0.73rem;margin-bottom:6px'>" +
+      e.began + (e.ended !== e.began ? " → " + e.ended : "") +
+    "</div>" +
+    "<table style='width:100%;font-size:0.8rem;border-collapse:collapse'>" +
+    "<tr><td style='color:#94a3b8;padding:2px 10px 2px 0'>Deaths</td>"    +
+      "<td><b style='color:#dc2626'>" + e.dead + "</b></td></tr>" +
+    "<tr><td style='color:#94a3b8;padding:2px 10px 2px 0'>Displaced</td>" +
+      "<td>" + (e.disp > 0 ? e.disp.toLocaleString() : "—") + "</td></tr>" +
+    "<tr><td style='color:#94a3b8;padding:2px 10px 2px 0'>Severity</td>"  +
+      "<td>" + e.sev + "</td></tr>" +
+    "</table></div>",
+    { maxWidth: 220 }
+  );
+
+  marker._decade = Math.floor(year / 10) * 10;
+  marker._data   = e;
+
+  marker.addTo(map);
+  allMarkers.push(marker);
+});
+
+// ── Decade filter ────────────────────────────────────────────────────────────
+var activeDecade = "all";
+
+function applyFilter(decade) {
+  activeDecade = decade;
+  var count = 0;
+  allMarkers.forEach(function(m) {
+    var show = (decade === "all") ||
+               (decade === "2010" && m._decade >= 2010) ||
+               (String(m._decade) === String(decade));
+    if (show) { m.addTo(map); count++; }
+    else       { map.removeLayer(m); }
+  });
+  document.getElementById("evcount").textContent = "Showing " + count + " event" + (count !== 1 ? "s" : "");
+}
+
+document.querySelectorAll(".dbtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    document.querySelectorAll(".dbtn").forEach(function(b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    applyFilter(btn.dataset.decade);
+  });
+});
+</script>
+</body>
+</html>
