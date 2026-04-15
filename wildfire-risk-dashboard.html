@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wildfire Risk Dashboard — Sicily</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; background: #0f172a; }
+
+    header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      z-index: 1000; background: #0f172a; color: #fff;
+      padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-left { display: flex; align-items: baseline; gap: 12px; }
+    header h1 { font-size: 1.1rem; font-weight: 700; color: #f97316; }
+    header p  { font-size: 0.78rem; color: #94a3b8; }
+    #muni-count { font-size: 0.78rem; color: #94a3b8; }
+
+    #map { position: absolute; top: 52px; bottom: 0; left: 0; right: 0; }
+
+    /* Filter panel */
+    #controls {
+      position: absolute; top: 62px; left: 10px; z-index: 1000;
+      background: rgba(15,23,42,0.95); color: #e2e8f0;
+      border-radius: 8px; padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      font-size: 0.78rem; min-width: 210px;
+    }
+    #controls h4 { font-size: 0.82rem; color: #f97316; margin-bottom: 10px; font-weight: 700; }
+    .ctrl-group { margin-bottom: 10px; }
+    .ctrl-group label { display: block; margin-bottom: 4px; color: #94a3b8; }
+    .risk-btns { display: flex; gap: 4px; }
+    .risk-btn {
+      flex: 1; padding: 5px 0; border: 2px solid transparent; border-radius: 4px;
+      cursor: pointer; font-size: 0.75rem; font-weight: 700; color: #fff;
+      opacity: 0.45; transition: opacity 0.15s, border-color 0.15s;
+    }
+    .risk-btn.active { opacity: 1; border-color: #fff; }
+    .risk-btn.low    { background: #16a34a; }
+    .risk-btn.medium { background: #d97706; }
+    .risk-btn.high   { background: #dc2626; }
+    .ctrl-sep { height: 1px; background: #1e293b; margin: 8px 0; }
+    .ctrl-group select {
+      width: 100%; background: #1e293b; color: #e2e8f0;
+      border: 1px solid #334155; border-radius: 4px; padding: 4px 6px;
+    }
+
+    /* Legend */
+    #legend {
+      position: absolute; bottom: 28px; left: 10px; z-index: 1000;
+      background: rgba(15,23,42,0.95); color: #e2e8f0;
+      border-radius: 8px; padding: 10px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5); font-size: 0.76rem;
+    }
+    #legend h4 { color: #f97316; margin-bottom: 6px; font-size: 0.8rem; }
+    .leg-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .leg-swatch { width: 18px; height: 14px; border-radius: 3px; flex-shrink: 0; opacity: 0.85; }
+    .leg-note { font-size: 0.68rem; color: #64748b; margin-top: 6px; line-height: 1.4; }
+
+    /* Info panel (right) */
+    #info {
+      position: absolute; top: 62px; right: 10px; z-index: 1000;
+      background: rgba(15,23,42,0.95); color: #e2e8f0;
+      border-radius: 8px; padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      font-size: 0.78rem; width: 240px; display: none;
+    }
+    #info h4 { font-size: 0.9rem; color: #f97316; margin-bottom: 8px; font-weight: 700; }
+    .info-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .info-label { color: #94a3b8; }
+    .info-val { font-weight: 600; }
+    .badge {
+      display: inline-block; padding: 2px 10px; border-radius: 12px;
+      font-size: 0.75rem; font-weight: 700; color: #fff; letter-spacing: 0.03em;
+    }
+    .badge-low    { background: #16a34a; }
+    .badge-medium { background: #d97706; }
+    .badge-high   { background: #dc2626; }
+    .score-bar-bg {
+      height: 6px; background: #1e293b; border-radius: 3px; margin-top: 10px; overflow: hidden;
+    }
+    .score-bar { height: 100%; border-radius: 3px; background: #f97316; }
+    .score-bar-label { font-size: 0.68rem; color: #64748b; margin-top: 3px; }
+
+    /* Loading */
+    #loading {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      z-index: 2000; color: #f97316; font-size: 1rem; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Wildfire Risk Dashboard</h1>
+    <p>Sicily · EFFIS 2021 &amp; 2023 · OpenStreetMap</p>
+  </div>
+  <span id="muni-count">Loading…</span>
+</header>
+
+<div id="loading">Loading municipality data…</div>
+
+<div id="map"></div>
+
+<!-- Filter panel -->
+<div id="controls">
+  <h4>Filters</h4>
+  <div class="ctrl-group">
+    <label>Risk class</label>
+    <div class="risk-btns">
+      <button class="risk-btn low    active" data-class="low">LOW</button>
+      <button class="risk-btn medium active" data-class="medium">MED</button>
+      <button class="risk-btn high   active" data-class="high">HIGH</button>
+    </div>
+  </div>
+  <div class="ctrl-sep"></div>
+  <div class="ctrl-group">
+    <label>Sort table by</label>
+    <select id="sort-by">
+      <option value="score_raw">Overall score</option>
+      <option value="fire_severity_mean">Fire severity</option>
+      <option value="dist_facility_km">Distance to facility</option>
+      <option value="pop_density_km2">Population density</option>
+    </select>
+  </div>
+</div>
+
+<!-- Legend -->
+<div id="legend">
+  <h4>Vulnerability</h4>
+  <div class="leg-row"><div class="leg-swatch" style="background:#dc2626"></div>High</div>
+  <div class="leg-row"><div class="leg-swatch" style="background:#d97706"></div>Medium</div>
+  <div class="leg-row"><div class="leg-swatch" style="background:#16a34a"></div>Low</div>
+  <div class="leg-row" style="margin-top:8px"><div class="leg-swatch" style="background:#38bdf8;border-radius:50%"></div>Emergency facility</div>
+  <div class="leg-note">
+    Score = 50% fire exposure<br>
+    + 30% facility access<br>
+    + 20% population density<br>
+    <br>Fire data: EFFIS 2021 &amp; 2023<br>
+    Elderly %: Italy avg 23.5%<br>
+    Facilities: OpenStreetMap
+  </div>
+</div>
+
+<!-- Info panel -->
+<div id="info">
+  <h4 id="info-name">—</h4>
+  <div class="info-row">
+    <span class="info-label">Island</span>
+    <span class="info-val" id="info-island">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Risk class</span>
+    <span id="info-badge">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Overall score</span>
+    <span class="info-val" id="info-score">—</span>
+  </div>
+  <div class="score-bar-bg"><div class="score-bar" id="info-bar" style="width:0%"></div></div>
+  <div class="score-bar-label">0 = lowest risk · 1 = highest risk</div>
+
+  <div class="ctrl-sep" style="margin:10px 0"></div>
+
+  <div class="info-row">
+    <span class="info-label">Fire severity (mean)</span>
+    <span class="info-val" id="info-sev">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Area burned (both years)</span>
+    <span class="info-val" id="info-frac">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Fire years affected</span>
+    <span class="info-val" id="info-years">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Nearest facility</span>
+    <span class="info-val" id="info-dist">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Population</span>
+    <span class="info-val" id="info-pop">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Density</span>
+    <span class="info-val" id="info-dens">—</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Area</span>
+    <span class="info-val" id="info-area">—</span>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── Map init ──────────────────────────────────────────────────────────────
+const map = L.map('map', { zoomControl: true }).setView([37.6, 14.0], 8);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://carto.com">CartoDB</a> &copy; <a href="https://osm.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18,
+}).addTo(map);
+
+// ── Colour helpers ────────────────────────────────────────────────────────
+const RISK_COLOUR = { low: '#16a34a', medium: '#d97706', high: '#dc2626', nan: '#475569' };
+
+function muniStyle(risk) {
+  return {
+    fillColor:   RISK_COLOUR[risk] || RISK_COLOUR.nan,
+    fillOpacity: 0.65,
+    color:       '#0f172a',
+    weight:      0.6,
+  };
+}
+
+function muniHover(risk) {
+  return { weight: 1.8, color: '#e2e8f0', fillOpacity: 0.80 };
+}
+
+// ── State ─────────────────────────────────────────────────────────────────
+let geojsonLayer = null;
+let allFeatures  = [];
+let activeClasses = new Set(['low','medium','high']);
+let activeIsland  = 'all';
+
+// ── Info panel ────────────────────────────────────────────────────────────
+function showInfo(props) {
+  const panel = document.getElementById('info');
+  panel.style.display = 'block';
+  document.getElementById('info-name').textContent = props.NAME_3 || '—';
+  document.getElementById('info-island').textContent =
+    props.island ? props.island.charAt(0).toUpperCase() + props.island.slice(1) : '—';
+
+  const rc = props.risk_class || 'nan';
+  document.getElementById('info-badge').innerHTML =
+    `<span class="badge badge-${rc}">${rc.toUpperCase()}</span>`;
+
+  const score = parseFloat(props.score_raw) || 0;
+  document.getElementById('info-score').textContent = score.toFixed(3);
+  document.getElementById('info-bar').style.width = (score * 100).toFixed(1) + '%';
+
+  const sev = parseFloat(props.fire_severity_mean) || 0;
+  const SEV_LABEL = ['None','Low','Moderate','High'];
+  document.getElementById('info-sev').textContent =
+    sev > 0 ? `${sev.toFixed(2)} (${SEV_LABEL[Math.round(sev)] || '?'})` : 'None';
+
+  const frac = parseFloat(props.fire_frac_mean) || 0;
+  document.getElementById('info-frac').textContent = frac > 0 ? (frac * 100).toFixed(1) + ' %' : '0 %';
+
+  document.getElementById('info-years').textContent =
+    (props.fire_years_affected || 0) + ' / 2  (2021, 2023)';
+
+  const dist = parseFloat(props.dist_facility_km);
+  document.getElementById('info-dist').textContent =
+    isNaN(dist) ? '—' : dist.toFixed(1) + ' km';
+
+  const pop = parseInt(props.population) || 0;
+  document.getElementById('info-pop').textContent = pop.toLocaleString();
+
+  const dens = parseFloat(props.pop_density_km2) || 0;
+  document.getElementById('info-dens').textContent = dens.toFixed(1) + ' /km²';
+
+  const area = parseFloat(props.area_km2) || 0;
+  document.getElementById('info-area').textContent = area.toFixed(1) + ' km²';
+}
+
+// ── GeoJSON layer ─────────────────────────────────────────────────────────
+function buildLayer(features) {
+  if (geojsonLayer) geojsonLayer.remove();
+
+  const filtered = features.filter(f => {
+    const rc = f.properties.risk_class;
+    const is = f.properties.island;
+    return activeClasses.has(rc) && (activeIsland === 'all' || is === activeIsland);
+  });
+
+  geojsonLayer = L.geoJSON({ type: 'FeatureCollection', features: filtered }, {
+    style: f => muniStyle(f.properties.risk_class),
+    onEachFeature(f, layer) {
+      layer.on({
+        mouseover(e) {
+          e.target.setStyle(muniHover(f.properties.risk_class));
+          showInfo(f.properties);
+        },
+        mouseout(e) {
+          geojsonLayer.resetStyle(e.target);
+        },
+        click(e) {
+          showInfo(f.properties);
+          map.fitBounds(e.target.getBounds(), { maxZoom: 12, animate: true });
+        },
+      });
+    },
+  }).addTo(map);
+
+  document.getElementById('muni-count').textContent =
+    `${filtered.length} municipalities shown`;
+}
+
+// ── Facility markers ──────────────────────────────────────────────────────
+const facIcon = L.circleMarker.bind(L);
+function addFacilities(geojson) {
+  if (!geojson || !geojson.features) return;
+  geojson.features.forEach(f => {
+    const [lon, lat] = f.geometry.coordinates;
+    const p = f.properties;
+    L.circleMarker([lat, lon], {
+      radius: 4, fillColor: '#38bdf8', color: '#0f172a',
+      weight: 1, fillOpacity: 0.9,
+    }).addTo(map)
+      .bindTooltip(`<b>${p.name || p.amenity}</b><br>${p.amenity} · ${p.island}`, {
+        direction: 'top', offset: [0, -5],
+      });
+  });
+}
+
+// ── Controls ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.risk-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cls = btn.dataset.class;
+    btn.classList.toggle('active');
+    if (activeClasses.has(cls)) activeClasses.delete(cls); else activeClasses.add(cls);
+    buildLayer(allFeatures);
+  });
+});
+
+
+// ── Load data ─────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const [muniResp, facResp] = await Promise.all([
+      fetch('data/wildfire/processed/municipalities_scored.geojson'),
+      fetch('data/wildfire/raw/facilities.geojson'),
+    ]);
+
+    if (!muniResp.ok) throw new Error(`Municipality GeoJSON: ${muniResp.status}`);
+    const muni = await muniResp.json();
+    allFeatures = muni.features;
+
+    document.getElementById('loading').style.display = 'none';
+    buildLayer(allFeatures);
+
+    // Fit to Sicily
+    map.fitBounds([[36.5,12.3],[38.3,15.7]], { animate: false });
+
+    if (facResp.ok) {
+      const fac = await facResp.json();
+      addFacilities(fac);
+    }
+
+    // Summary counts in console for debugging
+    const counts = { low: 0, medium: 0, high: 0, nan: 0 };
+    allFeatures.forEach(f => { const rc = f.properties.risk_class; counts[rc] = (counts[rc]||0)+1; });
+    console.log('Risk distribution:', counts);
+
+  } catch (err) {
+    document.getElementById('loading').textContent = 'Error loading data: ' + err.message;
+    console.error(err);
+  }
+}
+
+loadData();
+</script>
+</body>
+</html>
