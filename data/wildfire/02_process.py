@@ -1,10 +1,12 @@
 """
-Step 2 — Processing + Priority Flagging (redesigned)
+Step 2 — Processing + Priority Flagging (v2 — improved data)
 
 Inputs (from raw/):
-  gadm_sicily.geojson     — municipality boundaries (Sicily only)
-  effis_tiff_urls.json    — URLs for EFFIS severity rasters 2018-2024
-  facilities.geojson      — emergency facilities (civil protection filtered)
+  gadm_sicily.geojson                   — municipality boundaries (Sicily only)
+  effis_tiff_urls.json                  — URLs for EFFIS severity rasters 2018-2024
+  facilities.geojson                    — emergency facilities (civil protection filtered)
+  istat/sicily_elderly_by_istat_code.json — ISTAT 65+ share per municipality (2026 estimate)
+  istat/gadm_to_istat.json              — GADM GID_3 → ISTAT commune code mapping
 
 Outputs (to processed/):
   municipalities_priority.geojson  — 391 Sicily municipalities
@@ -13,20 +15,19 @@ Outputs (to processed/):
 Fields in output:
   GID_3, NAME_3, province
   centroid_lat, centroid_lon, area_km2
-  fire_years_2021_2024    — count of years (out of 2021-2024) with fire pixels
-  elderly_pct             — share of population aged 65+ (Eurostat NUTS3, 2021)
-  dist_civil_prot_km      — km to nearest civil protection station (OSM)
-  priority                — True if ALL three conditions below are met
+  fire_years_2018_2024  — count of years (out of 2018-2024) with EFFIS fire pixels
+  elderly_pct           — share of population aged 65+ (ISTAT per municipality)
+  dist_civil_prot_km    — km to nearest civil protection station (OSM)
+  priority              — True if ALL three conditions below are met
 
 Priority flag (all three must be true):
-  1. fire_years_2021_2024 >= 2   (burned at least twice 2021-2024)
+  1. fire_years_2018_2024 >= 3   (burned ≥3 times out of 7 years 2018-2024)
   2. elderly_pct > 0.235         (above Italy national average)
   3. dist_civil_prot_km > 20     (>20 km from nearest civil protection)
 
-Elderly data: Eurostat NUTS3 provincial shares (2021).
-  Source: Eurostat demo_r_pjangrp3, ages Y65-69+Y70-74+Y75-79+Y80-84+Y_GE85 / TOTAL
-  Trapani 23.8%, Palermo 21.9%, Messina 24.2%, Agrigento 23.2%,
-  Caltanissetta 22.2%, Enna 24.2%, Catania 20.9%, Ragusa 21.0%, Siracusa 22.5%
+Elderly data: ISTAT "Popolazione residente per età e sesso" (demo.istat.it),
+  January 1, 2026 estimate. Ages summed for 65-100, denominator from age=999 row.
+  Source: https://demo.istat.it/data/posas/POSAS_2026_it_Comuni.zip
 """
 
 import json
@@ -39,31 +40,16 @@ import numpy as np
 import pandas as pd
 import rasterio
 from rasterio.windows import from_bounds
-from shapely.geometry import shape
 
 RAW       = Path(__file__).parent / "raw"
 PROCESSED = Path(__file__).parent / "processed"
 PROCESSED.mkdir(exist_ok=True)
 
-# ── Eurostat NUTS3 elderly share (65+) per Sicilian province (2021) ──────────
-# Source: Eurostat demo_r_pjangrp3, population on 1 Jan 2021
-# Key: GADM NAME_2 province name
-ELDERLY_BY_PROVINCE = {
-    "Trapani":       0.238,
-    "Palermo":       0.219,
-    "Messina":       0.242,
-    "Agrigento":     0.232,
-    "Caltanissetta": 0.222,
-    "Enna":          0.242,
-    "Catania":       0.209,
-    "Ragusa":        0.210,
-    "Syracuse":      0.225,   # GADM uses "Syracuse" for Siracusa
-}
+ITALY_NATIONAL_ELDERLY = 0.235  # priority threshold (Italy national average)
 
-ITALY_NATIONAL_ELDERLY = 0.235  # priority threshold
-
-# ── EFFIS years counted toward the fire_years_2021_2024 indicator ─────────────
-FIRE_COUNT_YEARS = [2021, 2022, 2023, 2024]   # 2025 TIFF not yet published
+# ── EFFIS years to process for fire frequency indicator ───────────────────────
+FIRE_COUNT_YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024]
+FIRE_MIN_YEARS   = 3   # priority condition: burned in ≥ N of these 7 years
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
@@ -94,7 +80,6 @@ def load_municipalities():
 # ── 2. EFFIS fire exposure ────────────────────────────────────────────────────
 EFFIS_TIFF_URLS = json.loads((RAW / "effis_tiff_urls.json").read_text())
 
-# Sicily bounding box
 SICILY_W, SICILY_S, SICILY_E, SICILY_N = 12.0, 36.0, 16.0, 38.5
 
 
@@ -170,18 +155,17 @@ def compute_fire_years(munis):
             print(f"  [EFFIS {year}] skipped (no TIFF)")
         frac_cols.append(col)
 
-    munis["fire_years_2021_2024"] = sum(
+    munis["fire_years_2018_2024"] = sum(
         (munis[fc] > 0).astype(int) for fc in frac_cols
     )
-    dist = munis["fire_years_2021_2024"].value_counts().sort_index().to_dict()
-    print(f"  [EFFIS] fire_years_2021_2024 distribution: {dist}")
+    dist = munis["fire_years_2018_2024"].value_counts().sort_index().to_dict()
+    print(f"  [EFFIS] fire_years_2018_2024 distribution: {dist}")
     return munis
 
 
 # ── 3. Distance to nearest civil protection station ───────────────────────────
 def compute_civil_prot_distance(munis):
     fac = gpd.read_file(RAW / "facilities.geojson")
-    # Keep civil protection only, Sicily only, deduplicated
     cp = fac[
         (fac["amenity"] == "civil_protection") &
         (fac["island"] == "sicily")
@@ -193,7 +177,7 @@ def compute_civil_prot_distance(munis):
         return munis
 
     cp_pts = [(r.geometry.y, r.geometry.x) for _, r in cp.iterrows()]
-    print(f"  [CIVPROT] {len(cp_pts)} civil protection stations; computing distances …",
+    print(f"  [CIVPROT] {len(cp_pts)} stations; computing distances …",
           end=" ", flush=True)
 
     dists = []
@@ -207,30 +191,41 @@ def compute_civil_prot_distance(munis):
     return munis
 
 
-# ── 4. Elderly population share (Eurostat NUTS3 by province) ──────────────────
+# ── 4. Elderly population share (ISTAT per municipality) ─────────────────────
 def assign_elderly_pct(munis):
-    munis["elderly_pct"] = munis["province"].map(ELDERLY_BY_PROVINCE)
-    missing = munis["elderly_pct"].isna().sum()
-    if missing:
-        print(f"  [ELDERLY] WARNING: {missing} municipalities with no province match "
-              f"— using national average {ITALY_NATIONAL_ELDERLY}")
-        munis["elderly_pct"] = munis["elderly_pct"].fillna(ITALY_NATIONAL_ELDERLY)
-    for prov, share in ELDERLY_BY_PROVINCE.items():
-        n = (munis["province"] == prov).sum()
-        print(f"    {prov:<18} {share:.1%}  ({n} municipalities)")
+    """Use real ISTAT municipality-level 65+ share."""
+    istat = json.loads((RAW / "istat" / "sicily_elderly_by_istat_code.json").read_text())
+    mapping = json.loads((RAW / "istat" / "gadm_to_istat.json").read_text())
+
+    shares = []
+    for _, row in munis.iterrows():
+        gid3 = row["GID_3"]
+        istat_code = mapping.get(gid3)
+        if istat_code and istat_code in istat:
+            shares.append(istat[istat_code]["share"])
+        else:
+            print(f"  [ELDERLY] WARNING: no ISTAT match for {row['NAME_3']} ({gid3})"
+                  f" — using national average")
+            shares.append(ITALY_NATIONAL_ELDERLY)
+
+    munis["elderly_pct"] = shares
+    above = sum(1 for s in shares if s > ITALY_NATIONAL_ELDERLY)
+    print(f"  [ELDERLY] {above}/{len(shares)} municipalities above national avg 23.5%")
+    print(f"  [ELDERLY] Range: {min(shares):.1%} – {max(shares):.1%}, "
+          f"median: {sorted(shares)[len(shares)//2]:.1%}")
     return munis
 
 
 # ── 5. Priority flag ──────────────────────────────────────────────────────────
 def apply_priority_flag(munis):
-    c1 = munis["fire_years_2021_2024"] >= 2
+    c1 = munis["fire_years_2018_2024"] >= FIRE_MIN_YEARS
     c2 = munis["elderly_pct"] > ITALY_NATIONAL_ELDERLY
     c3 = munis["dist_civil_prot_km"] > 20.0
 
     munis["priority"] = c1 & c2 & c3
     n = munis["priority"].sum()
     print(f"  [PRIORITY] {n}/{len(munis)} municipalities flagged as priority")
-    print(f"    fire >= 2 years:        {c1.sum():>3}")
+    print(f"    fire >= {FIRE_MIN_YEARS} years (of 7):  {c1.sum():>3}")
     print(f"    elderly > 23.5%:        {c2.sum():>3}")
     print(f"    dist civil prot > 20km: {c3.sum():>3}")
     print(f"    ALL three (priority):   {n:>3}")
@@ -241,7 +236,7 @@ def apply_priority_flag(munis):
 KEEP_COLS = [
     "GID_3", "NAME_3", "province",
     "centroid_lat", "centroid_lon", "area_km2",
-    "fire_years_2021_2024",
+    "fire_years_2018_2024",
     "elderly_pct",
     "dist_civil_prot_km",
     "priority",
@@ -264,18 +259,18 @@ def export(munis):
 
 # ── main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    print("\n=== Step 2: Processing + Priority Flagging ===\n")
+    print("\n=== Step 2: Processing + Priority Flagging (v2) ===\n")
 
     print("1/5  Loading municipality boundaries")
     munis = load_municipalities()
 
-    print("\n2/5  Fire exposure (EFFIS severity rasters 2021-2024)")
+    print(f"\n2/5  Fire exposure (EFFIS {FIRE_COUNT_YEARS[0]}–{FIRE_COUNT_YEARS[-1]})")
     munis = compute_fire_years(munis)
 
     print("\n3/5  Distance to nearest civil protection station")
     munis = compute_civil_prot_distance(munis)
 
-    print("\n4/5  Elderly population share (Eurostat NUTS3, 2021)")
+    print("\n4/5  Elderly population share (ISTAT per municipality)")
     munis = assign_elderly_pct(munis)
 
     print("\n5/5  Priority flag")

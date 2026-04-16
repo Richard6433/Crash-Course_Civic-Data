@@ -1,0 +1,2348 @@
+{
+  "088001": {
+    "name": "Acate",
+    "total": 10657,
+    "ge65": 1778,
+    "share": 0.1668
+  },
+  "087001": {
+    "name": "Aci Bonaccorsi",
+    "total": 3559,
+    "ge65": 772,
+    "share": 0.2169
+  },
+  "087002": {
+    "name": "Aci Castello",
+    "total": 17482,
+    "ge65": 4776,
+    "share": 0.2732
+  },
+  "087003": {
+    "name": "Aci Catena",
+    "total": 27349,
+    "ge65": 5660,
+    "share": 0.207
+  },
+  "087004": {
+    "name": "Acireale",
+    "total": 50528,
+    "ge65": 12302,
+    "share": 0.2435
+  },
+  "087005": {
+    "name": "Aci Sant'Antonio",
+    "total": 18091,
+    "ge65": 3600,
+    "share": 0.199
+  },
+  "085001": {
+    "name": "Acquaviva Platani",
+    "total": 819,
+    "ge65": 261,
+    "share": 0.3187
+  },
+  "083107": {
+    "name": "Acquedolci",
+    "total": 5532,
+    "ge65": 1355,
+    "share": 0.2449
+  },
+  "087006": {
+    "name": "Adrano",
+    "total": 33506,
+    "ge65": 7104,
+    "share": 0.212
+  },
+  "086001": {
+    "name": "Agira",
+    "total": 7529,
+    "ge65": 1782,
+    "share": 0.2367
+  },
+  "084001": {
+    "name": "Agrigento",
+    "total": 55118,
+    "ge65": 14007,
+    "share": 0.2541
+  },
+  "086002": {
+    "name": "Aidone",
+    "total": 4205,
+    "ge65": 1161,
+    "share": 0.2761
+  },
+  "081001": {
+    "name": "Alcamo",
+    "total": 44661,
+    "ge65": 11034,
+    "share": 0.2471
+  },
+  "083001": {
+    "name": "Alcara li Fusi",
+    "total": 1589,
+    "ge65": 577,
+    "share": 0.3631
+  },
+  "084002": {
+    "name": "Alessandria della Rocca",
+    "total": 2301,
+    "ge65": 758,
+    "share": 0.3294
+  },
+  "083002": {
+    "name": "Alì",
+    "total": 596,
+    "ge65": 170,
+    "share": 0.2852
+  },
+  "082001": {
+    "name": "Alia",
+    "total": 3138,
+    "ge65": 937,
+    "share": 0.2986
+  },
+  "082002": {
+    "name": "Alimena",
+    "total": 1822,
+    "ge65": 516,
+    "share": 0.2832
+  },
+  "082003": {
+    "name": "Aliminusa",
+    "total": 1005,
+    "ge65": 313,
+    "share": 0.3114
+  },
+  "083003": {
+    "name": "Alì Terme",
+    "total": 2317,
+    "ge65": 637,
+    "share": 0.2749
+  },
+  "082004": {
+    "name": "Altavilla Milicia",
+    "total": 9055,
+    "ge65": 1925,
+    "share": 0.2126
+  },
+  "082005": {
+    "name": "Altofonte",
+    "total": 9742,
+    "ge65": 2185,
+    "share": 0.2243
+  },
+  "083004": {
+    "name": "Antillo",
+    "total": 773,
+    "ge65": 214,
+    "share": 0.2768
+  },
+  "084003": {
+    "name": "Aragona",
+    "total": 8669,
+    "ge65": 2216,
+    "share": 0.2556
+  },
+  "086003": {
+    "name": "Assoro",
+    "total": 4749,
+    "ge65": 1298,
+    "share": 0.2733
+  },
+  "089001": {
+    "name": "Augusta",
+    "total": 34697,
+    "ge65": 8875,
+    "share": 0.2558
+  },
+  "089002": {
+    "name": "Avola",
+    "total": 30683,
+    "ge65": 7035,
+    "share": 0.2293
+  },
+  "082006": {
+    "name": "Bagheria",
+    "total": 53152,
+    "ge65": 11713,
+    "share": 0.2204
+  },
+  "082007": {
+    "name": "Balestrate",
+    "total": 6379,
+    "ge65": 1770,
+    "share": 0.2775
+  },
+  "083005": {
+    "name": "Barcellona Pozzo di Gotto",
+    "total": 39756,
+    "ge65": 9354,
+    "share": 0.2353
+  },
+  "086004": {
+    "name": "Barrafranca",
+    "total": 11456,
+    "ge65": 2877,
+    "share": 0.2511
+  },
+  "083006": {
+    "name": "Basicò",
+    "total": 614,
+    "ge65": 169,
+    "share": 0.2752
+  },
+  "082008": {
+    "name": "Baucina",
+    "total": 1838,
+    "ge65": 498,
+    "share": 0.2709
+  },
+  "082009": {
+    "name": "Belmonte Mezzagno",
+    "total": 10678,
+    "ge65": 2165,
+    "share": 0.2028
+  },
+  "087007": {
+    "name": "Belpasso",
+    "total": 28321,
+    "ge65": 5236,
+    "share": 0.1849
+  },
+  "087008": {
+    "name": "Biancavilla",
+    "total": 22917,
+    "ge65": 4770,
+    "share": 0.2081
+  },
+  "082010": {
+    "name": "Bisacquino",
+    "total": 3938,
+    "ge65": 1146,
+    "share": 0.291
+  },
+  "084004": {
+    "name": "Bivona",
+    "total": 3000,
+    "ge65": 879,
+    "share": 0.293
+  },
+  "082082": {
+    "name": "Blufi",
+    "total": 822,
+    "ge65": 288,
+    "share": 0.3504
+  },
+  "082011": {
+    "name": "Bolognetta",
+    "total": 4074,
+    "ge65": 909,
+    "share": 0.2231
+  },
+  "085002": {
+    "name": "Bompensiere",
+    "total": 468,
+    "ge65": 157,
+    "share": 0.3355
+  },
+  "082012": {
+    "name": "Bompietro",
+    "total": 1140,
+    "ge65": 405,
+    "share": 0.3553
+  },
+  "082013": {
+    "name": "Borgetto",
+    "total": 7167,
+    "ge65": 1493,
+    "share": 0.2083
+  },
+  "083007": {
+    "name": "Brolo",
+    "total": 5712,
+    "ge65": 1395,
+    "share": 0.2442
+  },
+  "087009": {
+    "name": "Bronte",
+    "total": 18101,
+    "ge65": 4226,
+    "share": 0.2335
+  },
+  "089003": {
+    "name": "Buccheri",
+    "total": 1692,
+    "ge65": 573,
+    "share": 0.3387
+  },
+  "084005": {
+    "name": "Burgio",
+    "total": 2409,
+    "ge65": 683,
+    "share": 0.2835
+  },
+  "089004": {
+    "name": "Buscemi",
+    "total": 935,
+    "ge65": 272,
+    "share": 0.2909
+  },
+  "081002": {
+    "name": "Buseto Palizzolo",
+    "total": 2727,
+    "ge65": 731,
+    "share": 0.2681
+  },
+  "085003": {
+    "name": "Butera",
+    "total": 4053,
+    "ge65": 1092,
+    "share": 0.2694
+  },
+  "082014": {
+    "name": "Caccamo",
+    "total": 7529,
+    "ge65": 1991,
+    "share": 0.2644
+  },
+  "084006": {
+    "name": "Calamonaci",
+    "total": 1127,
+    "ge65": 319,
+    "share": 0.2831
+  },
+  "086005": {
+    "name": "Calascibetta",
+    "total": 3948,
+    "ge65": 1063,
+    "share": 0.2693
+  },
+  "087010": {
+    "name": "Calatabiano",
+    "total": 5145,
+    "ge65": 1290,
+    "share": 0.2507
+  },
+  "081003": {
+    "name": "Calatafimi-Segesta",
+    "total": 5955,
+    "ge65": 1781,
+    "share": 0.2991
+  },
+  "084007": {
+    "name": "Caltabellotta",
+    "total": 3065,
+    "ge65": 959,
+    "share": 0.3129
+  },
+  "087011": {
+    "name": "Caltagirone",
+    "total": 35373,
+    "ge65": 8833,
+    "share": 0.2497
+  },
+  "085004": {
+    "name": "Caltanissetta",
+    "total": 57922,
+    "ge65": 14634,
+    "share": 0.2527
+  },
+  "082015": {
+    "name": "Caltavuturo",
+    "total": 3323,
+    "ge65": 1079,
+    "share": 0.3247
+  },
+  "084008": {
+    "name": "Camastra",
+    "total": 1973,
+    "ge65": 488,
+    "share": 0.2473
+  },
+  "084009": {
+    "name": "Cammarata",
+    "total": 5801,
+    "ge65": 1399,
+    "share": 0.2412
+  },
+  "084010": {
+    "name": "Campobello di Licata",
+    "total": 8873,
+    "ge65": 2255,
+    "share": 0.2541
+  },
+  "081004": {
+    "name": "Campobello di Mazara",
+    "total": 11121,
+    "ge65": 3052,
+    "share": 0.2744
+  },
+  "082016": {
+    "name": "Campofelice di Fitalia",
+    "total": 411,
+    "ge65": 114,
+    "share": 0.2774
+  },
+  "082017": {
+    "name": "Campofelice di Roccella",
+    "total": 7870,
+    "ge65": 1822,
+    "share": 0.2315
+  },
+  "082018": {
+    "name": "Campofiorito",
+    "total": 1113,
+    "ge65": 347,
+    "share": 0.3118
+  },
+  "085005": {
+    "name": "Campofranco",
+    "total": 2512,
+    "ge65": 852,
+    "share": 0.3392
+  },
+  "082019": {
+    "name": "Camporeale",
+    "total": 2842,
+    "ge65": 675,
+    "share": 0.2375
+  },
+  "087012": {
+    "name": "Camporotondo Etneo",
+    "total": 5208,
+    "ge65": 766,
+    "share": 0.1471
+  },
+  "084011": {
+    "name": "Canicattì",
+    "total": 34249,
+    "ge65": 7326,
+    "share": 0.2139
+  },
+  "089005": {
+    "name": "Canicattini Bagni",
+    "total": 6482,
+    "ge65": 1714,
+    "share": 0.2644
+  },
+  "082020": {
+    "name": "Capaci",
+    "total": 11482,
+    "ge65": 2482,
+    "share": 0.2162
+  },
+  "083008": {
+    "name": "Capizzi",
+    "total": 2707,
+    "ge65": 634,
+    "share": 0.2342
+  },
+  "083009": {
+    "name": "Capo d'Orlando",
+    "total": 13065,
+    "ge65": 3399,
+    "share": 0.2602
+  },
+  "083010": {
+    "name": "Capri Leone",
+    "total": 4401,
+    "ge65": 994,
+    "share": 0.2259
+  },
+  "082021": {
+    "name": "Carini",
+    "total": 41134,
+    "ge65": 7650,
+    "share": 0.186
+  },
+  "089006": {
+    "name": "Carlentini",
+    "total": 16883,
+    "ge65": 4460,
+    "share": 0.2642
+  },
+  "083011": {
+    "name": "Caronia",
+    "total": 2917,
+    "ge65": 794,
+    "share": 0.2722
+  },
+  "083012": {
+    "name": "Casalvecchio Siculo",
+    "total": 675,
+    "ge65": 207,
+    "share": 0.3067
+  },
+  "089007": {
+    "name": "Cassaro",
+    "total": 721,
+    "ge65": 205,
+    "share": 0.2843
+  },
+  "082022": {
+    "name": "Castelbuono",
+    "total": 7871,
+    "ge65": 2365,
+    "share": 0.3005
+  },
+  "082023": {
+    "name": "Casteldaccia",
+    "total": 11778,
+    "ge65": 2485,
+    "share": 0.211
+  },
+  "087013": {
+    "name": "Castel di Iudica",
+    "total": 4163,
+    "ge65": 1037,
+    "share": 0.2491
+  },
+  "083013": {
+    "name": "Castel di Lucio",
+    "total": 1355,
+    "ge65": 324,
+    "share": 0.2391
+  },
+  "081005": {
+    "name": "Castellammare del Golfo",
+    "total": 14635,
+    "ge65": 3566,
+    "share": 0.2437
+  },
+  "082024": {
+    "name": "Castellana Sicula",
+    "total": 2885,
+    "ge65": 885,
+    "share": 0.3068
+  },
+  "083014": {
+    "name": "Castell'Umberto",
+    "total": 2731,
+    "ge65": 768,
+    "share": 0.2812
+  },
+  "083015": {
+    "name": "Castelmola",
+    "total": 1071,
+    "ge65": 313,
+    "share": 0.2923
+  },
+  "084012": {
+    "name": "Casteltermini",
+    "total": 7035,
+    "ge65": 2030,
+    "share": 0.2886
+  },
+  "081006": {
+    "name": "Castelvetrano",
+    "total": 29357,
+    "ge65": 7453,
+    "share": 0.2539
+  },
+  "087014": {
+    "name": "Castiglione di Sicilia",
+    "total": 2832,
+    "ge65": 774,
+    "share": 0.2733
+  },
+  "084013": {
+    "name": "Castrofilippo",
+    "total": 2557,
+    "ge65": 638,
+    "share": 0.2495
+  },
+  "082025": {
+    "name": "Castronovo di Sicilia",
+    "total": 2729,
+    "ge65": 839,
+    "share": 0.3074
+  },
+  "083016": {
+    "name": "Castroreale",
+    "total": 2231,
+    "ge65": 664,
+    "share": 0.2976
+  },
+  "087015": {
+    "name": "Catania",
+    "total": 296984,
+    "ge65": 71131,
+    "share": 0.2395
+  },
+  "086006": {
+    "name": "Catenanuova",
+    "total": 4458,
+    "ge65": 1018,
+    "share": 0.2284
+  },
+  "084014": {
+    "name": "Cattolica Eraclea",
+    "total": 3232,
+    "ge65": 874,
+    "share": 0.2704
+  },
+  "082026": {
+    "name": "Cefalà Diana",
+    "total": 962,
+    "ge65": 232,
+    "share": 0.2412
+  },
+  "082027": {
+    "name": "Cefalù",
+    "total": 13846,
+    "ge65": 4036,
+    "share": 0.2915
+  },
+  "086007": {
+    "name": "Centuripe",
+    "total": 4981,
+    "ge65": 1347,
+    "share": 0.2704
+  },
+  "086008": {
+    "name": "Cerami",
+    "total": 1867,
+    "ge65": 527,
+    "share": 0.2823
+  },
+  "082028": {
+    "name": "Cerda",
+    "total": 4771,
+    "ge65": 1203,
+    "share": 0.2521
+  },
+  "083017": {
+    "name": "Cesarò",
+    "total": 2060,
+    "ge65": 626,
+    "share": 0.3039
+  },
+  "088002": {
+    "name": "Chiaramonte Gulfi",
+    "total": 8045,
+    "ge65": 1997,
+    "share": 0.2482
+  },
+  "082029": {
+    "name": "Chiusa Sclafani",
+    "total": 2378,
+    "ge65": 729,
+    "share": 0.3066
+  },
+  "084015": {
+    "name": "Cianciana",
+    "total": 2971,
+    "ge65": 921,
+    "share": 0.31
+  },
+  "082030": {
+    "name": "Ciminna",
+    "total": 3319,
+    "ge65": 1018,
+    "share": 0.3067
+  },
+  "082031": {
+    "name": "Cinisi",
+    "total": 12201,
+    "ge65": 2668,
+    "share": 0.2187
+  },
+  "082032": {
+    "name": "Collesano",
+    "total": 3609,
+    "ge65": 1108,
+    "share": 0.307
+  },
+  "088003": {
+    "name": "Comiso",
+    "total": 30437,
+    "ge65": 6597,
+    "share": 0.2167
+  },
+  "084016": {
+    "name": "Comitini",
+    "total": 919,
+    "ge65": 196,
+    "share": 0.2133
+  },
+  "083018": {
+    "name": "Condrò",
+    "total": 501,
+    "ge65": 140,
+    "share": 0.2794
+  },
+  "082033": {
+    "name": "Contessa Entellina",
+    "total": 1437,
+    "ge65": 467,
+    "share": 0.325
+  },
+  "082034": {
+    "name": "Corleone",
+    "total": 10162,
+    "ge65": 2476,
+    "share": 0.2437
+  },
+  "081007": {
+    "name": "Custonaci",
+    "total": 5234,
+    "ge65": 1260,
+    "share": 0.2407
+  },
+  "085006": {
+    "name": "Delia",
+    "total": 3851,
+    "ge65": 910,
+    "share": 0.2363
+  },
+  "086009": {
+    "name": "Enna",
+    "total": 24884,
+    "ge65": 7140,
+    "share": 0.2869
+  },
+  "081008": {
+    "name": "Erice",
+    "total": 25573,
+    "ge65": 6719,
+    "share": 0.2627
+  },
+  "083019": {
+    "name": "Falcone",
+    "total": 2826,
+    "ge65": 726,
+    "share": 0.2569
+  },
+  "084017": {
+    "name": "Favara",
+    "total": 31167,
+    "ge65": 6994,
+    "share": 0.2244
+  },
+  "081009": {
+    "name": "Favignana",
+    "total": 4540,
+    "ge65": 1224,
+    "share": 0.2696
+  },
+  "089008": {
+    "name": "Ferla",
+    "total": 2219,
+    "ge65": 672,
+    "share": 0.3028
+  },
+  "082035": {
+    "name": "Ficarazzi",
+    "total": 12913,
+    "ge65": 2169,
+    "share": 0.168
+  },
+  "083020": {
+    "name": "Ficarra",
+    "total": 1267,
+    "ge65": 419,
+    "share": 0.3307
+  },
+  "083021": {
+    "name": "Fiumedinisi",
+    "total": 1250,
+    "ge65": 301,
+    "share": 0.2408
+  },
+  "087016": {
+    "name": "Fiumefreddo di Sicilia",
+    "total": 8965,
+    "ge65": 2268,
+    "share": 0.253
+  },
+  "083022": {
+    "name": "Floresta",
+    "total": 458,
+    "ge65": 144,
+    "share": 0.3144
+  },
+  "089009": {
+    "name": "Floridia",
+    "total": 20997,
+    "ge65": 4457,
+    "share": 0.2123
+  },
+  "083023": {
+    "name": "Fondachelli-Fantina",
+    "total": 1058,
+    "ge65": 227,
+    "share": 0.2146
+  },
+  "083024": {
+    "name": "Forza d'Agrò",
+    "total": 902,
+    "ge65": 239,
+    "share": 0.265
+  },
+  "083025": {
+    "name": "Francavilla di Sicilia",
+    "total": 3498,
+    "ge65": 1024,
+    "share": 0.2927
+  },
+  "089010": {
+    "name": "Francofonte",
+    "total": 11484,
+    "ge65": 2807,
+    "share": 0.2444
+  },
+  "083026": {
+    "name": "Frazzanò",
+    "total": 524,
+    "ge65": 188,
+    "share": 0.3588
+  },
+  "083027": {
+    "name": "Furci Siculo",
+    "total": 3245,
+    "ge65": 824,
+    "share": 0.2539
+  },
+  "083028": {
+    "name": "Furnari",
+    "total": 4246,
+    "ge65": 1022,
+    "share": 0.2407
+  },
+  "083029": {
+    "name": "Gaggi",
+    "total": 3094,
+    "ge65": 698,
+    "share": 0.2256
+  },
+  "086010": {
+    "name": "Gagliano Castelferrato",
+    "total": 3111,
+    "ge65": 912,
+    "share": 0.2932
+  },
+  "083030": {
+    "name": "Galati Mamertino",
+    "total": 2108,
+    "ge65": 692,
+    "share": 0.3283
+  },
+  "083031": {
+    "name": "Gallodoro",
+    "total": 320,
+    "ge65": 100,
+    "share": 0.3125
+  },
+  "082036": {
+    "name": "Gangi",
+    "total": 5918,
+    "ge65": 1840,
+    "share": 0.3109
+  },
+  "085007": {
+    "name": "Gela",
+    "total": 70109,
+    "ge65": 15728,
+    "share": 0.2243
+  },
+  "082037": {
+    "name": "Geraci Siculo",
+    "total": 1636,
+    "ge65": 492,
+    "share": 0.3007
+  },
+  "082038": {
+    "name": "Giardinello",
+    "total": 2229,
+    "ge65": 497,
+    "share": 0.223
+  },
+  "083032": {
+    "name": "Giardini-Naxos",
+    "total": 9437,
+    "ge65": 2335,
+    "share": 0.2474
+  },
+  "088004": {
+    "name": "Giarratana",
+    "total": 2994,
+    "ge65": 796,
+    "share": 0.2659
+  },
+  "087017": {
+    "name": "Giarre",
+    "total": 26466,
+    "ge65": 6856,
+    "share": 0.259
+  },
+  "081010": {
+    "name": "Gibellina",
+    "total": 3636,
+    "ge65": 1066,
+    "share": 0.2932
+  },
+  "083033": {
+    "name": "Gioiosa Marea",
+    "total": 6686,
+    "ge65": 1820,
+    "share": 0.2722
+  },
+  "082039": {
+    "name": "Giuliana",
+    "total": 1626,
+    "ge65": 568,
+    "share": 0.3493
+  },
+  "082040": {
+    "name": "Godrano",
+    "total": 981,
+    "ge65": 235,
+    "share": 0.2396
+  },
+  "087018": {
+    "name": "Grammichele",
+    "total": 12127,
+    "ge65": 3114,
+    "share": 0.2568
+  },
+  "083034": {
+    "name": "Graniti",
+    "total": 1434,
+    "ge65": 377,
+    "share": 0.2629
+  },
+  "082041": {
+    "name": "Gratteri",
+    "total": 853,
+    "ge65": 299,
+    "share": 0.3505
+  },
+  "087019": {
+    "name": "Gravina di Catania",
+    "total": 25330,
+    "ge65": 6369,
+    "share": 0.2514
+  },
+  "084018": {
+    "name": "Grotte",
+    "total": 5044,
+    "ge65": 1399,
+    "share": 0.2774
+  },
+  "083035": {
+    "name": "Gualtieri Sicaminò",
+    "total": 1508,
+    "ge65": 461,
+    "share": 0.3057
+  },
+  "082042": {
+    "name": "Isnello",
+    "total": 1393,
+    "ge65": 439,
+    "share": 0.3151
+  },
+  "082043": {
+    "name": "Isola delle Femmine",
+    "total": 6963,
+    "ge65": 1479,
+    "share": 0.2124
+  },
+  "088005": {
+    "name": "Ispica",
+    "total": 16706,
+    "ge65": 3716,
+    "share": 0.2224
+  },
+  "083036": {
+    "name": "Itala",
+    "total": 1491,
+    "ge65": 381,
+    "share": 0.2555
+  },
+  "084019": {
+    "name": "Joppolo Giancaxio",
+    "total": 1064,
+    "ge65": 318,
+    "share": 0.2989
+  },
+  "084020": {
+    "name": "Lampedusa e Linosa",
+    "total": 6485,
+    "ge65": 1319,
+    "share": 0.2034
+  },
+  "082044": {
+    "name": "Lascari",
+    "total": 3769,
+    "ge65": 899,
+    "share": 0.2385
+  },
+  "083037": {
+    "name": "Leni",
+    "total": 669,
+    "ge65": 198,
+    "share": 0.296
+  },
+  "089011": {
+    "name": "Lentini",
+    "total": 21022,
+    "ge65": 5586,
+    "share": 0.2657
+  },
+  "086011": {
+    "name": "Leonforte",
+    "total": 12023,
+    "ge65": 2883,
+    "share": 0.2398
+  },
+  "082045": {
+    "name": "Lercara Friddi",
+    "total": 6042,
+    "ge65": 1602,
+    "share": 0.2651
+  },
+  "083038": {
+    "name": "Letojanni",
+    "total": 2979,
+    "ge65": 696,
+    "share": 0.2336
+  },
+  "083039": {
+    "name": "Librizzi",
+    "total": 1535,
+    "ge65": 475,
+    "share": 0.3094
+  },
+  "084021": {
+    "name": "Licata",
+    "total": 34203,
+    "ge65": 8161,
+    "share": 0.2386
+  },
+  "087020": {
+    "name": "Licodia Eubea",
+    "total": 2762,
+    "ge65": 702,
+    "share": 0.2542
+  },
+  "083040": {
+    "name": "Limina",
+    "total": 703,
+    "ge65": 269,
+    "share": 0.3826
+  },
+  "087021": {
+    "name": "Linguaglossa",
+    "total": 4987,
+    "ge65": 1221,
+    "share": 0.2448
+  },
+  "083041": {
+    "name": "Lipari",
+    "total": 12794,
+    "ge65": 3060,
+    "share": 0.2392
+  },
+  "083042": {
+    "name": "Longi",
+    "total": 1251,
+    "ge65": 349,
+    "share": 0.279
+  },
+  "084022": {
+    "name": "Lucca Sicula",
+    "total": 1700,
+    "ge65": 430,
+    "share": 0.2529
+  },
+  "087022": {
+    "name": "Maletto",
+    "total": 3522,
+    "ge65": 931,
+    "share": 0.2643
+  },
+  "083043": {
+    "name": "Malfa",
+    "total": 1003,
+    "ge65": 241,
+    "share": 0.2403
+  },
+  "083044": {
+    "name": "Malvagna",
+    "total": 575,
+    "ge65": 186,
+    "share": 0.3235
+  },
+  "083045": {
+    "name": "Mandanici",
+    "total": 468,
+    "ge65": 150,
+    "share": 0.3205
+  },
+  "087057": {
+    "name": "Maniace",
+    "total": 3739,
+    "ge65": 781,
+    "share": 0.2089
+  },
+  "085008": {
+    "name": "Marianopoli",
+    "total": 1505,
+    "ge65": 444,
+    "share": 0.295
+  },
+  "082046": {
+    "name": "Marineo",
+    "total": 5944,
+    "ge65": 1525,
+    "share": 0.2566
+  },
+  "081011": {
+    "name": "Marsala",
+    "total": 79521,
+    "ge65": 20218,
+    "share": 0.2542
+  },
+  "087023": {
+    "name": "Mascali",
+    "total": 14486,
+    "ge65": 3115,
+    "share": 0.215
+  },
+  "087024": {
+    "name": "Mascalucia",
+    "total": 32124,
+    "ge65": 6602,
+    "share": 0.2055
+  },
+  "081012": {
+    "name": "Mazara del Vallo",
+    "total": 50070,
+    "ge65": 11942,
+    "share": 0.2385
+  },
+  "085009": {
+    "name": "Mazzarino",
+    "total": 10567,
+    "ge65": 2581,
+    "share": 0.2443
+  },
+  "083046": {
+    "name": "Mazzarrà Sant'Andrea",
+    "total": 1405,
+    "ge65": 362,
+    "share": 0.2577
+  },
+  "087056": {
+    "name": "Mazzarrone",
+    "total": 4010,
+    "ge65": 796,
+    "share": 0.1985
+  },
+  "089012": {
+    "name": "Melilli",
+    "total": 13127,
+    "ge65": 2955,
+    "share": 0.2251
+  },
+  "084023": {
+    "name": "Menfi",
+    "total": 11727,
+    "ge65": 3095,
+    "share": 0.2639
+  },
+  "083047": {
+    "name": "Merì",
+    "total": 2394,
+    "ge65": 487,
+    "share": 0.2034
+  },
+  "083048": {
+    "name": "Messina",
+    "total": 216458,
+    "ge65": 56291,
+    "share": 0.2601
+  },
+  "082047": {
+    "name": "Mezzojuso",
+    "total": 2499,
+    "ge65": 647,
+    "share": 0.2589
+  },
+  "083049": {
+    "name": "Milazzo",
+    "total": 29779,
+    "ge65": 7963,
+    "share": 0.2674
+  },
+  "085010": {
+    "name": "Milena",
+    "total": 2599,
+    "ge65": 812,
+    "share": 0.3124
+  },
+  "087025": {
+    "name": "Militello in Val di Catania",
+    "total": 6605,
+    "ge65": 1795,
+    "share": 0.2718
+  },
+  "083050": {
+    "name": "Militello Rosmarino",
+    "total": 1168,
+    "ge65": 330,
+    "share": 0.2825
+  },
+  "087026": {
+    "name": "Milo",
+    "total": 1017,
+    "ge65": 290,
+    "share": 0.2852
+  },
+  "087027": {
+    "name": "Mineo",
+    "total": 4345,
+    "ge65": 1219,
+    "share": 0.2806
+  },
+  "087028": {
+    "name": "Mirabella Imbaccari",
+    "total": 4132,
+    "ge65": 1267,
+    "share": 0.3066
+  },
+  "083051": {
+    "name": "Mirto",
+    "total": 852,
+    "ge65": 266,
+    "share": 0.3122
+  },
+  "081025": {
+    "name": "Misiliscemi",
+    "total": 8446,
+    "ge65": 2241,
+    "share": 0.2653
+  },
+  "082048": {
+    "name": "Misilmeri",
+    "total": 29197,
+    "ge65": 5869,
+    "share": 0.201
+  },
+  "087029": {
+    "name": "Misterbianco",
+    "total": 48620,
+    "ge65": 9441,
+    "share": 0.1942
+  },
+  "083052": {
+    "name": "Mistretta",
+    "total": 4150,
+    "ge65": 1174,
+    "share": 0.2829
+  },
+  "088006": {
+    "name": "Modica",
+    "total": 53622,
+    "ge65": 12372,
+    "share": 0.2307
+  },
+  "083053": {
+    "name": "Moio Alcantara",
+    "total": 679,
+    "ge65": 196,
+    "share": 0.2887
+  },
+  "083054": {
+    "name": "Monforte San Giorgio",
+    "total": 2390,
+    "ge65": 721,
+    "share": 0.3017
+  },
+  "083055": {
+    "name": "Mongiuffi Melia",
+    "total": 506,
+    "ge65": 150,
+    "share": 0.2964
+  },
+  "082049": {
+    "name": "Monreale",
+    "total": 38844,
+    "ge65": 8059,
+    "share": 0.2075
+  },
+  "083056": {
+    "name": "Montagnareale",
+    "total": 1342,
+    "ge65": 372,
+    "share": 0.2772
+  },
+  "083057": {
+    "name": "Montalbano Elicona",
+    "total": 2072,
+    "ge65": 584,
+    "share": 0.2819
+  },
+  "084024": {
+    "name": "Montallegro",
+    "total": 2342,
+    "ge65": 626,
+    "share": 0.2673
+  },
+  "085011": {
+    "name": "Montedoro",
+    "total": 1320,
+    "ge65": 381,
+    "share": 0.2886
+  },
+  "082050": {
+    "name": "Montelepre",
+    "total": 5653,
+    "ge65": 1449,
+    "share": 0.2563
+  },
+  "082051": {
+    "name": "Montemaggiore Belsito",
+    "total": 2745,
+    "ge65": 927,
+    "share": 0.3377
+  },
+  "088007": {
+    "name": "Monterosso Almo",
+    "total": 2705,
+    "ge65": 803,
+    "share": 0.2969
+  },
+  "084025": {
+    "name": "Montevago",
+    "total": 2679,
+    "ge65": 755,
+    "share": 0.2818
+  },
+  "083058": {
+    "name": "Motta Camastra",
+    "total": 762,
+    "ge65": 237,
+    "share": 0.311
+  },
+  "083059": {
+    "name": "Motta d'Affermo",
+    "total": 646,
+    "ge65": 239,
+    "share": 0.37
+  },
+  "087030": {
+    "name": "Motta Sant'Anastasia",
+    "total": 12139,
+    "ge65": 2362,
+    "share": 0.1946
+  },
+  "085012": {
+    "name": "Mussomeli",
+    "total": 9742,
+    "ge65": 2568,
+    "share": 0.2636
+  },
+  "084026": {
+    "name": "Naro",
+    "total": 6733,
+    "ge65": 1902,
+    "share": 0.2825
+  },
+  "083060": {
+    "name": "Naso",
+    "total": 3344,
+    "ge65": 1088,
+    "share": 0.3254
+  },
+  "087031": {
+    "name": "Nicolosi",
+    "total": 7720,
+    "ge65": 1638,
+    "share": 0.2122
+  },
+  "086012": {
+    "name": "Nicosia",
+    "total": 12382,
+    "ge65": 3269,
+    "share": 0.264
+  },
+  "085013": {
+    "name": "Niscemi",
+    "total": 24535,
+    "ge65": 5494,
+    "share": 0.2239
+  },
+  "086013": {
+    "name": "Nissoria",
+    "total": 2781,
+    "ge65": 645,
+    "share": 0.2319
+  },
+  "083061": {
+    "name": "Nizza di Sicilia",
+    "total": 3488,
+    "ge65": 932,
+    "share": 0.2672
+  },
+  "089013": {
+    "name": "Noto",
+    "total": 24656,
+    "ge65": 5491,
+    "share": 0.2227
+  },
+  "083062": {
+    "name": "Novara di Sicilia",
+    "total": 1045,
+    "ge65": 365,
+    "share": 0.3493
+  },
+  "083063": {
+    "name": "Oliveri",
+    "total": 2226,
+    "ge65": 644,
+    "share": 0.2893
+  },
+  "081013": {
+    "name": "Paceco",
+    "total": 10544,
+    "ge65": 2636,
+    "share": 0.25
+  },
+  "083064": {
+    "name": "Pace del Mela",
+    "total": 5938,
+    "ge65": 1405,
+    "share": 0.2366
+  },
+  "089014": {
+    "name": "Pachino",
+    "total": 22355,
+    "ge65": 4492,
+    "share": 0.2009
+  },
+  "083065": {
+    "name": "Pagliara",
+    "total": 1100,
+    "ge65": 285,
+    "share": 0.2591
+  },
+  "087032": {
+    "name": "Palagonia",
+    "total": 15369,
+    "ge65": 3007,
+    "share": 0.1957
+  },
+  "082052": {
+    "name": "Palazzo Adriano",
+    "total": 1694,
+    "ge65": 526,
+    "share": 0.3105
+  },
+  "089015": {
+    "name": "Palazzolo Acreide",
+    "total": 7912,
+    "ge65": 2196,
+    "share": 0.2776
+  },
+  "082053": {
+    "name": "Palermo",
+    "total": 626273,
+    "ge65": 150433,
+    "share": 0.2402
+  },
+  "084027": {
+    "name": "Palma di Montechiaro",
+    "total": 21302,
+    "ge65": 4864,
+    "share": 0.2283
+  },
+  "081014": {
+    "name": "Pantelleria",
+    "total": 7150,
+    "ge65": 1731,
+    "share": 0.2421
+  },
+  "081015": {
+    "name": "Partanna",
+    "total": 9835,
+    "ge65": 2678,
+    "share": 0.2723
+  },
+  "082054": {
+    "name": "Partinico",
+    "total": 30929,
+    "ge65": 7139,
+    "share": 0.2308
+  },
+  "087033": {
+    "name": "Paternò",
+    "total": 44502,
+    "ge65": 9735,
+    "share": 0.2188
+  },
+  "083066": {
+    "name": "Patti",
+    "total": 12721,
+    "ge65": 3320,
+    "share": 0.261
+  },
+  "087034": {
+    "name": "Pedara",
+    "total": 15522,
+    "ge65": 3000,
+    "share": 0.1933
+  },
+  "082055": {
+    "name": "Petralia Soprana",
+    "total": 2807,
+    "ge65": 851,
+    "share": 0.3032
+  },
+  "082056": {
+    "name": "Petralia Sottana",
+    "total": 2349,
+    "ge65": 787,
+    "share": 0.335
+  },
+  "081024": {
+    "name": "Petrosino",
+    "total": 7883,
+    "ge65": 1786,
+    "share": 0.2266
+  },
+  "083067": {
+    "name": "Pettineo",
+    "total": 1222,
+    "ge65": 329,
+    "share": 0.2692
+  },
+  "082057": {
+    "name": "Piana degli Albanesi",
+    "total": 5171,
+    "ge65": 1467,
+    "share": 0.2837
+  },
+  "086014": {
+    "name": "Piazza Armerina",
+    "total": 20558,
+    "ge65": 5150,
+    "share": 0.2505
+  },
+  "087035": {
+    "name": "Piedimonte Etneo",
+    "total": 3865,
+    "ge65": 955,
+    "share": 0.2471
+  },
+  "086015": {
+    "name": "Pietraperzia",
+    "total": 6183,
+    "ge65": 1665,
+    "share": 0.2693
+  },
+  "083068": {
+    "name": "Piraino",
+    "total": 3724,
+    "ge65": 959,
+    "share": 0.2575
+  },
+  "081016": {
+    "name": "Poggioreale",
+    "total": 1272,
+    "ge65": 395,
+    "share": 0.3105
+  },
+  "082058": {
+    "name": "Polizzi Generosa",
+    "total": 2745,
+    "ge65": 969,
+    "share": 0.353
+  },
+  "082059": {
+    "name": "Pollina",
+    "total": 2807,
+    "ge65": 816,
+    "share": 0.2907
+  },
+  "084028": {
+    "name": "Porto Empedocle",
+    "total": 15430,
+    "ge65": 3665,
+    "share": 0.2375
+  },
+  "089020": {
+    "name": "Portopalo di Capo Passero",
+    "total": 3890,
+    "ge65": 877,
+    "share": 0.2254
+  },
+  "088008": {
+    "name": "Pozzallo",
+    "total": 18958,
+    "ge65": 4364,
+    "share": 0.2302
+  },
+  "089021": {
+    "name": "Priolo Gargallo",
+    "total": 11038,
+    "ge65": 2529,
+    "share": 0.2291
+  },
+  "082060": {
+    "name": "Prizzi",
+    "total": 3999,
+    "ge65": 1153,
+    "share": 0.2883
+  },
+  "084029": {
+    "name": "Racalmuto",
+    "total": 7501,
+    "ge65": 1840,
+    "share": 0.2453
+  },
+  "083069": {
+    "name": "Raccuja",
+    "total": 839,
+    "ge65": 287,
+    "share": 0.3421
+  },
+  "087036": {
+    "name": "Raddusa",
+    "total": 2751,
+    "ge65": 654,
+    "share": 0.2377
+  },
+  "084030": {
+    "name": "Raffadali",
+    "total": 11769,
+    "ge65": 2923,
+    "share": 0.2484
+  },
+  "087058": {
+    "name": "Ragalna",
+    "total": 4396,
+    "ge65": 948,
+    "share": 0.2157
+  },
+  "088009": {
+    "name": "Ragusa",
+    "total": 74122,
+    "ge65": 18131,
+    "share": 0.2446
+  },
+  "087037": {
+    "name": "Ramacca",
+    "total": 10029,
+    "ge65": 2106,
+    "share": 0.21
+  },
+  "087038": {
+    "name": "Randazzo",
+    "total": 9959,
+    "ge65": 2621,
+    "share": 0.2632
+  },
+  "084031": {
+    "name": "Ravanusa",
+    "total": 10124,
+    "ge65": 2545,
+    "share": 0.2514
+  },
+  "084032": {
+    "name": "Realmonte",
+    "total": 4368,
+    "ge65": 1101,
+    "share": 0.2521
+  },
+  "086016": {
+    "name": "Regalbuto",
+    "total": 6556,
+    "ge65": 1658,
+    "share": 0.2529
+  },
+  "083070": {
+    "name": "Reitano",
+    "total": 705,
+    "ge65": 225,
+    "share": 0.3191
+  },
+  "085014": {
+    "name": "Resuttano",
+    "total": 1687,
+    "ge65": 535,
+    "share": 0.3171
+  },
+  "084033": {
+    "name": "Ribera",
+    "total": 17744,
+    "ge65": 4635,
+    "share": 0.2612
+  },
+  "085015": {
+    "name": "Riesi",
+    "total": 10158,
+    "ge65": 2396,
+    "share": 0.2359
+  },
+  "087039": {
+    "name": "Riposto",
+    "total": 13901,
+    "ge65": 3681,
+    "share": 0.2648
+  },
+  "083071": {
+    "name": "Roccafiorita",
+    "total": 154,
+    "ge65": 50,
+    "share": 0.3247
+  },
+  "083072": {
+    "name": "Roccalumera",
+    "total": 4143,
+    "ge65": 1135,
+    "share": 0.274
+  },
+  "082061": {
+    "name": "Roccamena",
+    "total": 1283,
+    "ge65": 370,
+    "share": 0.2884
+  },
+  "082062": {
+    "name": "Roccapalumba",
+    "total": 2119,
+    "ge65": 609,
+    "share": 0.2874
+  },
+  "083073": {
+    "name": "Roccavaldina",
+    "total": 965,
+    "ge65": 275,
+    "share": 0.285
+  },
+  "083074": {
+    "name": "Roccella Valdemone",
+    "total": 532,
+    "ge65": 177,
+    "share": 0.3327
+  },
+  "083075": {
+    "name": "Rodì Milici",
+    "total": 1938,
+    "ge65": 526,
+    "share": 0.2714
+  },
+  "083076": {
+    "name": "Rometta",
+    "total": 6497,
+    "ge65": 1680,
+    "share": 0.2586
+  },
+  "089016": {
+    "name": "Rosolini",
+    "total": 20655,
+    "ge65": 4560,
+    "share": 0.2208
+  },
+  "081017": {
+    "name": "Salaparuta",
+    "total": 1560,
+    "ge65": 401,
+    "share": 0.2571
+  },
+  "081018": {
+    "name": "Salemi",
+    "total": 9719,
+    "ge65": 2680,
+    "share": 0.2757
+  },
+  "084034": {
+    "name": "Sambuca di Sicilia",
+    "total": 5202,
+    "ge65": 1383,
+    "share": 0.2659
+  },
+  "084035": {
+    "name": "San Biagio Platani",
+    "total": 2744,
+    "ge65": 885,
+    "share": 0.3225
+  },
+  "085016": {
+    "name": "San Cataldo",
+    "total": 20229,
+    "ge65": 4991,
+    "share": 0.2467
+  },
+  "082063": {
+    "name": "San Cipirello",
+    "total": 4787,
+    "ge65": 1071,
+    "share": 0.2237
+  },
+  "087040": {
+    "name": "San Cono",
+    "total": 2363,
+    "ge65": 572,
+    "share": 0.2421
+  },
+  "083077": {
+    "name": "San Filippo del Mela",
+    "total": 6617,
+    "ge65": 1634,
+    "share": 0.2469
+  },
+  "083078": {
+    "name": "San Fratello",
+    "total": 3159,
+    "ge65": 830,
+    "share": 0.2627
+  },
+  "084036": {
+    "name": "San Giovanni Gemini",
+    "total": 7383,
+    "ge65": 1968,
+    "share": 0.2666
+  },
+  "087041": {
+    "name": "San Giovanni la Punta",
+    "total": 24458,
+    "ge65": 5553,
+    "share": 0.227
+  },
+  "082064": {
+    "name": "San Giuseppe Jato",
+    "total": 7886,
+    "ge65": 1832,
+    "share": 0.2323
+  },
+  "087042": {
+    "name": "San Gregorio di Catania",
+    "total": 11518,
+    "ge65": 2815,
+    "share": 0.2444
+  },
+  "083079": {
+    "name": "San Marco d'Alunzio",
+    "total": 1775,
+    "ge65": 468,
+    "share": 0.2637
+  },
+  "082065": {
+    "name": "San Mauro Castelverde",
+    "total": 1279,
+    "ge65": 439,
+    "share": 0.3432
+  },
+  "087043": {
+    "name": "San Michele di Ganzaria",
+    "total": 2807,
+    "ge65": 805,
+    "share": 0.2868
+  },
+  "083080": {
+    "name": "San Pier Niceto",
+    "total": 2518,
+    "ge65": 752,
+    "share": 0.2986
+  },
+  "083081": {
+    "name": "San Piero Patti",
+    "total": 2535,
+    "ge65": 769,
+    "share": 0.3034
+  },
+  "087044": {
+    "name": "San Pietro Clarenza",
+    "total": 8372,
+    "ge65": 1460,
+    "share": 0.1744
+  },
+  "083082": {
+    "name": "San Salvatore di Fitalia",
+    "total": 1103,
+    "ge65": 364,
+    "share": 0.33
+  },
+  "085017": {
+    "name": "Santa Caterina Villarmosa",
+    "total": 4421,
+    "ge65": 1320,
+    "share": 0.2986
+  },
+  "082066": {
+    "name": "Santa Cristina Gela",
+    "total": 1006,
+    "ge65": 212,
+    "share": 0.2107
+  },
+  "088010": {
+    "name": "Santa Croce Camerina",
+    "total": 11649,
+    "ge65": 2270,
+    "share": 0.1949
+  },
+  "083083": {
+    "name": "Santa Domenica Vittoria",
+    "total": 861,
+    "ge65": 218,
+    "share": 0.2532
+  },
+  "084037": {
+    "name": "Santa Elisabetta",
+    "total": 2208,
+    "ge65": 578,
+    "share": 0.2618
+  },
+  "082067": {
+    "name": "Santa Flavia",
+    "total": 10983,
+    "ge65": 2572,
+    "share": 0.2342
+  },
+  "083084": {
+    "name": "Sant'Agata di Militello",
+    "total": 12133,
+    "ge65": 3173,
+    "share": 0.2615
+  },
+  "087045": {
+    "name": "Sant'Agata li Battiati",
+    "total": 9217,
+    "ge65": 2532,
+    "share": 0.2747
+  },
+  "083085": {
+    "name": "Sant'Alessio Siculo",
+    "total": 1542,
+    "ge65": 428,
+    "share": 0.2776
+  },
+  "087046": {
+    "name": "Sant'Alfio",
+    "total": 1521,
+    "ge65": 381,
+    "share": 0.2505
+  },
+  "083086": {
+    "name": "Santa Lucia del Mela",
+    "total": 4342,
+    "ge65": 1108,
+    "share": 0.2552
+  },
+  "084038": {
+    "name": "Santa Margherita di Belice",
+    "total": 5981,
+    "ge65": 1501,
+    "share": 0.251
+  },
+  "087047": {
+    "name": "Santa Maria di Licodia",
+    "total": 7675,
+    "ge65": 1569,
+    "share": 0.2044
+  },
+  "083087": {
+    "name": "Santa Marina Salina",
+    "total": 877,
+    "ge65": 247,
+    "share": 0.2816
+  },
+  "083088": {
+    "name": "Sant'Angelo di Brolo",
+    "total": 2625,
+    "ge65": 810,
+    "share": 0.3086
+  },
+  "084039": {
+    "name": "Sant'Angelo Muxaro",
+    "total": 1119,
+    "ge65": 394,
+    "share": 0.3521
+  },
+  "081019": {
+    "name": "Santa Ninfa",
+    "total": 4713,
+    "ge65": 1335,
+    "share": 0.2833
+  },
+  "083089": {
+    "name": "Santa Teresa di Riva",
+    "total": 9133,
+    "ge65": 2460,
+    "share": 0.2694
+  },
+  "087048": {
+    "name": "Santa Venerina",
+    "total": 8487,
+    "ge65": 1899,
+    "share": 0.2238
+  },
+  "083090": {
+    "name": "San Teodoro",
+    "total": 1185,
+    "ge65": 334,
+    "share": 0.2819
+  },
+  "083091": {
+    "name": "Santo Stefano di Camastra",
+    "total": 4325,
+    "ge65": 1172,
+    "share": 0.271
+  },
+  "084040": {
+    "name": "Santo Stefano Quisquina",
+    "total": 3854,
+    "ge65": 1182,
+    "share": 0.3067
+  },
+  "081020": {
+    "name": "San Vito Lo Capo",
+    "total": 4865,
+    "ge65": 1174,
+    "share": 0.2413
+  },
+  "083092": {
+    "name": "Saponara",
+    "total": 3620,
+    "ge65": 1004,
+    "share": 0.2773
+  },
+  "083093": {
+    "name": "Savoca",
+    "total": 1749,
+    "ge65": 390,
+    "share": 0.223
+  },
+  "083094": {
+    "name": "Scaletta Zanclea",
+    "total": 1861,
+    "ge65": 550,
+    "share": 0.2955
+  },
+  "084041": {
+    "name": "Sciacca",
+    "total": 38387,
+    "ge65": 9999,
+    "share": 0.2605
+  },
+  "082068": {
+    "name": "Sciara",
+    "total": 2424,
+    "ge65": 609,
+    "share": 0.2512
+  },
+  "088011": {
+    "name": "Scicli",
+    "total": 26920,
+    "ge65": 6231,
+    "share": 0.2315
+  },
+  "082081": {
+    "name": "Scillato",
+    "total": 564,
+    "ge65": 189,
+    "share": 0.3351
+  },
+  "082069": {
+    "name": "Sclafani Bagni",
+    "total": 344,
+    "ge65": 121,
+    "share": 0.3517
+  },
+  "087049": {
+    "name": "Scordia",
+    "total": 15885,
+    "ge65": 3830,
+    "share": 0.2411
+  },
+  "085018": {
+    "name": "Serradifalco",
+    "total": 5342,
+    "ge65": 1454,
+    "share": 0.2722
+  },
+  "084042": {
+    "name": "Siculiana",
+    "total": 4187,
+    "ge65": 1087,
+    "share": 0.2596
+  },
+  "083095": {
+    "name": "Sinagra",
+    "total": 2418,
+    "ge65": 663,
+    "share": 0.2742
+  },
+  "089017": {
+    "name": "Siracusa",
+    "total": 115515,
+    "ge65": 28933,
+    "share": 0.2505
+  },
+  "089018": {
+    "name": "Solarino",
+    "total": 7510,
+    "ge65": 1663,
+    "share": 0.2214
+  },
+  "085019": {
+    "name": "Sommatino",
+    "total": 6220,
+    "ge65": 1736,
+    "share": 0.2791
+  },
+  "089019": {
+    "name": "Sortino",
+    "total": 7977,
+    "ge65": 2201,
+    "share": 0.2759
+  },
+  "083096": {
+    "name": "Spadafora",
+    "total": 4602,
+    "ge65": 1296,
+    "share": 0.2816
+  },
+  "086017": {
+    "name": "Sperlinga",
+    "total": 639,
+    "ge65": 209,
+    "share": 0.3271
+  },
+  "085020": {
+    "name": "Sutera",
+    "total": 1096,
+    "ge65": 364,
+    "share": 0.3321
+  },
+  "083097": {
+    "name": "Taormina",
+    "total": 10476,
+    "ge65": 2755,
+    "share": 0.263
+  },
+  "083106": {
+    "name": "Terme Vigliatore",
+    "total": 7363,
+    "ge65": 1679,
+    "share": 0.228
+  },
+  "082070": {
+    "name": "Termini Imerese",
+    "total": 24625,
+    "ge65": 6216,
+    "share": 0.2524
+  },
+  "082071": {
+    "name": "Terrasini",
+    "total": 13126,
+    "ge65": 2874,
+    "share": 0.219
+  },
+  "083098": {
+    "name": "Torregrotta",
+    "total": 7283,
+    "ge65": 1701,
+    "share": 0.2336
+  },
+  "083108": {
+    "name": "Torrenova",
+    "total": 4483,
+    "ge65": 1017,
+    "share": 0.2269
+  },
+  "082072": {
+    "name": "Torretta",
+    "total": 4440,
+    "ge65": 866,
+    "share": 0.195
+  },
+  "083099": {
+    "name": "Tortorici",
+    "total": 5432,
+    "ge65": 1472,
+    "share": 0.271
+  },
+  "082073": {
+    "name": "Trabia",
+    "total": 10844,
+    "ge65": 2455,
+    "share": 0.2264
+  },
+  "081021": {
+    "name": "Trapani",
+    "total": 54636,
+    "ge65": 13895,
+    "share": 0.2543
+  },
+  "082074": {
+    "name": "Trappeto",
+    "total": 3143,
+    "ge65": 868,
+    "share": 0.2762
+  },
+  "087050": {
+    "name": "Trecastagni",
+    "total": 11396,
+    "ge65": 2423,
+    "share": 0.2126
+  },
+  "087051": {
+    "name": "Tremestieri Etneo",
+    "total": 19172,
+    "ge65": 4768,
+    "share": 0.2487
+  },
+  "083100": {
+    "name": "Tripi-Abakainon",
+    "total": 704,
+    "ge65": 221,
+    "share": 0.3139
+  },
+  "086018": {
+    "name": "Troina",
+    "total": 8201,
+    "ge65": 2368,
+    "share": 0.2887
+  },
+  "083101": {
+    "name": "Tusa",
+    "total": 2480,
+    "ge65": 763,
+    "share": 0.3077
+  },
+  "083102": {
+    "name": "Ucria",
+    "total": 841,
+    "ge65": 278,
+    "share": 0.3306
+  },
+  "082075": {
+    "name": "Ustica",
+    "total": 1323,
+    "ge65": 400,
+    "share": 0.3023
+  },
+  "081022": {
+    "name": "Valderice",
+    "total": 11239,
+    "ge65": 2929,
+    "share": 0.2606
+  },
+  "083103": {
+    "name": "Valdina",
+    "total": 1246,
+    "ge65": 316,
+    "share": 0.2536
+  },
+  "086019": {
+    "name": "Valguarnera Caropepe",
+    "total": 6743,
+    "ge65": 1806,
+    "share": 0.2678
+  },
+  "082076": {
+    "name": "Valledolmo",
+    "total": 3051,
+    "ge65": 908,
+    "share": 0.2976
+  },
+  "085021": {
+    "name": "Vallelunga Pratameno",
+    "total": 3003,
+    "ge65": 827,
+    "share": 0.2754
+  },
+  "087052": {
+    "name": "Valverde",
+    "total": 7810,
+    "ge65": 1738,
+    "share": 0.2225
+  },
+  "083104": {
+    "name": "Venetico",
+    "total": 3961,
+    "ge65": 1001,
+    "share": 0.2527
+  },
+  "082077": {
+    "name": "Ventimiglia di Sicilia",
+    "total": 1708,
+    "ge65": 465,
+    "share": 0.2722
+  },
+  "087053": {
+    "name": "Viagrande",
+    "total": 8943,
+    "ge65": 1929,
+    "share": 0.2157
+  },
+  "082078": {
+    "name": "Vicari",
+    "total": 2347,
+    "ge65": 694,
+    "share": 0.2957
+  },
+  "082079": {
+    "name": "Villabate",
+    "total": 19380,
+    "ge65": 3589,
+    "share": 0.1852
+  },
+  "084043": {
+    "name": "Villafranca Sicula",
+    "total": 1295,
+    "ge65": 348,
+    "share": 0.2687
+  },
+  "083105": {
+    "name": "Villafranca Tirrena",
+    "total": 7709,
+    "ge65": 2174,
+    "share": 0.282
+  },
+  "082080": {
+    "name": "Villafrati",
+    "total": 3064,
+    "ge65": 831,
+    "share": 0.2712
+  },
+  "085022": {
+    "name": "Villalba",
+    "total": 1343,
+    "ge65": 418,
+    "share": 0.3112
+  },
+  "086020": {
+    "name": "Villarosa",
+    "total": 4271,
+    "ge65": 1209,
+    "share": 0.2831
+  },
+  "081023": {
+    "name": "Vita",
+    "total": 1710,
+    "ge65": 555,
+    "share": 0.3246
+  },
+  "088012": {
+    "name": "Vittoria",
+    "total": 66329,
+    "ge65": 12526,
+    "share": 0.1888
+  },
+  "087054": {
+    "name": "Vizzini",
+    "total": 5636,
+    "ge65": 1519,
+    "share": 0.2695
+  },
+  "087055": {
+    "name": "Zafferana Etnea",
+    "total": 9341,
+    "ge65": 2060,
+    "share": 0.2205
+  }
+}
