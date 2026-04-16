@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Italy Flood Events 1987–2021 (Dartmouth Archive)</title>
+  <title>Italy Flood Events &amp; Health Facilities</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; font-family: 'Segoe UI', sans-serif; }
 
     header {
-      position: absolute; top: 0; left: 0; right: 0; height: 52px;
-      z-index: 1000; background: #006d2c; color: #fff;
+      position: absolute; top: 0; left: 0; right: 0; height: 52px; z-index: 1000;
+      background: #006d2c; color: #fff;
       padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
     }
     .hl { display: flex; align-items: baseline; gap: 12px; }
@@ -21,201 +21,347 @@
 
     #map { position: absolute; top: 52px; bottom: 0; left: 0; right: 0; }
 
-    /* Sidebar */
+    /* ── Flood sidebar (right) ─────────────────── */
     #sidebar {
       position: absolute; top: 62px; right: 10px; z-index: 1000;
-      background: rgba(255,255,255,0.97);
-      border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-      width: 240px; overflow: hidden;
+      background: rgba(255,255,255,0.97); border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18); width: 230px; overflow: hidden;
     }
-    #sb-title {
-      background: #006d2c; color: #fff;
-      padding: 8px 12px; font-weight: 600; font-size: 0.8rem;
-    }
-    #event-table {
-      width: 100%; border-collapse: collapse; font-size: 0.73rem;
-    }
-    #event-table th {
-      background: #f8fafc; color: #475569;
-      padding: 5px 8px; text-align: left; border-bottom: 1px solid #e2e8f0;
-      position: sticky; top: 0;
-    }
+    #sb-title { background: #006d2c; color: #fff; padding: 8px 12px; font-weight: 600; font-size: 0.8rem; }
+    #event-table { width: 100%; border-collapse: collapse; font-size: 0.73rem; }
+    #event-table th { background: #f8fafc; color: #475569; padding: 5px 8px; text-align: left; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; }
     #event-table td { padding: 5px 8px; border-bottom: 1px solid #f1f5f9; }
     #event-table tr:hover td { background: #f0fdf4; cursor: pointer; }
-    .sev-badge {
-      display: inline-block; padding: 1px 5px; border-radius: 3px;
-      font-size: 0.68rem; font-weight: 700; color: #fff;
-    }
+    .sev-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 0.68rem; font-weight: 700; color: #fff; }
     #sb-scroll { max-height: calc(100vh - 155px); overflow-y: auto; }
 
-    /* Legend */
+    /* ── Filter panel (left) ───────────────────── */
+    #filter-panel {
+      position: absolute; top: 62px; left: 10px; z-index: 1000;
+      background: rgba(255,255,255,0.97); border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18); width: 200px; overflow: hidden;
+    }
+    #fp-title { background: #1e3a5f; color: #fff; padding: 8px 12px; font-weight: 600; font-size: 0.8rem; }
+    .fp-section { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+    .fp-section-label { font-size: 0.7rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .fp-row { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; font-size: 0.78rem; cursor: pointer; }
+    .fp-row:last-child { margin-bottom: 0; }
+    .fp-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .fp-row input[type=checkbox] { cursor: pointer; accent-color: #1e3a5f; }
+    #at-risk-toggle {
+      margin: 8px 12px 10px; width: calc(100% - 24px);
+      padding: 6px 10px; border-radius: 5px; border: none; cursor: pointer;
+      font-size: 0.78rem; font-weight: 700;
+      background: #fef9c3; color: #92400e; border: 1px solid #fde68a;
+      transition: background 0.15s;
+    }
+    #at-risk-toggle.active { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+    #health-count { font-size: 0.68rem; color: #94a3b8; padding: 4px 12px 8px; }
+
+    /* ── Legend (bottom-left, below filter panel) ─ */
     #legend {
-      position: absolute; bottom: 30px; left: 10px; z-index: 1000;
+      position: absolute; bottom: 10px; left: 10px; z-index: 1000;
       background: rgba(255,255,255,0.95); border-radius: 8px;
-      padding: 10px 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      font-size: 0.74rem;
+      padding: 10px 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); font-size: 0.74rem;
     }
     #legend h4 { color: #006d2c; margin-bottom: 7px; font-size: 0.78rem; }
     .lr { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
-    .ld { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
-    .lnote { color: #94a3b8; font-size: 0.68rem; margin-top: 5px; }
+    .ld { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
+    .lnote { color: #94a3b8; font-size: 0.67rem; margin-top: 4px; }
+    .lsep { border-top: 1px solid #e2e8f0; margin: 6px 0; }
+    .l-atrisk { width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 2.5px solid #f59e0b; flex-shrink: 0; }
+
+    /* ── Loading overlay ───────────────────────── */
+    #loading {
+      position: absolute; top: 55%; left: 50%; transform: translate(-50%,-50%);
+      z-index: 2000; background: rgba(255,255,255,0.95);
+      padding: 12px 22px; border-radius: 8px; font-size: 0.88rem; color: #1e3a5f;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: none;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="hl">
-    <h1>Flood Events — Italy · 1987–2021</h1>
-    <p>Dartmouth Flood Observatory · 41 events</p>
+    <h1>Italy — Flood Events &amp; Health Facilities</h1>
+    <p>Dartmouth Archive · OpenStreetMap</p>
   </div>
   <div id="hstats">
-    449 total deaths &nbsp;·&nbsp; 117,237 displaced<br>
-    <span style="font-size:0.68rem;opacity:0.7">Click a marker for details · Sidebar sorted by deaths</span>
+    41 flood events · 449 deaths · 117,237 displaced<br>
+    <span style="font-size:0.68rem;opacity:0.7">Click any marker for details</span>
   </div>
 </header>
 
 <div id="map"></div>
+<div id="loading">Loading health facilities…</div>
 
+<!-- Flood events sidebar -->
 <div id="sidebar">
-  <div id="sb-title">All events — click to zoom</div>
+  <div id="sb-title">Flood events — click to zoom</div>
   <div id="sb-scroll">
     <table id="event-table">
-      <thead>
-        <tr>
-          <th>Year</th>
-          <th>Deaths</th>
-          <th>Displaced</th>
-          <th>Sev.</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Year</th><th>Deaths</th><th>Disp.</th><th>Sev.</th></tr></thead>
       <tbody id="event-tbody"></tbody>
     </table>
   </div>
 </div>
 
+<!-- Health facility filter panel -->
+<div id="filter-panel">
+  <div id="fp-title">Health facilities</div>
+  <div class="fp-section">
+    <div class="fp-section-label">Show by type</div>
+    <label class="fp-row"><input type="checkbox" checked data-type="Hospital"> <span class="fp-dot" style="background:#e63946"></span> Hospitals</label>
+    <label class="fp-row"><input type="checkbox" checked data-type="Clinic">   <span class="fp-dot" style="background:#f4a261"></span> Clinics</label>
+    <label class="fp-row"><input type="checkbox" checked data-type="Pharmacy"> <span class="fp-dot" style="background:#2a9d8f"></span> Pharmacies</label>
+    <label class="fp-row"><input type="checkbox" checked data-type="Doctor">   <span class="fp-dot" style="background:#457b9d"></span> Doctors</label>
+    <label class="fp-row"><input type="checkbox" checked data-type="Dentist">  <span class="fp-dot" style="background:#6a4c93"></span> Dentists</label>
+  </div>
+  <button id="at-risk-toggle">⚠ Show at-risk only</button>
+  <div id="health-count"></div>
+</div>
+
 <div id="legend">
-  <h4>Severity</h4>
+  <h4>Flood severity</h4>
   <div class="lr"><div class="ld" style="background:#f59e0b"></div> 1 — Moderate</div>
   <div class="lr"><div class="ld" style="background:#f97316"></div> 1.5 — Significant</div>
-  <div class="lr"><div class="ld" style="background:#dc2626"></div> 2 — Large/Extreme</div>
-  <div class="lnote">Circle size ∝ deaths</div>
+  <div class="lr"><div class="ld" style="background:#dc2626"></div> 2 — Large / Extreme</div>
+  <div class="lnote">Flood circle size ∝ deaths</div>
+  <div class="lsep"></div>
+  <h4>Health sites</h4>
+  <div class="lr"><div class="ld" style="background:#94a3b8;opacity:0.6"></div> All sites</div>
+  <div class="lr"><div class="l-atrisk"></div> Within 1 km of flood</div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-var FLOODS = [
-  {lat:45.7794,lon:9.9383,  began:"1987-07-12",ended:"1987-07-21",dead:20, disp:300,   cause:"Heavy rain",          sev:"1"},
-  {lat:37.4429,lon:14.0174, began:"1991-10-13",ended:"1991-10-15",dead:17, disp:0,     cause:"Heavy rain",          sev:"1"},
-  {lat:45.3963,lon:10.5657, began:"1992-04-03",ended:"1992-04-05",dead:32, disp:0,     cause:"Heavy rain",          sev:"1"},
-  {lat:44.5004,lon:8.93857, began:"1992-09-28",ended:"1992-09-28",dead:2,  disp:0,     cause:"Heavy rain",          sev:"1"},
-  {lat:43.6735,lon:11.14,   began:"1992-10-31",ended:"1992-10-31",dead:0,  disp:1000,  cause:"Heavy rain",          sev:"1"},
-  {lat:43.7041,lon:10.8528, began:"1994-09-02",ended:"1994-09-03",dead:3,  disp:0,     cause:"Torrential rain",     sev:"1"},
-  {lat:45.2087,lon:10.2403, began:"1994-11-01",ended:"1994-11-10",dead:83, disp:10308, cause:"Heavy rain",          sev:"2"},
-  {lat:44.9518,lon:7.32512, began:"1995-04-24",ended:"1995-04-30",dead:3,  disp:0,     cause:"Rain and snowmelt",   sev:"1"},
-  {lat:44.2003,lon:10.8096, began:"1996-06-19",ended:"1996-06-23",dead:17, disp:300,   cause:"Heavy rain",          sev:"1"},
-  {lat:45.9922,lon:10.0135, began:"1997-06-26",ended:"1997-06-29",dead:2,  disp:700,   cause:"Heavy rain",          sev:"1"},
-  {lat:41.6911,lon:12.982,  began:"1998-05-01",ended:"1998-05-07",dead:148,disp:3463,  cause:"Heavy rain",          sev:"1"},
-  {lat:42.6196,lon:14.1524, began:"1999-12-15",ended:"1999-12-16",dead:5,  disp:300,   cause:"Heavy rain",          sev:"1"},
-  {lat:45.5709,lon:8.74789, began:"2000-10-14",ended:"2000-10-22",dead:37, disp:43000, cause:"Brief torrential rain",sev:"2"},
-  {lat:44.8503,lon:7.74033, began:"2000-11-05",ended:"2000-11-07",dead:3,  disp:30,    cause:"Heavy rain",          sev:"1"},
-  {lat:40.8829,lon:14.2544, began:"2001-09-14",ended:"2001-09-15",dead:2,  disp:0,     cause:"Brief torrential rain",sev:"1"},
-  {lat:42.8283,lon:10.4002, began:"2002-09-04",ended:"2002-09-06",dead:0,  disp:1200,  cause:"Heavy rain",          sev:"1"},
-  {lat:41.3473,lon:15.9205, began:"2003-01-25",ended:"2003-01-27",dead:1,  disp:1000,  cause:"Heavy rain",          sev:"1"},
-  {lat:46.0812,lon:13.2272, began:"2003-08-29",ended:"2003-08-30",dead:2,  disp:300,   cause:"Heavy rain",          sev:"1"},
-  {lat:43.9155,lon:10.3811, began:"2003-09-23",ended:"2003-09-24",dead:1,  disp:30,    cause:"Brief torrential rain",sev:"1"},
-  {lat:40.776, lon:14.6179, began:"2004-12-25",ended:"2004-12-28",dead:0,  disp:0,     cause:"Heavy rain",          sev:"1"},
-  {lat:41.0532,lon:16.8435, began:"2005-10-23",ended:"2005-10-24",dead:6,  disp:0,     cause:"Heavy rain",          sev:"1"},
-  {lat:45.0242,lon:12.188,  began:"2008-11-26",ended:"2008-11-28",dead:7,  disp:46000, cause:"Heavy Rain",          sev:"2"},
-  {lat:41.8299,lon:13.1575, began:"2008-12-01",ended:"2008-12-08",dead:0,  disp:2000,  cause:"Heavy Rain",          sev:"1"},
-  {lat:38.114, lon:15.733,  began:"2009-10-01",ended:"2009-10-02",dead:22, disp:0,     cause:"Torrential Rain",     sev:"2"},
-  {lat:42.7931,lon:12.7554, began:"2009-12-21",ended:"2009-12-27",dead:0,  disp:500,   cause:"Torrential Rain",     sev:"1"},
-  {lat:45.1256,lon:11.1382, began:"2010-11-08",ended:"2010-11-11",dead:0,  disp:300,   cause:"Heavy Rain",          sev:"2"},
-  {lat:44.4216,lon:9.33422, began:"2011-10-26",ended:"2011-11-01",dead:7,  disp:0,     cause:"Torrential Rain",     sev:"2"},
-  {lat:43.1605,lon:12.4131, began:"2012-11-11",ended:"2012-11-18",dead:4,  disp:500,   cause:"Torrential Rain",     sev:"1.5"},
-  {lat:40.3008,lon:9.00455, began:"2013-11-18",ended:"2013-11-19",dead:18, disp:2700,  cause:"Torrential Rain",     sev:"2"},
-  {lat:43.3979,lon:13.013,  began:"2014-05-02",ended:"2014-05-10",dead:2,  disp:250,   cause:"Torrential Rain",     sev:"1.5"},
-  {lat:44.6146,lon:9.17775, began:"2014-10-10",ended:"2014-10-11",dead:1,  disp:0,     cause:"Torrential Rain",     sev:"1"},
-  {lat:45.9281,lon:10.6129, began:"2014-11-12",ended:"2014-11-16",dead:5,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
-  {lat:43.0645,lon:10.7366, began:"2017-09-10",ended:"2017-09-14",dead:6,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
-  {lat:45.457, lon:10.5881, began:"2017-12-12",ended:"2017-12-13",dead:0,  disp:1000,  cause:"Heavy Rain",          sev:"1.5"},
-  {lat:45.5062,lon:12.0233, began:"2018-10-27",ended:"2018-11-05",dead:11, disp:0,     cause:"Heavy Rain",          sev:"1"},
-  {lat:37.4589,lon:14.0522, began:"2018-11-03",ended:"2018-11-07",dead:12, disp:200,   cause:"Torrential Rain",     sev:"1.5"},
-  {lat:43.7947,lon:12.5429, began:"2019-05-12",ended:"2019-05-14",dead:0,  disp:20,    cause:"Heavy Rain",          sev:"1"},
-  {lat:45.9656,lon:10.118,  began:"2019-08-06",ended:"2019-08-09",dead:0,  disp:146,   cause:"Torrential Rain",     sev:"1"},
-  {lat:37.8936,lon:13.7677, began:"2020-07-14",ended:"2020-07-17",dead:0,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
-  {lat:38.8594,lon:16.4523, began:"2020-11-20",ended:"2020-11-23",dead:0,  disp:200,   cause:"Torrential Rain",     sev:"1.5"},
-  {lat:44.6393,lon:9.3757,  began:"2021-10-04",ended:"2021-10-06",dead:0,  disp:0,     cause:"Torrential Rain",     sev:"1.5"}
-];
+// ── Map setup ────────────────────────────────────────────────────────────────
+var canvas = L.canvas({ padding: 0.5 });  // canvas renderer — handles 40k+ markers
 
-var SEV_COLOR = { '1': '#f59e0b', '1.5': '#f97316', '2': '#dc2626' };
-
-function deathRadius(n) {
-  if (n === 0)  return 5;
-  if (n < 5)    return 7;
-  if (n < 15)   return 9;
-  if (n < 30)   return 12;
-  if (n < 50)   return 16;
-  return 20;
-}
-
-var map = L.map('map').setView([42.5, 12.5], 6);
+var map = L.map('map', { preferCanvas: true }).setView([42.5, 12.5], 6);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19,
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
 
-// Keep a reference to each marker so sidebar clicks can open its popup
-var markers = [];
 
-FLOODS.forEach(function(e, i) {
+// ── Flood event data ─────────────────────────────────────────────────────────
+var SEV_COLOR = { '1': '#f59e0b', '1.5': '#f97316', '2': '#dc2626' };
+
+var FLOODS = [
+  {lat:45.7794,lon:9.9383,  began:"1987-07-12",ended:"1987-07-21",dead:20, disp:300,   cause:"Heavy rain",           sev:"1"},
+  {lat:37.4429,lon:14.0174, began:"1991-10-13",ended:"1991-10-15",dead:17, disp:0,     cause:"Heavy rain",           sev:"1"},
+  {lat:45.3963,lon:10.5657, began:"1992-04-03",ended:"1992-04-05",dead:32, disp:0,     cause:"Heavy rain",           sev:"1"},
+  {lat:44.5004,lon:8.93857, began:"1992-09-28",ended:"1992-09-28",dead:2,  disp:0,     cause:"Heavy rain",           sev:"1"},
+  {lat:43.6735,lon:11.14,   began:"1992-10-31",ended:"1992-10-31",dead:0,  disp:1000,  cause:"Heavy rain",           sev:"1"},
+  {lat:43.7041,lon:10.8528, began:"1994-09-02",ended:"1994-09-03",dead:3,  disp:0,     cause:"Torrential rain",      sev:"1"},
+  {lat:45.2087,lon:10.2403, began:"1994-11-01",ended:"1994-11-10",dead:83, disp:10308, cause:"Heavy rain",           sev:"2"},
+  {lat:44.9518,lon:7.32512, began:"1995-04-24",ended:"1995-04-30",dead:3,  disp:0,     cause:"Rain and snowmelt",    sev:"1"},
+  {lat:44.2003,lon:10.8096, began:"1996-06-19",ended:"1996-06-23",dead:17, disp:300,   cause:"Heavy rain",           sev:"1"},
+  {lat:45.9922,lon:10.0135, began:"1997-06-26",ended:"1997-06-29",dead:2,  disp:700,   cause:"Heavy rain",           sev:"1"},
+  {lat:41.6911,lon:12.982,  began:"1998-05-01",ended:"1998-05-07",dead:148,disp:3463,  cause:"Heavy rain",           sev:"1"},
+  {lat:42.6196,lon:14.1524, began:"1999-12-15",ended:"1999-12-16",dead:5,  disp:300,   cause:"Heavy rain",           sev:"1"},
+  {lat:45.5709,lon:8.74789, began:"2000-10-14",ended:"2000-10-22",dead:37, disp:43000, cause:"Brief torrential rain", sev:"2"},
+  {lat:44.8503,lon:7.74033, began:"2000-11-05",ended:"2000-11-07",dead:3,  disp:30,    cause:"Heavy rain",           sev:"1"},
+  {lat:40.8829,lon:14.2544, began:"2001-09-14",ended:"2001-09-15",dead:2,  disp:0,     cause:"Brief torrential rain", sev:"1"},
+  {lat:42.8283,lon:10.4002, began:"2002-09-04",ended:"2002-09-06",dead:0,  disp:1200,  cause:"Heavy rain",           sev:"1"},
+  {lat:41.3473,lon:15.9205, began:"2003-01-25",ended:"2003-01-27",dead:1,  disp:1000,  cause:"Heavy rain",           sev:"1"},
+  {lat:46.0812,lon:13.2272, began:"2003-08-29",ended:"2003-08-30",dead:2,  disp:300,   cause:"Heavy rain",           sev:"1"},
+  {lat:43.9155,lon:10.3811, began:"2003-09-23",ended:"2003-09-24",dead:1,  disp:30,    cause:"Brief torrential rain", sev:"1"},
+  {lat:40.776, lon:14.6179, began:"2004-12-25",ended:"2004-12-28",dead:0,  disp:0,     cause:"Heavy rain",           sev:"1"},
+  {lat:41.0532,lon:16.8435, began:"2005-10-23",ended:"2005-10-24",dead:6,  disp:0,     cause:"Heavy rain",           sev:"1"},
+  {lat:45.0242,lon:12.188,  began:"2008-11-26",ended:"2008-11-28",dead:7,  disp:46000, cause:"Heavy Rain",           sev:"2"},
+  {lat:41.8299,lon:13.1575, began:"2008-12-01",ended:"2008-12-08",dead:0,  disp:2000,  cause:"Heavy Rain",           sev:"1"},
+  {lat:38.114, lon:15.733,  began:"2009-10-01",ended:"2009-10-02",dead:22, disp:0,     cause:"Torrential Rain",      sev:"2"},
+  {lat:42.7931,lon:12.7554, began:"2009-12-21",ended:"2009-12-27",dead:0,  disp:500,   cause:"Torrential Rain",      sev:"1"},
+  {lat:45.1256,lon:11.1382, began:"2010-11-08",ended:"2010-11-11",dead:0,  disp:300,   cause:"Heavy Rain",           sev:"2"},
+  {lat:44.4216,lon:9.33422, began:"2011-10-26",ended:"2011-11-01",dead:7,  disp:0,     cause:"Torrential Rain",      sev:"2"},
+  {lat:43.1605,lon:12.4131, began:"2012-11-11",ended:"2012-11-18",dead:4,  disp:500,   cause:"Torrential Rain",      sev:"1.5"},
+  {lat:40.3008,lon:9.00455, began:"2013-11-18",ended:"2013-11-19",dead:18, disp:2700,  cause:"Torrential Rain",      sev:"2"},
+  {lat:43.3979,lon:13.013,  began:"2014-05-02",ended:"2014-05-10",dead:2,  disp:250,   cause:"Torrential Rain",      sev:"1.5"},
+  {lat:44.6146,lon:9.17775, began:"2014-10-10",ended:"2014-10-11",dead:1,  disp:0,     cause:"Torrential Rain",      sev:"1"},
+  {lat:45.9281,lon:10.6129, began:"2014-11-12",ended:"2014-11-16",dead:5,  disp:0,     cause:"Torrential Rain",      sev:"1.5"},
+  {lat:43.0645,lon:10.7366, began:"2017-09-10",ended:"2017-09-14",dead:6,  disp:0,     cause:"Torrential Rain",      sev:"1.5"},
+  {lat:45.457, lon:10.5881, began:"2017-12-12",ended:"2017-12-13",dead:0,  disp:1000,  cause:"Heavy Rain",           sev:"1.5"},
+  {lat:45.5062,lon:12.0233, began:"2018-10-27",ended:"2018-11-05",dead:11, disp:0,     cause:"Heavy Rain",           sev:"1"},
+  {lat:37.4589,lon:14.0522, began:"2018-11-03",ended:"2018-11-07",dead:12, disp:200,   cause:"Torrential Rain",      sev:"1.5"},
+  {lat:43.7947,lon:12.5429, began:"2019-05-12",ended:"2019-05-14",dead:0,  disp:20,    cause:"Heavy Rain",           sev:"1"},
+  {lat:45.9656,lon:10.118,  began:"2019-08-06",ended:"2019-08-09",dead:0,  disp:146,   cause:"Torrential Rain",      sev:"1"},
+  {lat:37.8936,lon:13.7677, began:"2020-07-14",ended:"2020-07-17",dead:0,  disp:0,     cause:"Torrential Rain",      sev:"1.5"},
+  {lat:38.8594,lon:16.4523, began:"2020-11-20",ended:"2020-11-23",dead:0,  disp:200,   cause:"Torrential Rain",      sev:"1.5"},
+  {lat:44.6393,lon:9.3757,  began:"2021-10-04",ended:"2021-10-06",dead:0,  disp:0,     cause:"Torrential Rain",      sev:"1.5"}
+];
+
+function deathRadius(n) {
+  if (n === 0) return 5; if (n < 5) return 7; if (n < 15) return 9;
+  if (n < 30) return 12; if (n < 50) return 16; return 20;
+}
+
+// Add flood markers (always on top via pane)
+var floodPane = map.createPane('floods');
+floodPane.style.zIndex = 650;
+
+var floodMarkers = [];
+FLOODS.forEach(function(e) {
   var color = SEV_COLOR[e.sev] || '#f59e0b';
   var m = L.circleMarker([e.lat, e.lon], {
-    radius: deathRadius(e.dead),
-    fillColor: color,
-    color: '#fff',
-    weight: 1.5,
-    fillOpacity: 0.88
+    pane: 'floods', radius: deathRadius(e.dead),
+    fillColor: color, color: '#fff', weight: 1.5, fillOpacity: 0.88
   }).addTo(map);
-
   m.bindPopup(
     '<div style="min-width:200px">' +
-    '<div style="font-weight:700;font-size:0.95rem;color:' + color + ';margin-bottom:4px">Italy</div>' +
+    '<div style="font-weight:700;font-size:0.95rem;color:' + color + ';margin-bottom:4px">⚡ Flood event</div>' +
     '<div style="color:#64748b;font-size:0.75rem;margin-bottom:6px">' + e.began + ' → ' + e.ended + '</div>' +
     '<table style="width:100%;font-size:0.8rem;border-collapse:collapse">' +
     '<tr><td style="color:#888;padding:2px 8px 2px 0">Cause</td><td><b>' + e.cause + '</b></td></tr>' +
     '<tr><td style="color:#888;padding:2px 8px 2px 0">Severity</td><td>' + e.sev + '</td></tr>' +
     '<tr><td style="color:#888;padding:2px 8px 2px 0">Deaths</td><td><b style="color:#dc2626">' + e.dead + '</b></td></tr>' +
     '<tr><td style="color:#888;padding:2px 8px 2px 0">Displaced</td><td>' + e.disp.toLocaleString() + '</td></tr>' +
-    '</table></div>',
-    { maxWidth: 260 }
+    '</table></div>', { maxWidth: 260 }
   );
-
-  markers.push({ marker: m, data: e });
+  floodMarkers.push({ marker: m, data: e });
 });
 
-// Build sidebar — sorted by deaths descending
+// Flood sidebar
 var tbody = document.getElementById('event-tbody');
-var sorted = markers.slice().sort(function(a, b) {
-  return b.data.dead - a.data.dead || b.data.disp - a.data.disp;
+floodMarkers.slice().sort(function(a,b){ return b.data.dead-a.data.dead||b.data.disp-a.data.disp; })
+  .forEach(function(item) {
+    var e = item.data, color = SEV_COLOR[e.sev] || '#f59e0b';
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + e.began.slice(0,4) + '</td>' +
+      '<td style="font-weight:700;color:#dc2626">' + e.dead + '</td>' +
+      '<td>' + (e.disp>999?(e.disp/1000).toFixed(1)+'k':e.disp) + '</td>' +
+      '<td><span class="sev-badge" style="background:' + color + '">' + e.sev + '</span></td>';
+    tr.addEventListener('click', function() {
+      map.setView([e.lat, e.lon], 9, { animate: true });
+      item.marker.openPopup();
+    });
+    tbody.appendChild(tr);
+  });
+
+
+// ── Health facility layers ───────────────────────────────────────────────────
+// Two panes: regular sites (behind floods), at-risk sites (just below floods)
+var healthPane    = map.createPane('health');    healthPane.style.zIndex    = 450;
+var atRiskPane    = map.createPane('atRisk');    atRiskPane.style.zIndex    = 600;
+
+// Per-type layer groups: { regular: LayerGroup, atRisk: LayerGroup }
+var TYPES = ['Hospital','Clinic','Pharmacy','Doctor','Dentist'];
+var healthGroups = {};
+TYPES.forEach(function(t) {
+  healthGroups[t] = { regular: L.layerGroup(), atRisk: L.layerGroup() };
+  healthGroups[t].regular.addTo(map);
+  healthGroups[t].atRisk.addTo(map);
 });
 
-sorted.forEach(function(item) {
-  var e = item.data;
-  var color = SEV_COLOR[e.sev] || '#f59e0b';
-  var year = e.began.slice(0, 4);
-  var tr = document.createElement('tr');
-  tr.innerHTML =
-    '<td>' + year + '</td>' +
-    '<td style="font-weight:700;color:#dc2626">' + e.dead + '</td>' +
-    '<td>' + (e.disp > 999 ? (e.disp / 1000).toFixed(1) + 'k' : e.disp) + '</td>' +
-    '<td><span class="sev-badge" style="background:' + color + '">' + e.sev + '</span></td>';
-  tr.addEventListener('click', function() {
-    map.setView([e.lat, e.lon], 9, { animate: true });
-    item.marker.openPopup();
+var atRiskOnlyMode = false;
+var totalVisible = 0;
+
+function updateCount() {
+  var n = 0;
+  TYPES.forEach(function(t) {
+    if (!map.hasLayer(healthGroups[t].regular) && !map.hasLayer(healthGroups[t].atRisk)) return;
+    // count markers in visible layers
+    if (map.hasLayer(healthGroups[t].regular)) n += Object.keys(healthGroups[t].regular._layers).length;
+    if (map.hasLayer(healthGroups[t].atRisk))  n += Object.keys(healthGroups[t].atRisk._layers).length;
   });
-  tbody.appendChild(tr);
+  document.getElementById('health-count').textContent = n.toLocaleString() + ' sites shown';
+}
+
+function applyFilters() {
+  TYPES.forEach(function(t) {
+    var cb = document.querySelector('[data-type="' + t + '"]');
+    var typeOn = cb && cb.checked;
+    var grp = healthGroups[t];
+    // regular layer: visible when type is ON and NOT in at-risk-only mode
+    if (typeOn && !atRiskOnlyMode) { if (!map.hasLayer(grp.regular)) grp.regular.addTo(map); }
+    else                           { if ( map.hasLayer(grp.regular)) map.removeLayer(grp.regular); }
+    // at-risk layer: visible when type is ON (regardless of mode)
+    if (typeOn) { if (!map.hasLayer(grp.atRisk)) grp.atRisk.addTo(map); }
+    else        { if ( map.hasLayer(grp.atRisk)) map.removeLayer(grp.atRisk); }
+  });
+  updateCount();
+}
+
+// Type checkboxes
+document.querySelectorAll('[data-type]').forEach(function(cb) {
+  cb.addEventListener('change', applyFilters);
 });
+
+// At-risk toggle button
+var btn = document.getElementById('at-risk-toggle');
+btn.addEventListener('click', function() {
+  atRiskOnlyMode = !atRiskOnlyMode;
+  btn.classList.toggle('active', atRiskOnlyMode);
+  btn.textContent = atRiskOnlyMode ? '✓ Showing at-risk only' : '⚠ Show at-risk only';
+  applyFilters();
+});
+
+
+// ── Load health GeoJSON ──────────────────────────────────────────────────────
+var loadingEl = document.getElementById('loading');
+loadingEl.style.display = 'block';
+
+fetch('data/health/italy/health_slim.geojson')
+  .then(function(r) { return r.json(); })
+  .then(function(geojson) {
+    loadingEl.style.display = 'none';
+
+    geojson.features.forEach(function(feat) {
+      var p    = feat.properties;
+      var coords = feat.geometry.coordinates;   // [lon, lat]
+      var latlng = [coords[1], coords[0]];
+      var type   = p.t;
+      var isAtRisk = p.r === 1;
+      var grp  = healthGroups[type];
+      if (!grp) return;
+
+      var marker;
+      if (isAtRisk) {
+        // Larger, bright stroke — stands out clearly
+        marker = L.circleMarker(latlng, {
+          renderer: canvas, pane: 'atRisk',
+          radius: 9, fillColor: p.c, color: '#f59e0b',
+          weight: 3, fillOpacity: 0.95
+        });
+        marker.bindPopup(
+          '<div style="min-width:210px">' +
+          '<div style="font-weight:700;font-size:0.9rem;color:' + p.c + '">' + (p.n || type) + '</div>' +
+          '<div style="display:inline-block;background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:3px;font-size:0.72rem;font-weight:700;margin:4px 0 6px">⚠ Within 1 km of flood zone</div>' +
+          '<table style="width:100%;font-size:0.8rem;border-collapse:collapse">' +
+          '<tr><td style="color:#888;padding:2px 8px 2px 0">Type</td><td>' + type + '</td></tr>' +
+          '<tr><td style="color:#888;padding:2px 8px 2px 0">Distance</td><td><b>' + p.km + ' km</b> from flood</td></tr>' +
+          '<tr><td style="color:#888;padding:2px 8px 2px 0">Flood date</td><td>' + p.fb + '</td></tr>' +
+          '<tr><td style="color:#888;padding:2px 8px 2px 0">Cause</td><td>' + p.fc + '</td></tr>' +
+          '<tr><td style="color:#888;padding:2px 8px 2px 0">Severity</td><td>' + p.fs + '</td></tr>' +
+          '</table></div>', { maxWidth: 270 }
+        );
+        grp.atRisk.addLayer(marker);
+      } else {
+        // Small, subtle dot for regular sites
+        marker = L.circleMarker(latlng, {
+          renderer: canvas, pane: 'health',
+          radius: 3, fillColor: p.c, color: p.c,
+          weight: 0.5, fillOpacity: 0.55
+        });
+        marker.bindPopup(
+          '<div style="min-width:170px">' +
+          '<div style="font-weight:700;font-size:0.88rem;color:' + p.c + '">' + (p.n || '(' + type + ')') + '</div>' +
+          '<div style="font-size:0.78rem;color:#64748b;margin-top:2px">' + type + '</div>' +
+          '</div>', { maxWidth: 220 }
+        );
+        grp.regular.addLayer(marker);
+      }
+    });
+
+    updateCount();
+  })
+  .catch(function(err) {
+    loadingEl.textContent = 'Could not load health data.';
+    console.error(err);
+  });
 </script>
 </body>
 </html>

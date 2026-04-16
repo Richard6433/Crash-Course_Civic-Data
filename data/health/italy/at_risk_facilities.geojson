@@ -1,0 +1,455 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2461721,
+          40.8805553
+        ]
+      },
+      "properties": {
+        "osm_id": 610045991,
+        "osm_type": "way",
+        "facility_type": "Hospital",
+        "colour": "#e63946",
+        "name": "Hermitage Capodimonte",
+        "operator": "",
+        "address": "",
+        "phone": "+39 081 7483001",
+        "website": "https://www.hermitagecapodimonte.it/",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.739,
+        "flood_began": "2001-09-14",
+        "flood_cause": "Brief torrential rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2288534,
+          46.0773643
+        ]
+      },
+      "properties": {
+        "osm_id": 4558831428,
+        "osm_type": "node",
+        "facility_type": "Hospital",
+        "colour": "#e63946",
+        "name": "Pronto Soccorso Udine",
+        "operator": "",
+        "address": "1 Piazzale Santa Maria della Misericordia 33100 Udine",
+        "phone": "",
+        "website": "",
+        "emergency": "yes",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "yes",
+        "at_risk": true,
+        "nearest_flood_km": 0.445,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2280869,
+          46.078745
+        ]
+      },
+      "properties": {
+        "osm_id": 110525946,
+        "osm_type": "way",
+        "facility_type": "Hospital",
+        "colour": "#e63946",
+        "name": "Ospedale Civile \"Santa Maria della Misericordia\"",
+        "operator": "",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "emergency": "yes",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.281,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2345871,
+          46.0741605
+        ]
+      },
+      "properties": {
+        "osm_id": 9528276776,
+        "osm_type": "node",
+        "facility_type": "Clinic",
+        "colour": "#f4a261",
+        "name": "DietNatural",
+        "operator": "",
+        "address": "28 Viale Volontari della Libertà 33100 Udine",
+        "phone": "+393291370833",
+        "website": "https://www.dietnatural.it/",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "Tu,Thu 09:00-12:30, 14:30-17:00; We,Fr 09:00-13:00, 14:00-16:00",
+        "wheelchair": "limited",
+        "at_risk": true,
+        "nearest_flood_km": 0.968,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2345885,
+          46.0750995
+        ]
+      },
+      "properties": {
+        "osm_id": 1768161043,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "LaFarmacia San Marco Benessere",
+        "operator": "San Marco Benessere e C. S.A.S. Dr. Sarto",
+        "address": "42 Viale Volontari della Libertà 33100",
+        "phone": "+39 0432 470304",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "Mo-Fr 08:30-13:00, 15:00-19:30; Sa 09:00-13:00",
+        "wheelchair": "yes",
+        "at_risk": true,
+        "nearest_flood_km": 0.886,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2186462,
+          46.0801784
+        ]
+      },
+      "properties": {
+        "osm_id": 4834016482,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "Simone",
+        "operator": "Farmacia Simone dott.ssa Patrizia",
+        "address": "129 Via del Cotonificio 33100",
+        "phone": "+39 0432 43873",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "limited",
+        "at_risk": true,
+        "nearest_flood_km": 0.669,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7512354,
+          42.7944296
+        ]
+      },
+      "properties": {
+        "osm_id": 5147749427,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "",
+        "operator": "",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.371,
+        "flood_began": "2009-12-21",
+        "flood_cause": "Torrential Rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9355802,
+          44.5077367
+        ]
+      },
+      "properties": {
+        "osm_id": 5731970706,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "Farmacia Dottor Laini",
+        "operator": "",
+        "address": "98 Via Antonio Medicina",
+        "phone": "+39 010 750221",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.85,
+        "flood_began": "1992-09-28",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2286905,
+          46.0771674
+        ]
+      },
+      "properties": {
+        "osm_id": 6746589586,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "Parafarmacia Farmasalus",
+        "operator": "",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "yes",
+        "at_risk": true,
+        "nearest_flood_km": 0.463,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.7346936,
+          44.8474518
+        ]
+      },
+      "properties": {
+        "osm_id": 7385692242,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "",
+        "operator": "Parafarmacia Carmagnola",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.546,
+        "flood_began": "2000-11-05",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0345461,
+          45.5049938
+        ]
+      },
+      "properties": {
+        "osm_id": 9879676271,
+        "osm_type": "node",
+        "facility_type": "Pharmacy",
+        "colour": "#2a9d8f",
+        "name": "Farmacia Mirci Dott. Alberto",
+        "operator": "Farmacia Mirci Alberto",
+        "address": "5 Via Monte Santo 30036 Santa Maria di Sala",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.887,
+        "flood_began": "2018-10-27",
+        "flood_cause": "Heavy Rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2392895,
+          46.0794877
+        ]
+      },
+      "properties": {
+        "osm_id": 9560885344,
+        "osm_type": "node",
+        "facility_type": "Doctor",
+        "colour": "#457b9d",
+        "name": "Achille Ruiti",
+        "operator": "",
+        "address": "",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.952,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2332955,
+          46.0864306
+        ]
+      },
+      "properties": {
+        "osm_id": 12994531501,
+        "osm_type": "node",
+        "facility_type": "Doctor",
+        "colour": "#457b9d",
+        "name": "Federico de Liva",
+        "operator": "",
+        "address": "64 Via Piemonte 33100",
+        "phone": "+390432546389",
+        "website": "https://www.doctolib.it/medico-di-medicina-generale/udine/federico-de-liva",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "Mo, Fr 15:00-18:00; Tu-Th 09:00-12:00",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.748,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.234058,
+          46.0864468
+        ]
+      },
+      "properties": {
+        "osm_id": 3749061448,
+        "osm_type": "node",
+        "facility_type": "Dentist",
+        "colour": "#6a4c93",
+        "name": "Studio Dentistico Elisabetta Sabbadini",
+        "operator": "",
+        "address": "78 Via Piemonte 33100 Udine",
+        "phone": "",
+        "website": "https://www.studioelisabettasabbadini.it/",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "Mo 10:00-19:00; Tu 08:00-16:00; We 08:00-13:00; Th 12:00-19:00; Fr 08:00-14:00",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.787,
+        "flood_began": "2003-08-29",
+        "flood_cause": "Heavy rain",
+        "flood_severity": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0251238,
+          45.5060419
+        ]
+      },
+      "properties": {
+        "osm_id": 9676864108,
+        "osm_type": "node",
+        "facility_type": "Dentist",
+        "colour": "#6a4c93",
+        "name": "DentiAmo",
+        "operator": "DentiAmo",
+        "address": "5 Via Leonardo da Vinci 30036 Santa Maria di Sala",
+        "phone": "",
+        "website": "",
+        "emergency": "",
+        "beds": "",
+        "opening_hours": "",
+        "wheelchair": "",
+        "at_risk": true,
+        "nearest_flood_km": 0.143,
+        "flood_began": "2018-10-27",
+        "flood_cause": "Heavy Rain",
+        "flood_severity": "1"
+      }
+    }
+  ]
+}
