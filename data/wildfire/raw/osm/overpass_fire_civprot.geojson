@@ -11,9 +11,28 @@
         ]
       },
       "properties": {
-        "osm_id": "1615512653",
+        "osm_id": 1615512653,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.8584782,
+          38.3590386
+        ]
+      },
+      "properties": {
+        "osm_id": 1696534671,
+        "osm_type": "node",
+        "amenity": "fire_station",
+        "name": "Caserma dei Vigili del Fuoco di Palmi",
         "island": "sicily",
         "source": "overpass"
       }
@@ -28,7 +47,8 @@
         ]
       },
       "properties": {
-        "osm_id": "2062465062",
+        "osm_id": 2062465062,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -45,7 +65,8 @@
         ]
       },
       "properties": {
-        "osm_id": "2319482199",
+        "osm_id": 2319482199,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -62,7 +83,8 @@
         ]
       },
       "properties": {
-        "osm_id": "3066295762",
+        "osm_id": 3066295762,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -79,7 +101,8 @@
         ]
       },
       "properties": {
-        "osm_id": "4742684324",
+        "osm_id": 4742684324,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile Giubbe d'Italia - Cefalù",
         "island": "sicily",
@@ -96,7 +119,8 @@
         ]
       },
       "properties": {
-        "osm_id": "10228227782",
+        "osm_id": 10228227782,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -113,7 +137,8 @@
         ]
       },
       "properties": {
-        "osm_id": "10538682953",
+        "osm_id": 10538682953,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Distaccamento Vigili del Fuoco",
         "island": "sicily",
@@ -130,7 +155,8 @@
         ]
       },
       "properties": {
-        "osm_id": "10622090749",
+        "osm_id": 10622090749,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -147,7 +173,8 @@
         ]
       },
       "properties": {
-        "osm_id": "10864472270",
+        "osm_id": 10864472270,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -164,7 +191,8 @@
         ]
       },
       "properties": {
-        "osm_id": "11527512581",
+        "osm_id": 11527512581,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Comando Vigili del Fuoco",
         "island": "sicily",
@@ -181,9 +209,28 @@
         ]
       },
       "properties": {
-        "osm_id": "11652159797",
+        "osm_id": 11652159797,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2423922,
+          36.0464695
+        ]
+      },
+      "properties": {
+        "osm_id": 12503843068,
+        "osm_type": "node",
+        "amenity": "fire_station",
+        "name": "Fire & Emergency Services",
         "island": "sicily",
         "source": "overpass"
       }
@@ -198,7 +245,8 @@
         ]
       },
       "properties": {
-        "osm_id": "13067146488",
+        "osm_id": 13067146488,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco - Cefalù",
         "island": "sicily",
@@ -215,7 +263,8 @@
         ]
       },
       "properties": {
-        "osm_id": "13704558588",
+        "osm_id": 13704558588,
+        "osm_type": "node",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco Distaccamento Volontario Villafranca Tirrena",
         "island": "sicily",
@@ -232,7 +281,8 @@
         ]
       },
       "properties": {
-        "osm_id": "25950721",
+        "osm_id": 25950721,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -249,7 +299,8 @@
         ]
       },
       "properties": {
-        "osm_id": "51512391",
+        "osm_id": 51512391,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -266,7 +317,8 @@
         ]
       },
       "properties": {
-        "osm_id": "57687511",
+        "osm_id": 57687511,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -283,7 +335,8 @@
         ]
       },
       "properties": {
-        "osm_id": "105309883",
+        "osm_id": 105309883,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -300,7 +353,8 @@
         ]
       },
       "properties": {
-        "osm_id": "147050200",
+        "osm_id": 147050200,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -317,7 +371,26 @@
         ]
       },
       "properties": {
-        "osm_id": "158590450",
+        "osm_id": 158590450,
+        "osm_type": "way",
+        "amenity": "fire_station",
+        "name": "",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.6551739,
+          38.0729766
+        ]
+      },
+      "properties": {
+        "osm_id": 177574744,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -334,9 +407,28 @@
         ]
       },
       "properties": {
-        "osm_id": "211465091",
+        "osm_id": 211465091,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.2724122,
+          36.0264762
+        ]
+      },
+      "properties": {
+        "osm_id": 212508229,
+        "osm_type": "way",
+        "amenity": "fire_station",
+        "name": "",
         "island": "sicily",
         "source": "overpass"
       }
@@ -351,7 +443,8 @@
         ]
       },
       "properties": {
-        "osm_id": "215035994",
+        "osm_id": 215035994,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -368,9 +461,28 @@
         ]
       },
       "properties": {
-        "osm_id": "217417223",
+        "osm_id": 217417223,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Distaccamento di Gela Comando Provinciale dei Vigili del Fuoco di Caltanissetta",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.6461204,
+          38.0900025
+        ]
+      },
+      "properties": {
+        "osm_id": 233314483,
+        "osm_type": "way",
+        "amenity": "fire_station",
+        "name": "Comando Provinciale Vigili del Fuoco Reggio Calabria",
         "island": "sicily",
         "source": "overpass"
       }
@@ -385,7 +497,8 @@
         ]
       },
       "properties": {
-        "osm_id": "253004160",
+        "osm_id": 253004160,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -402,7 +515,8 @@
         ]
       },
       "properties": {
-        "osm_id": "318110035",
+        "osm_id": 318110035,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco - Distaccamento Cittadino Nord 1",
         "island": "sicily",
@@ -419,7 +533,8 @@
         ]
       },
       "properties": {
-        "osm_id": "323844047",
+        "osm_id": 323844047,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -436,7 +551,8 @@
         ]
       },
       "properties": {
-        "osm_id": "338007018",
+        "osm_id": 338007018,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -453,7 +569,8 @@
         ]
       },
       "properties": {
-        "osm_id": "385784264",
+        "osm_id": 385784264,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -470,7 +587,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896390",
+        "osm_id": 397896390,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -487,7 +605,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896391",
+        "osm_id": 397896391,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -504,7 +623,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896392",
+        "osm_id": 397896392,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -521,7 +641,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896393",
+        "osm_id": 397896393,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -538,7 +659,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896394",
+        "osm_id": 397896394,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -555,7 +677,8 @@
         ]
       },
       "properties": {
-        "osm_id": "397896395",
+        "osm_id": 397896395,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -572,7 +695,8 @@
         ]
       },
       "properties": {
-        "osm_id": "404895686",
+        "osm_id": 404895686,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -589,7 +713,8 @@
         ]
       },
       "properties": {
-        "osm_id": "409050304",
+        "osm_id": 409050304,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -606,7 +731,8 @@
         ]
       },
       "properties": {
-        "osm_id": "509062760",
+        "osm_id": 509062760,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -623,7 +749,8 @@
         ]
       },
       "properties": {
-        "osm_id": "535777387",
+        "osm_id": 535777387,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -640,7 +767,8 @@
         ]
       },
       "properties": {
-        "osm_id": "553158056",
+        "osm_id": 553158056,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -657,7 +785,8 @@
         ]
       },
       "properties": {
-        "osm_id": "584191231",
+        "osm_id": 584191231,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Comando Provinciale Vigili del Fuoco di Palermo",
         "island": "sicily",
@@ -674,7 +803,8 @@
         ]
       },
       "properties": {
-        "osm_id": "739604499",
+        "osm_id": 739604499,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -691,7 +821,8 @@
         ]
       },
       "properties": {
-        "osm_id": "863272975",
+        "osm_id": 863272975,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -708,7 +839,8 @@
         ]
       },
       "properties": {
-        "osm_id": "881761570",
+        "osm_id": 881761570,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -725,7 +857,8 @@
         ]
       },
       "properties": {
-        "osm_id": "905909652",
+        "osm_id": 905909652,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -742,7 +875,8 @@
         ]
       },
       "properties": {
-        "osm_id": "933880049",
+        "osm_id": 933880049,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigli del Fuoco distaccamento Volontari Mistretta",
         "island": "sicily",
@@ -759,7 +893,8 @@
         ]
       },
       "properties": {
-        "osm_id": "985977285",
+        "osm_id": 985977285,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -776,7 +911,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1022609842",
+        "osm_id": 1022609842,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -793,7 +929,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1065496508",
+        "osm_id": 1065496508,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Distaccamento Cittadino Brancaccio",
         "island": "sicily",
@@ -810,7 +947,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1092489834",
+        "osm_id": 1092489834,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -827,7 +965,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1100680464",
+        "osm_id": 1100680464,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -844,7 +983,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1119930774",
+        "osm_id": 1119930774,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -861,7 +1001,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1122595898",
+        "osm_id": 1122595898,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -878,7 +1019,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1126126331",
+        "osm_id": 1126126331,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -895,7 +1037,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830953",
+        "osm_id": 1139830953,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -912,7 +1055,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830960",
+        "osm_id": 1139830960,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -929,7 +1073,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830961",
+        "osm_id": 1139830961,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -946,7 +1091,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830972",
+        "osm_id": 1139830972,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -963,7 +1109,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830974",
+        "osm_id": 1139830974,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -980,7 +1127,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830982",
+        "osm_id": 1139830982,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -997,7 +1145,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830983",
+        "osm_id": 1139830983,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -1014,7 +1163,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1139830987",
+        "osm_id": 1139830987,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -1031,7 +1181,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1147317512",
+        "osm_id": 1147317512,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -1048,7 +1199,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1148267845",
+        "osm_id": 1148267845,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -1065,7 +1217,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1154921919",
+        "osm_id": 1154921919,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigili del Fuoco",
         "island": "sicily",
@@ -1082,7 +1235,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1240696916",
+        "osm_id": 1240696916,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "",
         "island": "sicily",
@@ -1099,7 +1253,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1426237527",
+        "osm_id": 1426237527,
+        "osm_type": "way",
         "amenity": "fire_station",
         "name": "Vigli del Fuoco",
         "island": "sicily",
@@ -1116,7 +1271,8 @@
         ]
       },
       "properties": {
-        "osm_id": "2945359750",
+        "osm_id": 2945359750,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile (O.N.V.G.I.)",
         "island": "sicily",
@@ -1133,7 +1289,8 @@
         ]
       },
       "properties": {
-        "osm_id": "3212823181",
+        "osm_id": 3212823181,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1150,9 +1307,28 @@
         ]
       },
       "properties": {
-        "osm_id": "3704811928",
+        "osm_id": 3704811928,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.655653,
+          38.1010504
+        ]
+      },
+      "properties": {
+        "osm_id": 8380867161,
+        "osm_type": "node",
+        "amenity": "civil_protection",
+        "name": "Sede UOA di Protezione Civile della Regione Calabria",
         "island": "sicily",
         "source": "overpass"
       }
@@ -1167,7 +1343,8 @@
         ]
       },
       "properties": {
-        "osm_id": "9849171358",
+        "osm_id": 9849171358,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile Club Radio C.B.",
         "island": "sicily",
@@ -1184,7 +1361,8 @@
         ]
       },
       "properties": {
-        "osm_id": "12855090753",
+        "osm_id": 12855090753,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile Comunale - Città di Messina",
         "island": "sicily",
@@ -1201,7 +1379,8 @@
         ]
       },
       "properties": {
-        "osm_id": "13695412395",
+        "osm_id": 13695412395,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1218,7 +1397,8 @@
         ]
       },
       "properties": {
-        "osm_id": "13719047678",
+        "osm_id": 13719047678,
+        "osm_type": "node",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1235,7 +1415,8 @@
         ]
       },
       "properties": {
-        "osm_id": "220237980",
+        "osm_id": 220237980,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione civile",
         "island": "sicily",
@@ -1252,9 +1433,28 @@
         ]
       },
       "properties": {
-        "osm_id": "233023989",
+        "osm_id": 233023989,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Centro Polifunzionale Interculturale - Protezione Civile Comunale",
+        "island": "sicily",
+        "source": "overpass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.8517694,
+          38.3616397
+        ]
+      },
+      "properties": {
+        "osm_id": 248112835,
+        "osm_type": "way",
+        "amenity": "civil_protection",
+        "name": "Protezione Civile",
         "island": "sicily",
         "source": "overpass"
       }
@@ -1269,7 +1469,8 @@
         ]
       },
       "properties": {
-        "osm_id": "280100019",
+        "osm_id": 280100019,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Sede dell'ufficio di Protezione Civile del Comune di Palermo",
         "island": "sicily",
@@ -1286,7 +1487,8 @@
         ]
       },
       "properties": {
-        "osm_id": "280102591",
+        "osm_id": 280102591,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Sede dell'ufficio di Protezione civile del Comune di Palrmo",
         "island": "sicily",
@@ -1303,7 +1505,8 @@
         ]
       },
       "properties": {
-        "osm_id": "311090429",
+        "osm_id": 311090429,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione civile regionale - Soprintendenza regionale -ASL",
         "island": "sicily",
@@ -1320,7 +1523,8 @@
         ]
       },
       "properties": {
-        "osm_id": "316418854",
+        "osm_id": 316418854,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Area protezione civile",
         "island": "sicily",
@@ -1337,7 +1541,8 @@
         ]
       },
       "properties": {
-        "osm_id": "389073348",
+        "osm_id": 389073348,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Comune Aragona - Protezione Civile",
         "island": "sicily",
@@ -1354,7 +1559,8 @@
         ]
       },
       "properties": {
-        "osm_id": "425348434",
+        "osm_id": 425348434,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Area della Protezione Civile di Marineo",
         "island": "sicily",
@@ -1371,7 +1577,8 @@
         ]
       },
       "properties": {
-        "osm_id": "636381124",
+        "osm_id": 636381124,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile Noto",
         "island": "sicily",
@@ -1388,7 +1595,8 @@
         ]
       },
       "properties": {
-        "osm_id": "722066182",
+        "osm_id": 722066182,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1405,7 +1613,8 @@
         ]
       },
       "properties": {
-        "osm_id": "918335324",
+        "osm_id": 918335324,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Area di Protezione Civile",
         "island": "sicily",
@@ -1422,7 +1631,8 @@
         ]
       },
       "properties": {
-        "osm_id": "933880047",
+        "osm_id": 933880047,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1439,7 +1649,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1028912262",
+        "osm_id": 1028912262,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile - ex carcere mandamentale",
         "island": "sicily",
@@ -1456,7 +1667,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1170310553",
+        "osm_id": 1170310553,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Sala Operativa di Protezione Civile Giovanni Cassarino",
         "island": "sicily",
@@ -1473,7 +1685,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1263888173",
+        "osm_id": 1263888173,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1490,7 +1703,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1275365072",
+        "osm_id": 1275365072,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile Melilli",
         "island": "sicily",
@@ -1507,7 +1721,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1301391358",
+        "osm_id": 1301391358,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",
@@ -1524,7 +1739,8 @@
         ]
       },
       "properties": {
-        "osm_id": "1489099608",
+        "osm_id": 1489099608,
+        "osm_type": "way",
         "amenity": "civil_protection",
         "name": "Protezione Civile",
         "island": "sicily",

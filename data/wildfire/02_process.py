@@ -163,31 +163,47 @@ def compute_fire_years(munis):
     return munis
 
 
-# ── 3. Distance to nearest civil protection station ───────────────────────────
-def compute_civil_prot_distance(munis):
+# ── 3. Distance to nearest emergency responder ────────────────────────────────
+def compute_responder_distance(munis):
+    """
+    Distance to nearest emergency responder = min(civil protection, fire station).
+    Both facility types are relevant for wildfire response.
+    Also stores separate distances for each type for display in the info panel.
+    """
     fac = gpd.read_file(RAW / "facilities.geojson")
-    cp = fac[
-        (fac["amenity"] == "civil_protection") &
-        (fac["island"] == "sicily")
-    ].drop_duplicates(subset="osm_id")
 
-    if cp.empty:
-        print("  [CIVPROT] No civil protection facilities — distance = 999 km")
-        munis["dist_civil_prot_km"] = 999.0
-        return munis
+    cp = fac[fac["amenity"] == "civil_protection"].drop_duplicates(subset="osm_id")
+    fs = fac[fac["amenity"] == "fire_station"].drop_duplicates(subset="osm_id")
+    all_resp = fac[fac["amenity"].isin(["civil_protection", "fire_station"])].drop_duplicates(subset="osm_id")
 
-    cp_pts = [(r.geometry.y, r.geometry.x) for _, r in cp.iterrows()]
-    print(f"  [CIVPROT] {len(cp_pts)} stations; computing distances …",
-          end=" ", flush=True)
+    print(f"  [RESPONDERS] {len(cp)} civil protection, {len(fs)} fire stations → "
+          f"{len(all_resp)} total")
 
-    dists = []
+    def min_dist(munis_row, pts):
+        if not pts:
+            return 999.0
+        clat, clon = munis_row["centroid_lat"], munis_row["centroid_lon"]
+        return round(min(haversine_km(clat, clon, lat, lon) for lat, lon in pts), 2)
+
+    cp_pts  = [(r.geometry.y, r.geometry.x) for _, r in cp.iterrows()]
+    fs_pts  = [(r.geometry.y, r.geometry.x) for _, r in fs.iterrows()]
+    all_pts = [(r.geometry.y, r.geometry.x) for _, r in all_resp.iterrows()]
+
+    print(f"  [RESPONDERS] computing distances …", end=" ", flush=True)
+    dist_cp, dist_fs, dist_any = [], [], []
     for _, row in munis.iterrows():
-        clat, clon = row["centroid_lat"], row["centroid_lon"]
-        min_d = min(haversine_km(clat, clon, flat, flon) for flat, flon in cp_pts)
-        dists.append(round(min_d, 2))
+        dist_cp.append(min_dist(row, cp_pts))
+        dist_fs.append(min_dist(row, fs_pts))
+        dist_any.append(min_dist(row, all_pts))
 
-    munis["dist_civil_prot_km"] = dists
-    print(f"done  (median {np.median(dists):.1f} km, max {max(dists):.1f} km)")
+    munis["dist_civil_prot_km"] = dist_cp
+    munis["dist_fire_station_km"] = dist_fs
+    munis["dist_responder_km"] = dist_any   # used for priority flag
+
+    print(f"done")
+    print(f"    Civil prot:   median {np.median(dist_cp):.1f} km, max {max(dist_cp):.1f} km")
+    print(f"    Fire station: median {np.median(dist_fs):.1f} km, max {max(dist_fs):.1f} km")
+    print(f"    Any responder: median {np.median(dist_any):.1f} km, max {max(dist_any):.1f} km")
     return munis
 
 
@@ -220,15 +236,15 @@ def assign_elderly_pct(munis):
 def apply_priority_flag(munis):
     c1 = munis["fire_years_2018_2024"] >= FIRE_MIN_YEARS
     c2 = munis["elderly_pct"] > ITALY_NATIONAL_ELDERLY
-    c3 = munis["dist_civil_prot_km"] > 20.0
+    c3 = munis["dist_responder_km"] > 20.0   # nearest of civil prot OR fire station
 
     munis["priority"] = c1 & c2 & c3
     n = munis["priority"].sum()
     print(f"  [PRIORITY] {n}/{len(munis)} municipalities flagged as priority")
-    print(f"    fire >= {FIRE_MIN_YEARS} years (of 7):  {c1.sum():>3}")
-    print(f"    elderly > 23.5%:        {c2.sum():>3}")
-    print(f"    dist civil prot > 20km: {c3.sum():>3}")
-    print(f"    ALL three (priority):   {n:>3}")
+    print(f"    fire >= {FIRE_MIN_YEARS} years (of 7):     {c1.sum():>3}")
+    print(f"    elderly > 23.5%:           {c2.sum():>3}")
+    print(f"    dist any responder > 20km: {c3.sum():>3}")
+    print(f"    ALL three (priority):      {n:>3}")
     return munis
 
 
@@ -239,6 +255,8 @@ KEEP_COLS = [
     "fire_years_2018_2024",
     "elderly_pct",
     "dist_civil_prot_km",
+    "dist_fire_station_km",
+    "dist_responder_km",
     "priority",
     "geometry",
 ]
@@ -267,8 +285,8 @@ if __name__ == "__main__":
     print(f"\n2/5  Fire exposure (EFFIS {FIRE_COUNT_YEARS[0]}–{FIRE_COUNT_YEARS[-1]})")
     munis = compute_fire_years(munis)
 
-    print("\n3/5  Distance to nearest civil protection station")
-    munis = compute_civil_prot_distance(munis)
+    print("\n3/5  Distance to nearest emergency responder (civil protection + fire stations)")
+    munis = compute_responder_distance(munis)
 
     print("\n4/5  Elderly population share (ISTAT per municipality)")
     munis = assign_elderly_pct(munis)
