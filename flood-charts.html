@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodArchive – Data Charts</title>
+
+  <!-- PapaParse: reads the CSV file in the browser (no server needed) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <!-- Chart.js: draws the charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ── Page layout ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 24px 16px 48px;
+      color: #1a1a2e;
+    }
+
+    header {
+      max-width: 1100px;
+      margin: 0 auto 32px;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      margin: 0 0 6px;
+    }
+
+    header p {
+      color: #555;
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+
+    header a {
+      font-size: 0.9rem;
+      color: #2563eb;
+    }
+
+    /* ── 2-column grid of cards ──────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 24px;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: #111;
+    }
+
+    .card p.subtitle {
+      font-size: 0.82rem;
+      color: #777;
+      margin: 0 0 16px;
+    }
+
+    /* Keep charts a consistent height */
+    .chart-wrap {
+      position: relative;
+      height: 320px;
+    }
+
+    /* Loading / error message shown while CSV loads */
+    #status {
+      text-align: center;
+      padding: 40px;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>FloodArchive — Global Flood Events</h1>
+    <p>
+      Exploring 5,130 flood events (1985–2021) from the Dartmouth Flood Observatory.
+      Data source: <em>floodarchive_cleaned.csv</em>
+    </p>
+    <a href="index.html">← View the interactive map</a>
+  </header>
+
+  <!-- Shown while the CSV loads -->
+  <div id="status">Loading data…</div>
+
+  <!-- The four chart cards (hidden until data is ready) -->
+  <div class="grid" id="charts" style="display:none;">
+
+    <div class="card">
+      <h2>Flood Events by Country (Top 20)</h2>
+      <p class="subtitle">Countries with the most recorded flood events</p>
+      <div class="chart-wrap"><canvas id="chartCountry"></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2>Flood Events per Year</h2>
+      <p class="subtitle">Number of flood events recorded each year, 1985–2021</p>
+      <div class="chart-wrap"><canvas id="chartYear"></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2>Events by Category</h2>
+      <p class="subtitle">Flood events grouped by cause / categorised reason</p>
+      <div class="chart-wrap"><canvas id="chartCategory"></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2>Total Displaced by Severity</h2>
+      <p class="subtitle">
+        Cumulative displaced persons — Severity 1 = large, 1.5 = very large, 2 = extreme
+      </p>
+      <div class="chart-wrap"><canvas id="chartSeverity"></canvas></div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Colour palettes ──────────────────────────────────────────
+    // We define a set of blue/teal tones so the page feels cohesive.
+    const BLUE_SHADES = [
+      '#1d4ed8','#2563eb','#3b82f6','#60a5fa','#93c5fd',
+      '#0f766e','#0d9488','#14b8a6','#2dd4bf','#5eead4',
+      '#7c3aed','#8b5cf6','#a78bfa','#c4b5fd','#ddd6fe',
+      '#b45309','#d97706','#f59e0b','#fbbf24','#fde68a'
+    ];
+
+    const SEVERITY_COLORS = ['#2563eb', '#f59e0b', '#dc2626'];
+
+    // ── Helper: count occurrences of each value in an array ──────
+    function countBy(arr) {
+      return arr.reduce((acc, val) => {
+        acc[val] = (acc[val] || 0) + 1;
+        return acc;
+      }, {});
+    }
+
+    // ── Helper: sum a numeric field grouped by a key field ────────
+    function sumBy(rows, keyField, valueField) {
+      return rows.reduce((acc, row) => {
+        const key = row[keyField];
+        const num = parseFloat(row[valueField]) || 0;
+        acc[key] = (acc[key] || 0) + num;
+        return acc;
+      }, {});
+    }
+
+    // ── Helper: sort an object's entries by value (descending) ───
+    function sortedEntries(obj, ascending = false) {
+      return Object.entries(obj).sort((a, b) =>
+        ascending ? a[1] - b[1] : b[1] - a[1]
+      );
+    }
+
+    // ── Build all four charts once the CSV data is available ──────
+    function buildCharts(rows) {
+      // Hide the loading message, show the grid
+      document.getElementById('status').style.display = 'none';
+      document.getElementById('charts').style.display = 'grid';
+
+      // ── Chart 1: Bar — Top 20 countries ─────────────────────────
+      const countryCounts = countBy(rows.map(r => r['Country']));
+      const top20 = sortedEntries(countryCounts).slice(0, 20);
+      new Chart(document.getElementById('chartCountry'), {
+        type: 'bar',
+        data: {
+          labels: top20.map(e => e[0]),
+          datasets: [{
+            label: 'Flood events',
+            data: top20.map(e => e[1]),
+            backgroundColor: BLUE_SHADES,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { maxRotation: 45, minRotation: 30 } },
+            y: { beginAtZero: true, title: { display: true, text: 'Events' } }
+          }
+        }
+      });
+
+      // ── Chart 2: Line — Events per year ─────────────────────────
+      const yearCounts = countBy(rows.map(r => r['Year']));
+      // Sort years chronologically (ascending)
+      const yearEntries = sortedEntries(yearCounts, true);
+      new Chart(document.getElementById('chartYear'), {
+        type: 'line',
+        data: {
+          labels: yearEntries.map(e => e[0]),
+          datasets: [{
+            label: 'Flood events',
+            data: yearEntries.map(e => e[1]),
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37,99,235,0.1)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3,
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Events' } }
+          }
+        }
+      });
+
+      // ── Chart 3: Bar — Events by category ───────────────────────
+      const catCounts = countBy(rows.map(r => r['categorised_reason']));
+      const catEntries = sortedEntries(catCounts); // largest first
+      new Chart(document.getElementById('chartCategory'), {
+        type: 'bar',
+        data: {
+          labels: catEntries.map(e => e[0]),
+          datasets: [{
+            label: 'Flood events',
+            data: catEntries.map(e => e[1]),
+            backgroundColor: BLUE_SHADES.slice(0, catEntries.length),
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { maxRotation: 30 } },
+            y: { beginAtZero: true, title: { display: true, text: 'Events' } }
+          }
+        }
+      });
+
+      // ── Chart 4: Bar — Total displaced by Severity ───────────────
+      // Severity values are 1.0, 1.5, 2.0 — give them readable labels
+      const SEV_LABELS = { '1.0': 'Large (1.0)', '1.5': 'Very Large (1.5)', '2.0': 'Extreme (2.0)' };
+      const displaced = sumBy(rows, 'Severity', 'Displaced');
+      // Sort severity numerically
+      const sevEntries = Object.entries(displaced)
+        .filter(e => e[0] !== '')      // skip blank rows
+        .sort((a, b) => parseFloat(a[0]) - parseFloat(b[0]));
+
+      new Chart(document.getElementById('chartSeverity'), {
+        type: 'bar',
+        data: {
+          labels: sevEntries.map(e => SEV_LABELS[e[0]] || e[0]),
+          datasets: [{
+            label: 'Total displaced',
+            data: sevEntries.map(e => e[1]),
+            backgroundColor: SEVERITY_COLORS,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                // Format large numbers with commas (e.g. 1,234,567)
+                label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' displaced'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Total displaced persons' },
+              ticks: { callback: val => (val / 1e6).toFixed(0) + 'M' }
+            }
+          }
+        }
+      });
+    }
+
+    // ── Load the CSV with PapaParse ───────────────────────────────
+    // PapaParse fetches and parses the file, then calls our function.
+    Papa.parse('floodarchive_cleaned.csv', {
+      download: true,   // fetch the file from the same folder
+      header: true,     // use the first row as column names
+      skipEmptyLines: true,
+      complete: function(results) {
+        buildCharts(results.data);
+      },
+      error: function(err) {
+        document.getElementById('status').textContent =
+          'Could not load the CSV file: ' + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
