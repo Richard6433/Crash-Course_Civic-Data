@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Italy Flood Events 1987–2021 (Dartmouth Archive)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; }
+
+    header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      z-index: 1000; background: #006d2c; color: #fff;
+      padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .hl { display: flex; align-items: baseline; gap: 12px; }
+    header h1 { font-size: 1.05rem; font-weight: 700; }
+    header p  { font-size: 0.75rem; opacity: 0.6; }
+    #hstats   { font-size: 0.75rem; color: #b7e4c7; text-align: right; line-height: 1.5; }
+
+    #map { position: absolute; top: 52px; bottom: 0; left: 0; right: 0; }
+
+    /* Sidebar */
+    #sidebar {
+      position: absolute; top: 62px; right: 10px; z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      width: 240px; overflow: hidden;
+    }
+    #sb-title {
+      background: #006d2c; color: #fff;
+      padding: 8px 12px; font-weight: 600; font-size: 0.8rem;
+    }
+    #event-table {
+      width: 100%; border-collapse: collapse; font-size: 0.73rem;
+    }
+    #event-table th {
+      background: #f8fafc; color: #475569;
+      padding: 5px 8px; text-align: left; border-bottom: 1px solid #e2e8f0;
+      position: sticky; top: 0;
+    }
+    #event-table td { padding: 5px 8px; border-bottom: 1px solid #f1f5f9; }
+    #event-table tr:hover td { background: #f0fdf4; cursor: pointer; }
+    .sev-badge {
+      display: inline-block; padding: 1px 5px; border-radius: 3px;
+      font-size: 0.68rem; font-weight: 700; color: #fff;
+    }
+    #sb-scroll { max-height: calc(100vh - 155px); overflow-y: auto; }
+
+    /* Legend */
+    #legend {
+      position: absolute; bottom: 30px; left: 10px; z-index: 1000;
+      background: rgba(255,255,255,0.95); border-radius: 8px;
+      padding: 10px 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-size: 0.74rem;
+    }
+    #legend h4 { color: #006d2c; margin-bottom: 7px; font-size: 0.78rem; }
+    .lr { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+    .ld { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .lnote { color: #94a3b8; font-size: 0.68rem; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hl">
+    <h1>Flood Events — Italy · 1987–2021</h1>
+    <p>Dartmouth Flood Observatory · 41 events</p>
+  </div>
+  <div id="hstats">
+    449 total deaths &nbsp;·&nbsp; 117,237 displaced<br>
+    <span style="font-size:0.68rem;opacity:0.7">Click a marker for details · Sidebar sorted by deaths</span>
+  </div>
+</header>
+
+<div id="map"></div>
+
+<div id="sidebar">
+  <div id="sb-title">All events — click to zoom</div>
+  <div id="sb-scroll">
+    <table id="event-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Deaths</th>
+          <th>Displaced</th>
+          <th>Sev.</th>
+        </tr>
+      </thead>
+      <tbody id="event-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="legend">
+  <h4>Severity</h4>
+  <div class="lr"><div class="ld" style="background:#f59e0b"></div> 1 — Moderate</div>
+  <div class="lr"><div class="ld" style="background:#f97316"></div> 1.5 — Significant</div>
+  <div class="lr"><div class="ld" style="background:#dc2626"></div> 2 — Large/Extreme</div>
+  <div class="lnote">Circle size ∝ deaths</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var FLOODS = [
+  {lat:45.7794,lon:9.9383,  began:"1987-07-12",ended:"1987-07-21",dead:20, disp:300,   cause:"Heavy rain",          sev:"1"},
+  {lat:37.4429,lon:14.0174, began:"1991-10-13",ended:"1991-10-15",dead:17, disp:0,     cause:"Heavy rain",          sev:"1"},
+  {lat:45.3963,lon:10.5657, began:"1992-04-03",ended:"1992-04-05",dead:32, disp:0,     cause:"Heavy rain",          sev:"1"},
+  {lat:44.5004,lon:8.93857, began:"1992-09-28",ended:"1992-09-28",dead:2,  disp:0,     cause:"Heavy rain",          sev:"1"},
+  {lat:43.6735,lon:11.14,   began:"1992-10-31",ended:"1992-10-31",dead:0,  disp:1000,  cause:"Heavy rain",          sev:"1"},
+  {lat:43.7041,lon:10.8528, began:"1994-09-02",ended:"1994-09-03",dead:3,  disp:0,     cause:"Torrential rain",     sev:"1"},
+  {lat:45.2087,lon:10.2403, began:"1994-11-01",ended:"1994-11-10",dead:83, disp:10308, cause:"Heavy rain",          sev:"2"},
+  {lat:44.9518,lon:7.32512, began:"1995-04-24",ended:"1995-04-30",dead:3,  disp:0,     cause:"Rain and snowmelt",   sev:"1"},
+  {lat:44.2003,lon:10.8096, began:"1996-06-19",ended:"1996-06-23",dead:17, disp:300,   cause:"Heavy rain",          sev:"1"},
+  {lat:45.9922,lon:10.0135, began:"1997-06-26",ended:"1997-06-29",dead:2,  disp:700,   cause:"Heavy rain",          sev:"1"},
+  {lat:41.6911,lon:12.982,  began:"1998-05-01",ended:"1998-05-07",dead:148,disp:3463,  cause:"Heavy rain",          sev:"1"},
+  {lat:42.6196,lon:14.1524, began:"1999-12-15",ended:"1999-12-16",dead:5,  disp:300,   cause:"Heavy rain",          sev:"1"},
+  {lat:45.5709,lon:8.74789, began:"2000-10-14",ended:"2000-10-22",dead:37, disp:43000, cause:"Brief torrential rain",sev:"2"},
+  {lat:44.8503,lon:7.74033, began:"2000-11-05",ended:"2000-11-07",dead:3,  disp:30,    cause:"Heavy rain",          sev:"1"},
+  {lat:40.8829,lon:14.2544, began:"2001-09-14",ended:"2001-09-15",dead:2,  disp:0,     cause:"Brief torrential rain",sev:"1"},
+  {lat:42.8283,lon:10.4002, began:"2002-09-04",ended:"2002-09-06",dead:0,  disp:1200,  cause:"Heavy rain",          sev:"1"},
+  {lat:41.3473,lon:15.9205, began:"2003-01-25",ended:"2003-01-27",dead:1,  disp:1000,  cause:"Heavy rain",          sev:"1"},
+  {lat:46.0812,lon:13.2272, began:"2003-08-29",ended:"2003-08-30",dead:2,  disp:300,   cause:"Heavy rain",          sev:"1"},
+  {lat:43.9155,lon:10.3811, began:"2003-09-23",ended:"2003-09-24",dead:1,  disp:30,    cause:"Brief torrential rain",sev:"1"},
+  {lat:40.776, lon:14.6179, began:"2004-12-25",ended:"2004-12-28",dead:0,  disp:0,     cause:"Heavy rain",          sev:"1"},
+  {lat:41.0532,lon:16.8435, began:"2005-10-23",ended:"2005-10-24",dead:6,  disp:0,     cause:"Heavy rain",          sev:"1"},
+  {lat:45.0242,lon:12.188,  began:"2008-11-26",ended:"2008-11-28",dead:7,  disp:46000, cause:"Heavy Rain",          sev:"2"},
+  {lat:41.8299,lon:13.1575, began:"2008-12-01",ended:"2008-12-08",dead:0,  disp:2000,  cause:"Heavy Rain",          sev:"1"},
+  {lat:38.114, lon:15.733,  began:"2009-10-01",ended:"2009-10-02",dead:22, disp:0,     cause:"Torrential Rain",     sev:"2"},
+  {lat:42.7931,lon:12.7554, began:"2009-12-21",ended:"2009-12-27",dead:0,  disp:500,   cause:"Torrential Rain",     sev:"1"},
+  {lat:45.1256,lon:11.1382, began:"2010-11-08",ended:"2010-11-11",dead:0,  disp:300,   cause:"Heavy Rain",          sev:"2"},
+  {lat:44.4216,lon:9.33422, began:"2011-10-26",ended:"2011-11-01",dead:7,  disp:0,     cause:"Torrential Rain",     sev:"2"},
+  {lat:43.1605,lon:12.4131, began:"2012-11-11",ended:"2012-11-18",dead:4,  disp:500,   cause:"Torrential Rain",     sev:"1.5"},
+  {lat:40.3008,lon:9.00455, began:"2013-11-18",ended:"2013-11-19",dead:18, disp:2700,  cause:"Torrential Rain",     sev:"2"},
+  {lat:43.3979,lon:13.013,  began:"2014-05-02",ended:"2014-05-10",dead:2,  disp:250,   cause:"Torrential Rain",     sev:"1.5"},
+  {lat:44.6146,lon:9.17775, began:"2014-10-10",ended:"2014-10-11",dead:1,  disp:0,     cause:"Torrential Rain",     sev:"1"},
+  {lat:45.9281,lon:10.6129, began:"2014-11-12",ended:"2014-11-16",dead:5,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
+  {lat:43.0645,lon:10.7366, began:"2017-09-10",ended:"2017-09-14",dead:6,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
+  {lat:45.457, lon:10.5881, began:"2017-12-12",ended:"2017-12-13",dead:0,  disp:1000,  cause:"Heavy Rain",          sev:"1.5"},
+  {lat:45.5062,lon:12.0233, began:"2018-10-27",ended:"2018-11-05",dead:11, disp:0,     cause:"Heavy Rain",          sev:"1"},
+  {lat:37.4589,lon:14.0522, began:"2018-11-03",ended:"2018-11-07",dead:12, disp:200,   cause:"Torrential Rain",     sev:"1.5"},
+  {lat:43.7947,lon:12.5429, began:"2019-05-12",ended:"2019-05-14",dead:0,  disp:20,    cause:"Heavy Rain",          sev:"1"},
+  {lat:45.9656,lon:10.118,  began:"2019-08-06",ended:"2019-08-09",dead:0,  disp:146,   cause:"Torrential Rain",     sev:"1"},
+  {lat:37.8936,lon:13.7677, began:"2020-07-14",ended:"2020-07-17",dead:0,  disp:0,     cause:"Torrential Rain",     sev:"1.5"},
+  {lat:38.8594,lon:16.4523, began:"2020-11-20",ended:"2020-11-23",dead:0,  disp:200,   cause:"Torrential Rain",     sev:"1.5"},
+  {lat:44.6393,lon:9.3757,  began:"2021-10-04",ended:"2021-10-06",dead:0,  disp:0,     cause:"Torrential Rain",     sev:"1.5"}
+];
+
+var SEV_COLOR = { '1': '#f59e0b', '1.5': '#f97316', '2': '#dc2626' };
+
+function deathRadius(n) {
+  if (n === 0)  return 5;
+  if (n < 5)    return 7;
+  if (n < 15)   return 9;
+  if (n < 30)   return 12;
+  if (n < 50)   return 16;
+  return 20;
+}
+
+var map = L.map('map').setView([42.5, 12.5], 6);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+}).addTo(map);
+
+// Keep a reference to each marker so sidebar clicks can open its popup
+var markers = [];
+
+FLOODS.forEach(function(e, i) {
+  var color = SEV_COLOR[e.sev] || '#f59e0b';
+  var m = L.circleMarker([e.lat, e.lon], {
+    radius: deathRadius(e.dead),
+    fillColor: color,
+    color: '#fff',
+    weight: 1.5,
+    fillOpacity: 0.88
+  }).addTo(map);
+
+  m.bindPopup(
+    '<div style="min-width:200px">' +
+    '<div style="font-weight:700;font-size:0.95rem;color:' + color + ';margin-bottom:4px">Italy</div>' +
+    '<div style="color:#64748b;font-size:0.75rem;margin-bottom:6px">' + e.began + ' → ' + e.ended + '</div>' +
+    '<table style="width:100%;font-size:0.8rem;border-collapse:collapse">' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Cause</td><td><b>' + e.cause + '</b></td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Severity</td><td>' + e.sev + '</td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Deaths</td><td><b style="color:#dc2626">' + e.dead + '</b></td></tr>' +
+    '<tr><td style="color:#888;padding:2px 8px 2px 0">Displaced</td><td>' + e.disp.toLocaleString() + '</td></tr>' +
+    '</table></div>',
+    { maxWidth: 260 }
+  );
+
+  markers.push({ marker: m, data: e });
+});
+
+// Build sidebar — sorted by deaths descending
+var tbody = document.getElementById('event-tbody');
+var sorted = markers.slice().sort(function(a, b) {
+  return b.data.dead - a.data.dead || b.data.disp - a.data.disp;
+});
+
+sorted.forEach(function(item) {
+  var e = item.data;
+  var color = SEV_COLOR[e.sev] || '#f59e0b';
+  var year = e.began.slice(0, 4);
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td>' + year + '</td>' +
+    '<td style="font-weight:700;color:#dc2626">' + e.dead + '</td>' +
+    '<td>' + (e.disp > 999 ? (e.disp / 1000).toFixed(1) + 'k' : e.disp) + '</td>' +
+    '<td><span class="sev-badge" style="background:' + color + '">' + e.sev + '</span></td>';
+  tr.addEventListener('click', function() {
+    map.setView([e.lat, e.lon], 9, { animate: true });
+    item.marker.openPopup();
+  });
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
