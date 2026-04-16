@@ -11,7 +11,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
   <style>
-    /* ── Page layout ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
@@ -43,7 +42,6 @@
       color: #2563eb;
     }
 
-    /* ── 2-column grid of cards ──────────────────────────────────── */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
@@ -72,13 +70,11 @@
       margin: 0 0 16px;
     }
 
-    /* Keep charts a consistent height */
     .chart-wrap {
       position: relative;
       height: 320px;
     }
 
-    /* Loading / error message shown while CSV loads */
     #status {
       text-align: center;
       padding: 40px;
@@ -98,10 +94,8 @@
     <a href="index.html">← View the interactive map</a>
   </header>
 
-  <!-- Shown while the CSV loads -->
   <div id="status">Loading data…</div>
 
-  <!-- The four chart cards (hidden until data is ready) -->
   <div class="grid" id="charts" style="display:none;">
 
     <div class="card">
@@ -168,6 +162,7 @@
       document.getElementById('status').style.display = 'none';
       document.getElementById('charts').style.display = 'grid';
 
+      // Chart 1: Bar — Top 20 countries
       const countryCounts = countBy(rows.map(r => r['Country']));
       const top20 = sortedEntries(countryCounts).slice(0, 20);
       new Chart(document.getElementById('chartCountry'), {
@@ -192,8 +187,10 @@
         }
       });
 
+      // Chart 2: Line — Events per year (sorted by year number, not by count)
       const yearCounts = countBy(rows.map(r => r['Year']));
-      const yearEntries = sortedEntries(yearCounts, true);
+      const yearEntries = Object.entries(yearCounts)
+        .sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
       new Chart(document.getElementById('chartYear'), {
         type: 'line',
         data: {
@@ -219,6 +216,7 @@
         }
       });
 
+      // Chart 3: Bar — Events by category
       const catCounts = countBy(rows.map(r => r['categorised_reason']));
       const catEntries = sortedEntries(catCounts);
       new Chart(document.getElementById('chartCategory'), {
@@ -243,6 +241,7 @@
         }
       });
 
+      // Chart 4: Bar — Total displaced by Severity
       const SEV_LABELS = { '1.0': 'Large (1.0)', '1.5': 'Very Large (1.5)', '2.0': 'Extreme (2.0)' };
       const displaced = sumBy(rows, 'Severity', 'Displaced');
       const sevEntries = Object.entries(displaced)
