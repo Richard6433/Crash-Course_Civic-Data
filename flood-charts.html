@@ -202,8 +202,9 @@
 
       // ── Chart 2: Line — Events per year ─────────────────────────
       const yearCounts = countBy(rows.map(r => r['Year']));
-      // Sort years chronologically (ascending)
-      const yearEntries = sortedEntries(yearCounts, true);
+      // Sort by year number (the key), not by count
+      const yearEntries = Object.entries(yearCounts)
+        .sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
       new Chart(document.getElementById('chartYear'), {
         type: 'line',
         data: {
